@@ -1,4 +1,6 @@
-
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +18,7 @@
 
 <body>
 
-    <!-- Navigation -->
+    <!-- Navigation bar from bootstrap -->
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -33,10 +35,13 @@
                 <a class="nav-link" href="#">Leagues</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Register</a>
+                <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
               </li>
             </ul>
           </div>
