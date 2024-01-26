@@ -21,3 +21,7 @@ body {
     margin-top: 10%;
     background-color: #fcf6f5;
 }
+
+.welcome-page-cta > h3 {
+    padding-bottom: 10px;
+}
