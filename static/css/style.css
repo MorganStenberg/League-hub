@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: lightgrey;
+}
+
+.navbar-background {
+    background-color: #990011
+}
+
+.navbar-text-content {
+    color: #fcf6f5;
+}
+
+.welcome-page-cta {
+    margin-top: 10%;
+    background-color: #fcf6f5;
+}
