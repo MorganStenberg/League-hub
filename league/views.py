@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import League
+from .models import League, Match
 
 # Create your views here.
 
@@ -30,3 +30,17 @@ class my_leagues(generic.ListView):
 
     def get_queryset(self):
         return League.objects.all().order_by('name')
+
+
+        
+def user_matches(request):
+    
+    user = request.user
+
+    home_team_match = user.home_team_matches.all()
+
+    context = {
+        'home_team_match':home_team_match,
+    }
+
+    return render(request, 'league/my_matches.html', context)

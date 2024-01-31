@@ -33,7 +33,7 @@ class Match(models.Model):
     away_team_score = models.PositiveIntegerField()
     updated_at = models.DateTimeField(auto_now=True)
 
-    def calculate_points(self):
-        win_points = 3
-        draw_points = 1
-        loss_points = 0
+    #def calculate_points(self):
+        #win_points = 3
+        #draw_points = 1
+       # loss_points = 0
