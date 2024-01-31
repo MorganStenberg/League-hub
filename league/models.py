@@ -16,6 +16,9 @@ class League(models.Model):
 
 
 class Match(models.Model):
+    """
+
+    """
     league = models.ForeignKey(
         League, on_delete=models.CASCADE, related_name="matches"
     )
@@ -29,3 +32,8 @@ class Match(models.Model):
     home_team_score = models.PositiveIntegerField()
     away_team_score = models.PositiveIntegerField()
     updated_at = models.DateTimeField(auto_now=True)
+
+    def calculate_points(self):
+        win_points = 3
+        draw_points = 1
+        loss_points = 0
