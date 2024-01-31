@@ -21,3 +21,12 @@ class all_leagues(generic.ListView):
     def get_queryset(self):
         return League.objects.all().order_by('name')
 
+
+class my_leagues(generic.ListView):
+    
+    model = League
+    template_name = 'league/my_leagues.html'
+    paginate_by = 4
+
+    def get_queryset(self):
+        return League.objects.all().order_by('name')
