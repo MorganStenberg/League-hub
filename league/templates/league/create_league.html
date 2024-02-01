@@ -1,5 +1,26 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
+
+
+
+    <!-- Form for creating your league, credit to CI- walktrhough  -->
+<div class="container ">
+    <div class="col card justify-content-center">
+        <div class="card-body">
+          <h3>Create a league</h3>
+          
+          <form id="CreateLeagueForm" method="post">
+            {{ create_league_form | crispy }}
+            {% csrf_token %}
+            <button id="submitButton" type="submit"
+              class="btn btn-lg">Submit</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
 
 {% endblock %}

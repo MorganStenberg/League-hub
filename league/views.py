@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 from .models import League, Match
+from .forms import CreateLeagueForm
 
 # Create your views here.
 
@@ -47,3 +49,17 @@ def user_matches(request):
     }
 
     return render(request, 'league/my_matches.html', context)
+
+
+@login_required
+def create_league(request):
+
+    create_league_form = CreateLeagueForm()
+
+    context = {
+        "create_league_form": create_league_form,
+    }
+
+    return render (
+        request, "league/create_league.html", context
+    )
