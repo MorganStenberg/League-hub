@@ -54,6 +54,13 @@ def user_matches(request):
 @login_required
 def create_league(request):
 
+    if request.method == "POST":
+        create_league_form = CreateLeagueForm(data=request.POST)
+        if create_league_form.is_valid():
+            create_league = create_league_form.save(commit=False)
+            create_league.league_creator = request.user
+            create_league.save()
+
     create_league_form = CreateLeagueForm()
 
     context = {
