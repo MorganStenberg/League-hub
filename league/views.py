@@ -38,9 +38,12 @@ def user_matches(request):
     user = request.user
 
     home_team_match = user.home_team_matches.all()
+    away_team_match = user.away_team_matches.all()
+
+    all_matches = list(home_team_match) + list(away_team_match)
 
     context = {
-        'home_team_match':home_team_match,
+    'all_matches': all_matches,
     }
 
     return render(request, 'league/my_matches.html', context)
