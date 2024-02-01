@@ -70,3 +70,29 @@ def create_league(request):
     return render (
         request, "league/create_league.html", context
     )
+
+
+
+def detailed_league(request):
+
+    """
+    Displays detailed view of one league,
+    including a form to add played matches to that league
+    """
+
+    if request.method == "POST":
+        add_matches_form = AddMatchesForm(data=request.POST)
+        if add_matches_form.is_valid():
+            add_matches = add_matches_form.save(commit=False)
+            
+            add_matches_form.save()
+
+    add_matches_form = AddMatchesForm()
+
+    context = {
+        "add_matches_form": add_matches_form,
+    }
+
+    return render (
+        request, "league/detailed_league.html", context
+    )
