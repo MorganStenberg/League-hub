@@ -72,7 +72,7 @@ def create_league(request):
     )
 
 
-
+@login_required
 def detailed_league(request):
 
     """

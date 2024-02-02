@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class League(models.Model):
     name = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField()
     league_creator = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="created_leagues"
