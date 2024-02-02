@@ -28,9 +28,9 @@ class League(models.Model):
             user_points[home_team] = user_points.get(home_team, 0) + home_points
             user_points[away_team] = user_points.get(away_team, 0) + away_points
 
-            league_standings = sorted(user_points.items(), key=lambda x: x[1], reverse=True)
+        league_standings = sorted(user_points.items(), key=lambda x: x[1], reverse=True)
 
-            return league_standings
+        return league_standings
 
 
 

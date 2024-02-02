@@ -3,58 +3,80 @@
 {% block content %}
 
 
-    <!-- Todo: add the correct url link to connect to league and match model 
-        Table from bootstrap documentation 
- 
+<!-- 
+  
+Table from bootstrap doc.
 
+Displaying a detailed view of the league with standings for each user. 
+
+
+
+<table class="table align-middle">
+  <tbody>
+    
+   
+  </tbody>
+</table>
+
+-->
+
+
+<h1>{{ league_instance.name }} Standings</h1>
+
+<ol>
+  {% for user, points in standings %}
+    <li>{{ user.username }}: {{ points }} points</li>
+  {% endfor %}
+</ol>
+
+<!---
 <div class="container-fluid">
-    <div class="row">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Player</th>
-                <th scope="col">Games played</th>
-                <th scope="col">Won</th>
-                <th scope="col">Draw</th>
-                <th scope="col">Lost</th>
-                <th scope="col">Points</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-              <tr>
-                <th scope="row">1</th>
-                <td>test</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry the Bird</td>
-                <td>@twitter</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@fat</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
+  <div class="row">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Player</th>
+              <th scope="col">Games played</th>
+              <th scope="col">Won</th>
+              <th scope="col">Draw</th>
+              <th scope="col">Lost</th>
+              <th scope="col">Points</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr>
+              <th scope="row">1</th>
+              <td>test</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry the Bird</td>
+              <td>@twitter</td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@fat</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+ 
+-->
 
-
-</div>
-   -->
 
 {% endblock %}

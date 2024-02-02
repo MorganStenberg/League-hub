@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.contrib.auth.decorators import login_required
+from django.utils.text import slugify
 from .models import League, Match
-from .forms import CreateLeagueForm
+from .forms import CreateLeagueForm, AddMatchesForm
 
 # Create your views here.
 
@@ -59,6 +60,7 @@ def create_league(request):
         if create_league_form.is_valid():
             create_league = create_league_form.save(commit=False)
             create_league.league_creator = request.user
+            create_league.slug = slugify(create_league.name)
             create_league.save()
 
     create_league_form = CreateLeagueForm()
@@ -73,12 +75,15 @@ def create_league(request):
 
 
 @login_required
-def detailed_league(request):
+def detailed_league(request, slug):
 
     """
     Displays detailed view of one league,
     including a form to add played matches to that league
     """
+
+    league_instance = get_object_or_404(League, slug=slug)
+    standings = league_instance.calculate_standings()
 
     if request.method == "POST":
         add_matches_form = AddMatchesForm(data=request.POST)
@@ -90,6 +95,8 @@ def detailed_league(request):
     add_matches_form = AddMatchesForm()
 
     context = {
+        "league_instance": league_instance,
+        "standings": standings,
         "add_matches_form": add_matches_form,
     }
 
