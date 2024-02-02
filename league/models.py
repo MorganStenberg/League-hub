@@ -33,7 +33,21 @@ class Match(models.Model):
     away_team_score = models.PositiveIntegerField()
     updated_at = models.DateTimeField(auto_now=True)
 
-    #def calculate_points(self):
-        #win_points = 3
-        #draw_points = 1
-       # loss_points = 0
+
+    def calculate_points(self):
+        win_points = 3
+        draw_points = 1
+        loss_points = 0
+
+        if self.home_team_score > self.away_team_score:
+            home_points = win_points 
+            away_points = loss_points 
+        elif self.home_team_score < self.away_team_score: 
+            home_points = loss_points
+            away_points = win_points
+        else:
+            home_points = draw_points
+            away_points = draw_points
+
+        return home_points, away_points
+
