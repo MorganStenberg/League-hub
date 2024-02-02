@@ -80,10 +80,13 @@ def detailed_league(request, slug):
     """
     Displays detailed view of one league,
     including a form to add played matches to that league
+    and all matches connected to that league
     """
 
     league_instance = get_object_or_404(League, slug=slug)
     standings = league_instance.calculate_standings()
+
+    all_matches = league_instance.matches.all()
 
     if request.method == "POST":
         add_matches_form = AddMatchesForm(data=request.POST)
@@ -98,6 +101,7 @@ def detailed_league(request, slug):
         "league_instance": league_instance,
         "standings": standings,
         "add_matches_form": add_matches_form,
+        'all_matches': all_matches,
     }
 
     return render (

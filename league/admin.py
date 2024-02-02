@@ -12,6 +12,7 @@ class LeagueAdmin(SummernoteModelAdmin):
     prepopulated_fields  = {'slug': ('name',)}
     summernote_field = ('description')
 
-
-
-admin.site.register(Match)
+@admin.register(Match)
+class MatchAdmin(admin.ModelAdmin):
+    list_display = ('league', 'date', 'home_team', 'away_team', 'home_team_score', 'away_team_score')
+    search_fields = ['home_team', 'away_team']

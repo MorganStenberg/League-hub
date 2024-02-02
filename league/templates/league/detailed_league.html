@@ -5,35 +5,6 @@
 {% block content %}
 
 
-<!-- 
-  
-Table from bootstrap doc.
-
-Displaying a detailed view of the league with standings for each user. 
-
-
-
-<table class="table align-middle">
-  <tbody>
-    
-   
-  </tbody>
-</table>
-
-
-
-<div class="container">
-  <div>
-  <h1>{{ league_instance.name }} Standings</h1>
-
-  <ol>
-    {% for user, points in standings %}
-      <li>{{ user.username }}: {{ points }} points</li>
-    {% endfor %}
-  </ol>
-  </div>
-</div>-->
-
 <div class="container">
   <div class="col card justify-content-center">
     <div class="card-body justify-content-center">
@@ -47,6 +18,23 @@ Displaying a detailed view of the league with standings for each user.
     </div>
   </div>
 </div>
+
+<table class="table align-middle">
+  <tbody>
+    {% for match in all_matches %}
+    <tr>
+      <th scope="col">{{ match.home_team }} </th>
+      <td scope="col">{{ match.home_team_score }} </td>
+      <td rowspan="2" class="text-center border"> {{ match.date }}</td>
+      <td rowspan="2" class="text-center border"> {{ match.league.name }}</td>
+    </tr>
+    <tr>
+      <th scope="row">{{ match.away_team }}</th>
+      <td>{{ match.away_team_score }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
     <!-- Form for adding a match to a league credit to CI- walktrhough  -->
     <div class="container ">
