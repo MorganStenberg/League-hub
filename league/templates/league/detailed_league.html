@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 
@@ -18,16 +20,50 @@ Displaying a detailed view of the league with standings for each user.
   </tbody>
 </table>
 
--->
 
 
-<h1>{{ league_instance.name }} Standings</h1>
+<div class="container">
+  <div>
+  <h1>{{ league_instance.name }} Standings</h1>
 
-<ol>
-  {% for user, points in standings %}
-    <li>{{ user.username }}: {{ points }} points</li>
-  {% endfor %}
-</ol>
+  <ol>
+    {% for user, points in standings %}
+      <li>{{ user.username }}: {{ points }} points</li>
+    {% endfor %}
+  </ol>
+  </div>
+</div>-->
+
+<div class="container">
+  <div class="col card justify-content-center">
+    <div class="card-body justify-content-center">
+      <h5 class="card-title">{{ league_instance.name }} Standings</h5>
+      <ol>
+        {% for user, points in standings %}
+        <li>{{ user.username }}: {{ points }} points</li>
+        {% endfor %}
+      </ol>
+      <a href="#" class="btn btn-primary">Add match</a>
+    </div>
+  </div>
+</div>
+
+    <!-- Form for adding a match to a league credit to CI- walktrhough  -->
+    <div class="container ">
+      <div class="col card justify-content-center">
+          <div class="card-body">
+            <h3>Add match</h3>
+            
+            <form id="AddMatchesForm" method="post">
+              {{ add_matches_form | crispy }}
+              {% csrf_token %}
+              <button id="submitButton" type="submit"
+                class="btn btn-lg">Submit</button>
+            </form>
+  
+          </div>
+        </div>
+      </div>
 
 <!---
 <div class="container-fluid">

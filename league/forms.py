@@ -11,4 +11,4 @@ class CreateLeagueForm(forms.ModelForm):
 class AddMatchesForm(forms.ModelForm):
     class Meta:
         model = Match
-        fields = ["league", "home_team", "away_team", "home_team_score", "away_team_score" ]
+        fields = ["home_team", "away_team", "home_team_score", "away_team_score" ]

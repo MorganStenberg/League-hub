@@ -32,6 +32,8 @@ class League(models.Model):
 
         return league_standings
 
+    def __str__(self):
+        return self.name
 
 
 class Match(models.Model):

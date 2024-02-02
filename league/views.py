@@ -89,7 +89,7 @@ def detailed_league(request, slug):
         add_matches_form = AddMatchesForm(data=request.POST)
         if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
-            
+            add_matches.league = league_instance
             add_matches_form.save()
 
     add_matches_form = AddMatchesForm()
