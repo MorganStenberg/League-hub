@@ -36,7 +36,14 @@
   </tbody>
 </table>
 
-    <!-- Form for adding a match to a league credit to CI- walktrhough  -->
+ <!-- edit matches, credit to CI-Walkthrough  -->
+
+ {% if user.is_authenticated and league_instance.league_member == user %}
+ <button class="btn btn-edit"
+   match_id="{{ match.id }}">Edit</button>
+ {% endif %}
+
+    <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
     <div class="container ">
       <div class="col card justify-content-center">
           <div class="card-body">
