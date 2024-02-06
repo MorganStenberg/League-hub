@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -114,19 +114,27 @@ def edit_match(request, slug, match_id):
     """
     View to edit matches
     """
-
+    league_instance = get_object_or_404(League, slug=slug)
+    match = get_object_or_404(Match, pk=match_id)
 
     if request.method == "POST":
-        league_instance = get_object_or_404(League, slug=slug)
-        match = get_object_or_404(Match, pk=match_id)
 
         add_matches_form = AddMatchesForm(data=request.POST, instance=match)
-        if add_matches_form.is_valid() and league_instance.league_membership == request.user:
+        if add_matches_form.is_valid(): #and league_instance.league_member == request.user:
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
             add_matches_form.save()
 
-    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+    context = {
+    'slug': slug,
+    'match_id': match_id,
+    'add_matches_form': AddMatchesForm(instance=match)
+    }
+    return render (
+        request, "league/edit_match.html", context
+    )
+    #return HttpResponseRedirect(reverse('detailed_league', args=[slug]))
 
 
     #standings = league_instance.calculate_standings()

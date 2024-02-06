@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
+    <div class="container ">
+        <div class="col card justify-content-center">
+            <div class="card-body">
+              <h3>Edit match</h3>
+              
+              <form method="post" action="{% url 'edit_match' slug=slug match_id=match_id %}">
+                {{ add_matches_form | crispy }}
+                {% csrf_token %}
+                <button id="submit-button" type="submit"
+                  class="btn btn-lg">Submit</button>
+              </form>
+    
+            </div>
+          </div>
+        </div>
+  
+
+{% endblock %}
