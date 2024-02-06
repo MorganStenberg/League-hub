@@ -32,6 +32,8 @@
       {% if user.is_authenticated %}
       <td rowspan="2" class="text-center border"><a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}" class="btn btn-primary">Edit match</a>
       </td>
+      <td rowspan="2" class="text-center border"><a href="{% url 'delete_match' slug=league_instance.slug match_id=match.id %}" class="btn btn-primary">Delete match</a>
+      </td>
 
       {% endif %}
 

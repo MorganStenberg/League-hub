@@ -120,6 +120,7 @@ def edit_match(request, slug, match_id):
     """
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
+  
 
     if request.user not in league_instance.league_member.all():
         raise Http404("You are not a member of this league.")
@@ -144,5 +145,27 @@ def edit_match(request, slug, match_id):
     )
     #return HttpResponseRedirect(reverse('detailed_league', args=[slug]))
 
+@login_required
+def delete_match(request, slug, match_id):
+    """
+    View to delete a match
+    """
+    league_instance = get_object_or_404(League, slug=slug)
+    match = get_object_or_404(Match, pk=match_id)
 
-    #standings = league_instance.calculate_standings()
+    if request.user not in league_instance.league_member.all():
+        raise Http404("You are not a member of this league.")
+            
+    if request.method == "POST":
+        match.delete()
+
+
+    context = {
+    'slug': slug,
+    "league_instance": league_instance,
+    'match_id': match_id,
+    }
+    
+    return render (
+        request, "league/edit_match.html", context
+    )

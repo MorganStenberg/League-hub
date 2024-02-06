@@ -16,6 +16,13 @@
                 <button id="submit-button" type="submit"
                   class="btn btn-lg">Submit</button>
               </form>
+
+              <form method="post" action="{% url 'delete_match' slug=slug match_id=match_id %}">
+                {{ add_matches_form | crispy }}
+                {% csrf_token %}
+                <button id="submit-button" type="submit"
+                  class="btn btn-lg">Delete</button>
+              </form>
     
             </div>
           </div>
