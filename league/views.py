@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from .models import League, Match
@@ -89,7 +89,11 @@ def detailed_league(request, slug):
 
     all_matches = league_instance.matches.all()
 
+
+
     if request.method == "POST":
+        if request.user not in league_instance.league_member.all():
+            raise Http404("You are not a member of this league.")
         add_matches_form = AddMatchesForm(data=request.POST)
         if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
@@ -109,7 +113,7 @@ def detailed_league(request, slug):
         request, "league/detailed_league.html", context
     )
 
-
+@login_required
 def edit_match(request, slug, match_id):
     """
     View to edit matches
@@ -117,10 +121,13 @@ def edit_match(request, slug, match_id):
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
 
+    if request.user not in league_instance.league_member.all():
+        raise Http404("You are not a member of this league.")
+            
     if request.method == "POST":
 
         add_matches_form = AddMatchesForm(data=request.POST, instance=match)
-        if add_matches_form.is_valid(): #and league_instance.league_member == request.user:
+        if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
             add_matches_form.save()
@@ -128,6 +135,7 @@ def edit_match(request, slug, match_id):
 
     context = {
     'slug': slug,
+    "league_instance": league_instance,
     'match_id': match_id,
     'add_matches_form': AddMatchesForm(instance=match)
     }
