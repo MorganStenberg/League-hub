@@ -147,6 +147,7 @@ def edit_match(request, slug, match_id):
     )
     #return HttpResponseRedirect(reverse('detailed_league', args=[slug]))
 
+
 @login_required
 def delete_match(request, slug, match_id):
     """
@@ -154,21 +155,15 @@ def delete_match(request, slug, match_id):
     """
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
-
-    if request.user not in league_instance.league_member.all():
-        raise Http404("You are not a member of this league.")
+    print("delete view part 1")
             
-    if request.method == "POST":
+    if request.user == match.home_team or request.user == match.away_team:
+        print("delete view part 2")
         match.delete()
 
         messages.add_message(request, messages.SUCCESS, 'Match deleted!')
-    
-    context = {
-    'slug': slug,
-    "league_instance": league_instance,
-    'match_id': match_id,
-    }
 
-    return render (
-        request, "league/delete_match.html", context
-    )
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only delete your own matches!')
+ 
+    return HttpResponseRedirect(reverse('detailed_league', args=[slug]))
