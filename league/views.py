@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.http import HttpResponseRedirect, Http404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from .models import League, Match
@@ -132,6 +133,7 @@ def edit_match(request, slug, match_id):
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
             add_matches_form.save()
+            return redirect('detailed_league', slug=slug)
 
 
     context = {
@@ -159,13 +161,14 @@ def delete_match(request, slug, match_id):
     if request.method == "POST":
         match.delete()
 
-
+        messages.add_message(request, messages.SUCCESS, 'Match deleted!')
+    
     context = {
     'slug': slug,
     "league_instance": league_instance,
     'match_id': match_id,
     }
-    
+
     return render (
-        request, "league/edit_match.html", context
+        request, "league/delete_match.html", context
     )
