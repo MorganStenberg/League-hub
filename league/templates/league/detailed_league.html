@@ -29,14 +29,11 @@
       <td rowspan="2" class="text-center border"> {{ match.league.name }}</td>
 
       <!-- edit matches, credit to CI-Walkthrough  -->
-      {% if user.is_authenticated %}
+      {% if user == match.home_team or user == match.away_team %}
       <td rowspan="2" class="text-center border"><a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}" class="btn btn-primary">Edit match</a>
       </td>
       <td rowspan="2" class="text-center border"><button class="btn btn-primary btn-delete" data-match_id= "{{ match.id }}">Delete match</button>
       </td>
-
-
-
       {% endif %}
 
     </tr>

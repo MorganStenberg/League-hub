@@ -114,6 +114,7 @@ def detailed_league(request, slug):
         request, "league/detailed_league.html", context
     )
 
+
 @login_required
 def edit_match(request, slug, match_id):
     """
@@ -122,19 +123,17 @@ def edit_match(request, slug, match_id):
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
   
+    if request.user == match.home_team or request.user == match.away_team:
+        if request.method == "POST":
 
-    if request.user not in league_instance.league_member.all():
-        raise Http404("You are not a member of this league.")
-            
-    if request.method == "POST":
-
-        add_matches_form = AddMatchesForm(data=request.POST, instance=match)
-        if add_matches_form.is_valid():
-            add_matches = add_matches_form.save(commit=False)
-            add_matches.league = league_instance
-            add_matches_form.save()
-            return redirect('detailed_league', slug=slug)
-
+            add_matches_form = AddMatchesForm(data=request.POST, instance=match)
+            if add_matches_form.is_valid():
+                add_matches = add_matches_form.save(commit=False)
+                add_matches.league = league_instance
+                add_matches_form.save()
+                return redirect('detailed_league', slug=slug)
+    else:
+        messages.add_message(request, messages.ERROR, 'You can only edit your own matches!')
 
     context = {
     'slug': slug,
@@ -142,10 +141,10 @@ def edit_match(request, slug, match_id):
     'match_id': match_id,
     'add_matches_form': AddMatchesForm(instance=match)
     }
+
     return render (
         request, "league/edit_match.html", context
     )
-    #return HttpResponseRedirect(reverse('detailed_league', args=[slug]))
 
 
 @login_required
@@ -155,10 +154,8 @@ def delete_match(request, slug, match_id):
     """
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
-    print("delete view part 1")
             
     if request.user == match.home_team or request.user == match.away_team:
-        print("delete view part 2")
         match.delete()
 
         messages.add_message(request, messages.SUCCESS, 'Match deleted!')
