@@ -11,6 +11,7 @@ from .forms import CreateLeagueForm, AddMatchesForm
 
 def home_page(request):
     return render(request, "league/index.html")
+    
 
 class all_leagues(generic.ListView):
     """
@@ -28,7 +29,9 @@ class all_leagues(generic.ListView):
 
 
 class my_leagues(generic.ListView):
-    
+    """
+    View to display all leagues that a user is a part of.
+    """    
     model = League
     template_name = 'league/my_leagues.html'
     paginate_by = 4
@@ -37,8 +40,11 @@ class my_leagues(generic.ListView):
         return League.objects.all().order_by('name')
 
 
-        
+@login_required        
 def user_matches(request):
+    """
+    View to display all matches connected to a user.
+    """
     
     user = request.user
 
@@ -64,6 +70,7 @@ def create_league(request):
             create_league.league_creator = request.user
             create_league.slug = slugify(create_league.name)
             create_league.save()
+            messages.add_message(request, messages.SUCCESS, 'League created!')
 
     create_league_form = CreateLeagueForm()
 
@@ -94,12 +101,15 @@ def detailed_league(request, slug):
 
     if request.method == "POST":
         if request.user not in league_instance.league_member.all():
-            raise Http404("You are not a member of this league.")
+            messages.add_message(request, messages.ERROR, 'You can only add matches if you are a part of the league!')
+            return redirect('detailed_league', slug=slug)
         add_matches_form = AddMatchesForm(data=request.POST)
         if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
             add_matches_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Match added to league!')
+            standings = league_instance.calculate_standings()
 
     add_matches_form = AddMatchesForm()
 
