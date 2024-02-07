@@ -110,6 +110,7 @@ def detailed_league(request, slug):
             add_matches_form.save()
             messages.add_message(request, messages.SUCCESS, 'Match added to league!')
             standings = league_instance.calculate_standings()
+            return redirect('detailed_league', slug=slug)
 
     add_matches_form = AddMatchesForm()
 
