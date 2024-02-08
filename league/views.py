@@ -107,10 +107,14 @@ def detailed_league(request, slug):
         if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
-            add_matches_form.save()
-            messages.add_message(request, messages.SUCCESS, 'Match added to league!')
-            standings = league_instance.calculate_standings()
-            return redirect('detailed_league', slug=slug)
+            if request.user == add_matches.home_team or request.user == add_matches.away_team:
+                add_matches_form.save()
+                messages.add_message(request, messages.SUCCESS, 'Match added to league!')
+                standings = league_instance.calculate_standings()
+                return redirect('detailed_league', slug=slug)
+            else:
+                messages.add_message(request, messages.ERROR, 'You can only add matches you have played!')
+                return redirect('detailed_league', slug=slug)
 
     add_matches_form = AddMatchesForm()
 
