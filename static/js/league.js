@@ -1,4 +1,6 @@
 const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
+const editErrorModal = new bootstrap.Modal(document.getElementById("editErrorModal"));
+const editButtons = document.getElementsByClassName("btn-edit-error");
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
 
@@ -12,3 +14,8 @@ for (let button of deleteButtons) {
     });
   }
 
+for (let button of editButtons) {
+  button.addEventListener("click", (e) => {
+    editErrorModal.show();
+  });
+}

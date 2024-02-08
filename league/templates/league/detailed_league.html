@@ -10,7 +10,7 @@
 
   <div class="container">
       <div class="row justify-content-center">
-          <div class="col-12 col-md-6 p-3 rounded detailed-league">
+          <div class="col-12 col-md-9 p-3 rounded detailed-league">
               <h3 class="text-center">{{ league_instance.name }} Standings</h4>
 
               <div class="d-flex justify-content-center">
@@ -28,11 +28,11 @@
 
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-12 col-md-6 p-3 text-center rounded detailed-league">
+        <div class="col-12 col-md-9 p-3 text-center rounded detailed-league">
 
           <!-- Button for collapsing all matches  -->
 
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
+          <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
             aria-expanded="false" aria-controls="viewMatches">
             View Matches
           </button>
@@ -41,10 +41,10 @@
             <table class="table table-borderless align-middle">
               <tbody>
                 {% for match in all_matches %}
-                <tr>
-                  <th scope="col">{{ match.home_team }} </th>
-                  <td scope="col">{{ match.home_team_score }} </td>
-                  <td rowspan="2" class="text-center"> {{ match.date }}</td>
+                <tr class="upper-table-row">
+                  <th>{{ match.home_team }} </th>
+                  <td class="td-score">{{ match.home_team_score }} </td>
+                  <td rowspan="2" class="text-center"> {{ match.date|date:"M d" }}</td>
 
                   <!-- edit matches, credit to CI-Walkthrough  -->
                   {% if user == match.home_team or user == match.away_team %}
@@ -58,22 +58,27 @@
                       data-match_id="{{ match.id }}">Delete match
                     </button>
                   </td>
+
                   {% else %}
                   <td rowspan="2" class="text-center">
-                    <button class="btn btn-info btn-sm">You can only edit your own matches
+                    <button class="btn btn-info btn-sm btn-edit-error"
+                    data-match_id="">Edit match
                     </button>
                   </td>
                   <td rowspan="2" class="text-center">
-                    <button class="btn btn-info btn-sm">You can only delete your own matches
+                    <button class="btn btn-info btn-sm"
+                    data-match_id="">Delete match
                     </button>
                   </td>
-                  {% endif %}
+                {% endif %}
+
 
                 </tr>
-                <tr>
-                  <th scope="row">{{ match.away_team }}</th>
-                  <td>{{ match.away_team_score }}</td>
+                <tr class="bottom-table-row">
+                  <th>{{ match.away_team }}</th>
+                  <td class="td-score">{{ match.away_team_score }}</td>
                 </tr>
+
 
                 {% endfor %}
 
@@ -82,7 +87,7 @@
           </div>
 
           <!-- Button for collapsing add match form  -->
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#addMatchCollapse"
+          <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#addMatchCollapse"
             aria-expanded="false" aria-controls="addMatchCollapse">
             Add Match
           </button>
@@ -126,6 +131,25 @@
     </div>
   </div>
 </div>
+
+      <!-- Edit error message when user is not part of match - credit to CI-Walkthrough -->
+<div class="modal fade" id="editErrorModal" tabindex="-1" aria-labelledby="editErrorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editErrorModalLabel">Not part of match!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You can only edit matches that you are a part of.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 {% endblock %}
@@ -182,6 +206,8 @@
         </table>
   </div>
  
+
+
 -->
 
 

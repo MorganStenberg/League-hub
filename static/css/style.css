@@ -35,3 +35,29 @@ body {
     margin-top: 3%;
     background-color: #fcf6f5;
 }
+
+.bottom-table-row {
+    border-bottom: solid;
+
+}
+
+.upper-table-row {
+    border-top: solid;
+}
+
+.btn-margin {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+
+
+
+/*Media query for minwidth (576px)*/
+@media screen and (min-width: 576px) {
+
+.td-score {
+    padding-left: 50px !important;
+    padding-right: 30px !important;
+    }
+}
