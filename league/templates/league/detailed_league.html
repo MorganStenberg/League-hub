@@ -7,7 +7,7 @@
 
 
 
-
+<!-- 
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-12 col-md-9 p-3 rounded detailed-league">
@@ -23,92 +23,126 @@
           </div>
       </div>
   </div>
+-->
 
 
 
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-9 p-3 text-center rounded detailed-league">
-
-          <!-- Button for collapsing all matches  -->
-
-          <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
-            aria-expanded="false" aria-controls="viewMatches">
-            View Matches
-          </button>
-
-          <div class="table-container collapse" id="viewMatches">
-            <table class="table table-borderless align-middle">
-              <tbody>
-                {% for match in all_matches %}
-                <tr class="upper-table-row">
-                  <th>{{ match.home_team }} </th>
-                  <td class="td-score">{{ match.home_team_score }} </td>
-                  <td rowspan="2" class="text-center"> {{ match.date|date:"M d" }}</td>
-
-                  <!-- edit matches, credit to CI-Walkthrough  -->
-                  {% if user == match.home_team or user == match.away_team %}
-                  <td rowspan="2" class="text-center">
-                    <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
-                      class="btn btn-primary btn-sm">Edit match
-                    </a>
-                  </td>
-                  <td rowspan="2" class="text-center">
-                    <button class="btn btn-primary btn-sm btn-delete"
-                      data-match_id="{{ match.id }}">Delete match
-                    </button>
-                  </td>
-
-                  {% else %}
-                  <td rowspan="2" class="text-center">
-                    <button class="btn btn-info btn-sm btn-edit-error">
-                      Edit match
-                    </button>
-                  </td>
-                  <td rowspan="2" class="text-center">
-                    <button class="btn btn-info btn-sm btn-delete-error">
-                    Delete match
-                    </button>
-                  </td>
-                {% endif %}
 
 
-                </tr>
-                <tr class="bottom-table-row">
-                  <th>{{ match.away_team }}</th>
-                  <td class="td-score">{{ match.away_team_score }}</td>
-                </tr>
+
+  <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-12 col-md-9 p-3 rounded detailed-league">   
+<div class="ptable">
+  <h1 class="headin">{{ league_instance.name }} Standings</h1>
+					<table>
+						<tr class="col">
+							<th>#</th>
+							<th>Team</th>
+							<th>GP</th>
+							<th>W</th>
+							<th>D</th>
+							<th>L</th>
+							<th>GD</th>
+							<th>PTS</th>
+						</tr>
+            
+            {% for user, points in standings %}
+						<tr class="wpos">
+							<td>1</td>
+							<td>{{ user.username }}</td>
+							<td>2</td>
+							<td>2</td>
+							<td>0</td>
+							<td>0</td>
+							<td>5</td>
+							<td>{{ points }}</td>
+						</tr>
+            {% endfor %}
+						
+					</table>
+</div>
+</div>
+</div>
+</div>
 
 
-                {% endfor %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-9 p-3 text-center rounded detailed-league">
 
-              </tbody>
-            </table>
-          </div>
+      <!-- Button for collapsing all matches  -->
 
-          <!-- Button for collapsing add match form  -->
-          <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#addMatchCollapse"
-            aria-expanded="false" aria-controls="addMatchCollapse">
-            Add Match
-          </button>
+      <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
+        aria-expanded="false" aria-controls="viewMatches">
+        View Matches
+      </button>
 
-          <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
-          <div class="container collapse" id="addMatchCollapse">
-            <div class="col card justify-content-center">
-              <div class="card-body">
-                <h3>Add match</h3>
-                <form id="AddMatchesForm" method="post">
-                  {{ add_matches_form | crispy }}
-                  {% csrf_token %}
-                  <button id="submit-button" type="submit" class="btn btn-lg">Submit</button>
-                </form>
-              </div>
-            </div>
+      <div class="table-container collapse" id="viewMatches">
+        <table class="table table-borderless align-middle">
+          <tbody>
+            {% for match in all_matches %}
+            <tr class="upper-table-row">
+              <th>{{ match.home_team }} </th>
+              <td class="td-score">{{ match.home_team_score }} </td>
+              <td rowspan="2" class="text-center"> {{ match.date|date:"M d" }}</td>
+
+              <!-- edit and delete matches, credit to CI-Walkthrough  -->
+              {% if user == match.home_team or user == match.away_team %}
+              <td rowspan="2" class="text-center">
+                <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
+                  class="btn btn-primary btn-sm">Edit match
+                </a>
+              </td>
+              <td rowspan="2" class="text-center">
+                <button class="btn btn-primary btn-sm btn-delete" data-match_id="{{ match.id }}">Delete match
+                </button>
+              </td>
+              <!-- edit and delete buttons for when user is not part of match, connected to modal displaying message -->
+              {% else %}
+              <td rowspan="2" class="text-center">
+                <button class="btn btn-info btn-sm btn-edit-error">
+                  Edit match
+                </button>
+              </td>
+              <td rowspan="2" class="text-center">
+                <button class="btn btn-info btn-sm btn-delete-error">
+                  Delete match
+                </button>
+              </td>
+              {% endif %}
+            </tr>
+            <tr class="bottom-table-row">
+              <th>{{ match.away_team }}</th>
+              <td class="td-score">{{ match.away_team_score }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Button for collapsing add match form  -->
+      <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
+        data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
+        Add Match
+      </button>
+
+      <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
+      <div class="container collapse" id="addMatchCollapse">
+        <div class="col card justify-content-center">
+          <div class="card-body">
+            <h3>Add match</h3>
+            <form id="AddMatchesForm" method="post">
+              {{ add_matches_form | crispy }}
+              {% csrf_token %}
+              <button id="submit-button" type="submit" class="btn btn-lg">Submit</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
-
+  </div>
+</div>
 
 
       <!-- Delete confirmation modal - credit to CI-Walkthrough -->
@@ -132,7 +166,8 @@
   </div>
 </div>
 
-      <!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
+
+  <!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
 <div class="modal fade" id="editErrorModal" tabindex="-1" aria-labelledby="editErrorModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -151,23 +186,27 @@
 </div>
 
 
-      <!-- Delete match error message when user is not part of match - credit to CI-Walkthrough -->
-      <div class="modal fade" id="deleteErrorModal" tabindex="-1" aria-labelledby="deleteErrorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="deleteErrorModalLabel">Not part of match!</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              You can only delete matches that you are a part of.
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
+<!-- Delete match error message when user is not part of match - credit to CI-Walkthrough -->
+<div class="modal fade" id="deleteErrorModal" tabindex="-1" aria-labelledby="deleteErrorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteErrorModalLabel">Not part of match!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div class="modal-body">
+        You can only delete matches that you are a part of.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 {% endblock %}
@@ -227,5 +266,6 @@
 
 
 -->
+
 
 
