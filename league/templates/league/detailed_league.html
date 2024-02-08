@@ -61,13 +61,13 @@
 
                   {% else %}
                   <td rowspan="2" class="text-center">
-                    <button class="btn btn-info btn-sm btn-edit-error"
-                    data-match_id="">Edit match
+                    <button class="btn btn-info btn-sm btn-edit-error">
+                      Edit match
                     </button>
                   </td>
                   <td rowspan="2" class="text-center">
-                    <button class="btn btn-info btn-sm"
-                    data-match_id="">Delete match
+                    <button class="btn btn-info btn-sm btn-delete-error">
+                    Delete match
                     </button>
                   </td>
                 {% endif %}
@@ -132,7 +132,7 @@
   </div>
 </div>
 
-      <!-- Edit error message when user is not part of match - credit to CI-Walkthrough -->
+      <!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
 <div class="modal fade" id="editErrorModal" tabindex="-1" aria-labelledby="editErrorModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -150,6 +150,24 @@
   </div>
 </div>
 
+
+      <!-- Delete match error message when user is not part of match - credit to CI-Walkthrough -->
+      <div class="modal fade" id="deleteErrorModal" tabindex="-1" aria-labelledby="deleteErrorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteErrorModalLabel">Not part of match!</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              You can only delete matches that you are a part of.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 {% endblock %}
