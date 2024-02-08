@@ -95,8 +95,14 @@ def detailed_league(request, slug):
     league_instance = get_object_or_404(League, slug=slug)
     standings = league_instance.calculate_standings()
 
-    all_matches = league_instance.matches.all()
 
+    all_league_matches = league_instance.matches.all()
+
+    for match in all_league_matches:
+        home_team = match.home_team
+        away_team = match.away_team
+        print(home_team)
+        print(away_team)
 
 
     if request.method == "POST":
@@ -122,7 +128,7 @@ def detailed_league(request, slug):
         "league_instance": league_instance,
         "standings": standings,
         "add_matches_form": add_matches_form,
-        'all_matches': all_matches,
+        "all_league_matches": all_league_matches,
     }
 
     return render (
