@@ -85,6 +85,22 @@ class League(models.Model):
         return user_matches_lost
 
 
+    # Calculates the number of matches that ended in a draw by each user
+    def calculate_draw_matches(self):
+
+        user_matches_draw = {}
+
+        for user in self.league_member.all():
+            draw_matches_count = self.matches.filter(
+                home_team=user, home_team_score=F('away_team_score')
+            ).count() + self.matches.filter(
+                away_team=user, away_team_score=F('home_team_score')
+            ).count()
+            user_matches_draw[user] = draw_matches_count
+
+        return user_matches_draw
+
+
 
 
     def __str__(self):

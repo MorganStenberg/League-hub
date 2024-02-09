@@ -61,13 +61,17 @@
              {% endif %}
           {% endfor %}
 
-          {% for u, lost_matches in lost_matches_count.items %} 
-          {% if u == user %}
-           <td>{{ lost_matches }}</td>
-           {% endif %}
-        {% endfor %}
+        {% for u, draw_matches in draw_matches_count.items %} 
+        {% if u == user %}
+         <td>{{ draw_matches }}</td>
+         {% endif %}
+      {% endfor %}
 
-            <td>draw</td>
+      {% for u, lost_matches in lost_matches_count.items %} 
+      {% if u == user %}
+       <td>{{ lost_matches }}</td>
+       {% endif %}
+    {% endfor %}
             <td>{{ points }}</td>
           </tr>
           {% endfor %}
