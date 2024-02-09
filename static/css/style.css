@@ -53,7 +53,7 @@ body {
 
 
 
-/*Media query for minwidth (576px)*/
+/*Media query for minwidth (576px)
 @media screen and (min-width: 576px) {
 
 .td-score {
@@ -61,7 +61,7 @@ body {
     padding-right: 30px !important;
     }
 }
-
+*/
 
 
 /*
@@ -72,6 +72,7 @@ Credit to https://codepen.io/Shayley/pen/NWqrvqQ
 .ptable table{
 	margin: 30px auto;
 	border-collapse: collapse;
+    width: 60%;
 }
 
 .ptable{
@@ -87,16 +88,16 @@ th{
 	color: #ffe221;
 }
 
-.headin{
-	text-align: center;
+.table-heading{
+    text-align: center;
 	text-decoration: none;
-	color: #ffe221;
+	color: #990011;
 	margin: 30px;
 	display: block;
 }
 
 .wpos{
-	text-align: center;
+
     background-color: grey;
     border-bottom: solid 1px;
 }
@@ -105,15 +106,10 @@ th{
 	color: #77ff21;
 }
 
-.pos{
-	text-align: center;
-}
 
 .pos td{
 	color: #ff7b21;
 }
-
-
 
 .wpos:hover{
 	background-color: #77ff21;
