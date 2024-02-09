@@ -97,6 +97,8 @@ th{
 
 .wpos{
 	text-align: center;
+    background-color: grey;
+    border-bottom: solid 1px;
 }
 
 .wpos td{
@@ -111,9 +113,7 @@ th{
 	color: #ff7b21;
 }
 
-table .col{
-	border-bottom: 1px solid #FFFFFF;
-}
+
 
 .wpos:hover{
 	background-color: #77ff21;

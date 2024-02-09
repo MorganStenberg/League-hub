@@ -18,6 +18,7 @@ class League(models.Model):
     def calculate_standings(self):
         user_points = {}
 
+
         for match in self.matches.all():
 
             home_team = match.home_team
@@ -28,9 +29,27 @@ class League(models.Model):
             user_points[home_team] = user_points.get(home_team, 0) + home_points
             user_points[away_team] = user_points.get(away_team, 0) + away_points
 
+
+
         league_standings = sorted(user_points.items(), key=lambda x: x[1], reverse=True)
 
         return league_standings
+
+
+    # Calculates the number of matches each user has played 
+    def calculate_user_matches(self):
+        user_matches_played = {}
+
+        for match in self.matches.all():
+
+            home_team = match.home_team
+            away_team = match.away_team
+
+            user_matches_played[home_team] = user_matches_played.get(home_team, 0) + 1
+            user_matches_played[away_team] = user_matches_played.get(away_team, 0) + 1
+
+        return user_matches_played
+
 
     def __str__(self):
         return self.name

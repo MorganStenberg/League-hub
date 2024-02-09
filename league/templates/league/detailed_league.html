@@ -44,19 +44,23 @@
             <th>PTS</th>
           </tr>
 
-          {% for user, points in standings %}
+          {% for user, points in standings %}      
           <tr class="wpos">
-            <td>1</td>
+            <td>{{ forloop.counter }}</td>
             <td>{{ user.username }}</td>
 
-            <td>Number of games played</td>
-            <td>Number of games won</td>
-            <td>Number of games ended in a draw</td>
-            <td>Number of games lost</td>
-
+            {% for u, matches_count in user_matches_count.items %} 
+              {% if u == user %}
+               <td>{{ matches_count }}</td>
+               {% endif %}
+            {% endfor %}
+            <td>games won</td>
+            <td>draw</td>
+            <td>games lost</td>
             <td>{{ points }}</td>
           </tr>
           {% endfor %}
+          
 
         </table>
       </div>
