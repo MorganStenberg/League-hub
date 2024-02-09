@@ -52,18 +52,6 @@ body {
 
 
 
-
-/*Media query for minwidth (576px)
-@media screen and (min-width: 576px) {
-
-.td-score {
-    padding-left: 50px !important;
-    padding-right: 30px !important;
-    }
-}
-*/
-
-
 /*
 Styling for table for displaying standings in detailed league
 Credit to https://codepen.io/Shayley/pen/NWqrvqQ 

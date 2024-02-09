@@ -4,29 +4,6 @@
 
 {% block content %}
 
-
-
-
-<!-- 
-  <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-12 col-md-9 p-3 rounded detailed-league">
-              <h3 class="text-center">{{ league_instance.name }} Standings</h4>
-
-              <div class="d-flex justify-content-center">
-                <ol>
-                  {% for user, points in standings %}
-                  <li>{{ user.username }}: {{ points }} points</li>
-                  {% endfor %}
-                </ol>
-              </div>
-          </div>
-      </div>
-  </div>
--->
-
-
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-9 p-3 rounded detailed-league">
@@ -161,7 +138,7 @@
 </div>
 
 
-      <!-- Delete confirmation modal - credit to CI-Walkthrough -->
+<!-- Delete confirmation modal - credit to CI-Walkthrough -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -183,7 +160,7 @@
 </div>
 
 
-  <!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
+<!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
 <div class="modal fade" id="editErrorModal" tabindex="-1" aria-labelledby="editErrorModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -219,10 +196,6 @@
     </div>
   </div>
 </div>
-
-
-
-
 
 
 {% endblock %}

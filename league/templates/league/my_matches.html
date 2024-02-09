@@ -3,22 +3,30 @@
 {% block content %}
 
 
-
-    <table class="table align-middle">
-      <tbody>
-        {% for match in all_matches %}
-        <tr>
-          <th scope="col">{{ match.home_team }} </th>
-          <td scope="col">{{ match.home_team_score }} </td>
-          <td rowspan="2" class="text-center border"> {{ match.date }}</td>
-          <td rowspan="2" class="text-center border"> {{ match.league.name }}</td>
-        </tr>
-        <tr>
-          <th scope="row">{{ match.away_team }}</th>
-          <td>{{ match.away_team_score }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-9 p-3 text-center rounded detailed-league">
+      <div class="table-container">
+        <table class="table table-borderless align-middle">
+          <tbody>
+            {% for match in all_matches %}
+            <tr class="upper-table-row">
+              <th>{{ match.home_team }} </th>
+              <td class="td-score">{{ match.home_team_score }} </td>
+              <td rowspan="2" class="text-center"> {{ match.date|date:"M d" }}</td>
+              <td rowspan="2" class="text-center"> {{ match.league.name }}</td>
+            </tr>
+            <tr class="bottom-table-row">
+              <th>{{ match.away_team }}</th>
+              <td class="td-score">{{ match.away_team_score }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+    
 
 {% endblock %}
