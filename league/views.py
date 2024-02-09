@@ -98,6 +98,7 @@ def detailed_league(request, slug):
     all_league_matches = league_instance.matches.all()
     user_matches_count = league_instance.calculate_user_matches()
     won_matches_count = league_instance.calculate_won_matches()
+    lost_matches_count = league_instance.calculate_lost_matches()
 
 
     if request.method == "POST":
@@ -126,6 +127,7 @@ def detailed_league(request, slug):
         "all_league_matches": all_league_matches,
         "user_matches_count": user_matches_count,
         "won_matches_count": won_matches_count,
+        "lost_matches_count": lost_matches_count,
     }
 
     return render (

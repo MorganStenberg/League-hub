@@ -69,6 +69,24 @@ class League(models.Model):
         return user_matches_won
 
 
+    # Calculates the number of matches lost by each user
+    def calculate_lost_matches(self):
+
+        user_matches_lost = {}
+
+        for user in self.league_member.all():
+            lost_matches_count = self.matches.filter(
+                home_team=user, home_team_score__lt=F('away_team_score')
+            ).count() + self.matches.filter(
+                away_team=user, away_team_score__lt=F('home_team_score')
+            ).count()
+            user_matches_lost[user] = lost_matches_count
+
+        return user_matches_lost
+
+
+
+
     def __str__(self):
         return self.name
 
