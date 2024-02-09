@@ -54,7 +54,13 @@
                <td>{{ matches_count }}</td>
                {% endif %}
             {% endfor %}
-            <td>games won</td>
+
+            {% for u, won_matches in won_matches_count.items %} 
+            {% if u == user %}
+             <td>{{ won_matches }}</td>
+             {% endif %}
+          {% endfor %}
+
             <td>draw</td>
             <td>games lost</td>
             <td>{{ points }}</td>

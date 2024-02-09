@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
+from django.db.models import F
 from .models import League, Match
 from .forms import CreateLeagueForm, AddMatchesForm
 
@@ -96,6 +97,7 @@ def detailed_league(request, slug):
     standings = league_instance.calculate_standings()
     all_league_matches = league_instance.matches.all()
     user_matches_count = league_instance.calculate_user_matches()
+    won_matches_count = league_instance.calculate_won_matches()
 
 
     if request.method == "POST":
@@ -123,6 +125,7 @@ def detailed_league(request, slug):
         "add_matches_form": add_matches_form,
         "all_league_matches": all_league_matches,
         "user_matches_count": user_matches_count,
+        "won_matches_count": won_matches_count,
     }
 
     return render (

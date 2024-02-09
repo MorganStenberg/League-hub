@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import F
 
 # Create your models here.
 
@@ -13,6 +14,7 @@ class League(models.Model):
     league_member = models.ManyToManyField(
         User, related_name="league_membership"
     )
+
 
     # Calculates the league standing based on points in matches
     def calculate_standings(self):
@@ -49,6 +51,22 @@ class League(models.Model):
             user_matches_played[away_team] = user_matches_played.get(away_team, 0) + 1
 
         return user_matches_played
+
+
+    # Calculates the number of matches won by each user
+    def calculate_won_matches(self):
+
+        user_matches_won = {}
+
+        for user in self.league_member.all():
+            won_matches_count = self.matches.filter(
+                home_team=user, home_team_score__gt=F('away_team_score')
+            ).count() + self.matches.filter(
+                away_team=user, away_team_score__gt=F('home_team_score')
+            ).count()
+            user_matches_won[user] = won_matches_count
+
+        return user_matches_won
 
 
     def __str__(self):
