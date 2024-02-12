@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import chain
+from operator import attrgetter
 from .models import League, Match
 from .forms import CreateLeagueForm, AddMatchesForm
 
@@ -45,15 +47,18 @@ class my_leagues(generic.ListView):
 @login_required        
 def user_matches(request, page=1):
     """
-    View to display all matches connected to a user.
+    View to display all matches, paginated and sorted by date, connected to a user.
     """
     
     user = request.user
 
-    home_team_match = user.home_team_matches.all().order_by('date')
-    away_team_match = user.away_team_matches.all().order_by('date')
+    home_team_match = user.home_team_matches.all()
+    away_team_match = user.away_team_matches.all()
 
-    all_matches = list(home_team_match) + list(away_team_match)
+    all_matches = sorted(
+        list(chain(home_team_match, away_team_match)),
+        key=attrgetter('date')
+    )
     
     paginator = Paginator(all_matches, 6)
     
