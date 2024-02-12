@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.db.models import F
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import League, Match
 from .forms import CreateLeagueForm, AddMatchesForm
 
@@ -42,20 +43,33 @@ class my_leagues(generic.ListView):
 
 
 @login_required        
-def user_matches(request):
+def user_matches(request, page=1):
     """
     View to display all matches connected to a user.
     """
     
     user = request.user
 
-    home_team_match = user.home_team_matches.all()
-    away_team_match = user.away_team_matches.all()
+    home_team_match = user.home_team_matches.all().order_by('date')
+    away_team_match = user.away_team_matches.all().order_by('date')
 
     all_matches = list(home_team_match) + list(away_team_match)
+    
+    paginator = Paginator(all_matches, 6)
+    
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
 
     context = {
     'all_matches': all_matches,
+    'page_obj': page_obj,
     }
 
     return render(request, 'league/my_matches.html', context)
