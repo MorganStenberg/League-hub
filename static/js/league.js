@@ -27,5 +27,3 @@ for (let button of deleteErrorButtons) {
     deleteErrorModal.show();
   });
 }
-
-

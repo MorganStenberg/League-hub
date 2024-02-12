@@ -71,10 +71,16 @@
         View Matches
       </button>
 
+            <!-- Button for collapsing add match form  -->
+            <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
+            data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
+            Add Match
+          </button>
+
       <div class="table-container collapse" id="viewMatches">
         <table class="table table-borderless align-middle">
           <tbody>
-            {% for match in all_league_matches %}
+            {% for match in page_obj %}
             <tr class="upper-table-row">
               <th>{{ match.home_team }} </th>
               <td class="td-score">{{ match.home_team_score }} </td>
@@ -112,13 +118,20 @@
             {% endfor %}
           </tbody>
         </table>
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center">
+              {% if page_obj.has_previous %}
+              <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> PREV &laquo;</a></li>
+              {% endif %}
+      
+              {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+              {% endif %}
+          </ul>
+      </nav>
       </div>
 
-      <!-- Button for collapsing add match form  -->
-      <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
-        data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
-        Add Match
-      </button>
+
 
       <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
       <div class="container collapse" id="addMatchCollapse">

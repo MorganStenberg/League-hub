@@ -115,6 +115,20 @@ def detailed_league(request, slug):
     league_instance = get_object_or_404(League, slug=slug)
     standings = league_instance.calculate_standings()
     all_league_matches = league_instance.matches.all()
+
+    paginator = Paginator(all_league_matches, 8)
+    
+    page_number = request.GET.get('page')
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+
+
     user_matches_count = league_instance.calculate_user_matches()
     won_matches_count = league_instance.calculate_won_matches()
     lost_matches_count = league_instance.calculate_lost_matches()
@@ -146,6 +160,7 @@ def detailed_league(request, slug):
         "standings": standings,
         "add_matches_form": add_matches_form,
         "all_league_matches": all_league_matches,
+        'page_obj': page_obj,
         "user_matches_count": user_matches_count,
         "won_matches_count": won_matches_count,
         "lost_matches_count": lost_matches_count,
