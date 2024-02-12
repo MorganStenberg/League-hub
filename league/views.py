@@ -60,7 +60,7 @@ def user_matches(request, page=1):
         key=attrgetter('date')
     )
     
-    paginator = Paginator(all_matches, 6)
+    paginator = Paginator(all_matches, 8)
     
     page_number = request.GET.get('page')
 
@@ -120,12 +120,13 @@ def detailed_league(request, slug):
     lost_matches_count = league_instance.calculate_lost_matches()
     draw_matches_count = league_instance.calculate_draw_matches()
 
+    add_matches_form = AddMatchesForm(league_instance)
 
     if request.method == "POST":
         if request.user not in league_instance.league_member.all():
             messages.add_message(request, messages.ERROR, 'You can only add matches if you are a part of the league!')
             return redirect('detailed_league', slug=slug)
-        add_matches_form = AddMatchesForm(data=request.POST)
+        add_matches_form = AddMatchesForm(league_instance, data=request.POST)
         if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
@@ -138,7 +139,7 @@ def detailed_league(request, slug):
                 messages.add_message(request, messages.ERROR, 'You can only add matches you have played!')
                 return redirect('detailed_league', slug=slug)
 
-    add_matches_form = AddMatchesForm()
+
 
     context = {
         "league_instance": league_instance,
