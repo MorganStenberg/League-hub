@@ -64,7 +64,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-9 p-3 text-center rounded detailed-league">
 
-      <!-- Button for collapsing all matches  -->
+      <!-- Button for collapsing all matches -->
 
       <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
         aria-expanded="false" aria-controls="viewMatches">
@@ -77,7 +77,7 @@
             Add Match
           </button>
 
-      <div class="table-container collapse" id="viewMatches">
+      <div class="table-container collapse {% if page_obj.number > 1 %} show {% endif %}" id="viewMatches">
         <table class="table table-borderless align-middle">
           <tbody>
             {% for match in page_obj %}

@@ -127,8 +127,6 @@ def detailed_league(request, slug):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
-
-
     user_matches_count = league_instance.calculate_user_matches()
     won_matches_count = league_instance.calculate_won_matches()
     lost_matches_count = league_instance.calculate_lost_matches()
@@ -159,7 +157,6 @@ def detailed_league(request, slug):
         "league_instance": league_instance,
         "standings": standings,
         "add_matches_form": add_matches_form,
-        "all_league_matches": all_league_matches,
         'page_obj': page_obj,
         "user_matches_count": user_matches_count,
         "won_matches_count": won_matches_count,
