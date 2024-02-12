@@ -6,7 +6,7 @@
 
 body {
     height: 100vh;
-    background-color: lightgrey;
+    background-color: #e9ebed;
 }
 
 .navbar-background {
@@ -17,6 +17,9 @@ body {
     color: #fcf6f5;
 }
 
+
+
+
 .welcome-page-cta {
     margin-top: 10%;
     background-color: #fcf6f5;
@@ -25,6 +28,9 @@ body {
 .welcome-page-cta > h3 {
     padding-bottom: 10px;
 }
+
+
+
 
 .all-leagues {
     background-color:green ;
@@ -36,19 +42,7 @@ body {
     background-color: #fcf6f5;
 }
 
-.bottom-table-row {
-    border-bottom: solid;
 
-}
-
-.upper-table-row {
-    border-top: solid;
-}
-
-.btn-margin {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
 
 
 
@@ -113,4 +107,13 @@ th{
 
 .pos:hover td{
 	color: #000000;
+}
+
+.bottom-table-row {
+    border-bottom: solid;
+
+}
+
+.upper-table-row {
+    border-top: solid;
 }
