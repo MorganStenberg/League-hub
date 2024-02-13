@@ -12,7 +12,6 @@
               <p>Between Home Team <strong>{{ match.home_team }}</strong> And Away Team <strong>{{ match.away_team }}</strong></p>
               
               <form method="post" action="{% url 'edit_match' slug=slug match_id=match_id %}">
-
                 {{ edit_matches_form | crispy }}
                 {% csrf_token %}
                 <button id="submit-button" type="submit"

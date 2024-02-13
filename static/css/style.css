@@ -7,6 +7,9 @@
 body {
     height: 100vh;
     background-color: #e9ebed;
+    background-image: url('/static/images/background_img_stadium.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar-background {
