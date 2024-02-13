@@ -11,8 +11,7 @@
 
 <div class="d-flex align-items-center justify-content-center">
   <div class="container cont-custom-width">
-      <div class="row justify-content-center">
-          <div class="col-12 col-md-9 p-5 rounded welcome-page-cta">
+          <div class="col-12 col-md-9 p-3 rounded welcome-page-cta">
               <h2 class="text-center">{% trans "Sign In" %}</h2>
                 <p class="text-center">{% blocktrans %}If you have not created an account yet, then please
                   <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
@@ -25,12 +24,11 @@
                   {% if redirect_field_value %}
                   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                   {% endif %}
-                  <button class="btn btn-lg btn-custom btn-success" type="submit">{% trans "Sign In" %}</button>
+                  <button class="btn btn-lg btn-success" type="submit">{% trans "Sign In" %}</button>
                 </form>
 
               </div>
           </div>
-      </div>
   </div>
 </div>
 
