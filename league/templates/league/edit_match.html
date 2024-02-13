@@ -6,7 +6,7 @@
 
     <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
     <div class="container ">
-        <div class="col card justify-content-center">
+        <div class="col card lg-mtch-mrg-bk">
             <div class="card-body">
               <h3>Edit match</h3>
               <p>Between Home Team <strong>{{ match.home_team }}</strong> And Away Team <strong>{{ match.away_team }}</strong></p>
@@ -15,7 +15,7 @@
                 {{ edit_matches_form | crispy }}
                 {% csrf_token %}
                 <button id="submit-button" type="submit"
-                  class="btn btn-lg">Submit</button>
+                  class="btn btn-success btn-lg">Submit</button>
               </form>
             </div>
           </div>
