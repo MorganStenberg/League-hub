@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
 from operator import attrgetter
 from .models import League, Match
-from .forms import CreateLeagueForm, AddMatchesForm
+from .forms import CreateLeagueForm, AddMatchesForm, EditMatchesForm
 
 # Create your views here.
 
@@ -107,7 +107,8 @@ def create_league(request):
             create_league.league_creator = request.user
             create_league.slug = slugify(create_league.name)
             create_league.save()
-            print(create_league.league_member)
+            selected_users = create_league_form.cleaned_data['league_member']
+            create_league.league_member.add(*selected_users)
             messages.add_message(request, messages.SUCCESS, 'League created!')
 
     create_league_form = CreateLeagueForm()
@@ -197,21 +198,23 @@ def edit_match(request, slug, match_id):
   
     if request.user == match.home_team or request.user == match.away_team:
         if request.method == "POST":
-            add_matches_form = AddMatchesForm(data=request.POST, instance=match)
-            if add_matches_form.is_valid():
-                add_matches = add_matches_form.save(commit=False)
-                add_matches.league = league_instance
-                add_matches_form.save()
+            edit_matches_form = EditMatchesForm(data=request.POST, instance=match)
+            if edit_matches_form.is_valid():
+                edit_matches = add_matches_form.save(commit=False)
+                edit_matches.league = league_instance
+                edit_matches_form.save()
                 return redirect('detailed_league', slug=slug)
     else:
         messages.add_message(request, messages.ERROR, 'You can only edit your own matches!')
+
+    edit_matches_form = EditMatchesForm(instance=match)
 
     context = {
     'slug': slug,
     "league_instance": league_instance,
     "match": match,
     'match_id': match_id,
-    'add_matches_form': AddMatchesForm(instance=match)
+    'edit_matches_form': edit_matches_form,
     }
 
     return render (

@@ -19,3 +19,9 @@ class AddMatchesForm(forms.ModelForm):
         if league_instance:
             self.fields['home_team'].queryset = User.objects.filter(league_membership=league_instance)
             self.fields['away_team'].queryset = User.objects.filter(league_membership=league_instance)
+
+
+class EditMatchesForm(forms.ModelForm):
+    class Meta:
+        model = Match
+        fields = ["home_team_score", "away_team_score" ]

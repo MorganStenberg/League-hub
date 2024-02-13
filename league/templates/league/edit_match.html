@@ -9,12 +9,11 @@
         <div class="col card justify-content-center">
             <div class="card-body">
               <h3>Edit match</h3>
+              <p>Between Home Team <strong>{{ match.home_team }}</strong> And Away Team <strong>{{ match.away_team }}</strong></p>
               
               <form method="post" action="{% url 'edit_match' slug=slug match_id=match_id %}">
-                <h5>Home team - {{ match.home_team }}</h4>
-                {{ add_matches_form.home_team_score | as_crispy_field }}
-                <h5>Away Team - {{ match.away_team }}</h4>
-                {{ add_matches_form.away_team_score | as_crispy_field }}
+
+                {{ edit_matches_form | crispy }}
                 {% csrf_token %}
                 <button id="submit-button" type="submit"
                   class="btn btn-lg">Submit</button>
