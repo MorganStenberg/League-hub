@@ -33,16 +33,32 @@ class all_leagues(generic.ListView):
         return League.objects.all().order_by('name')
 
 
-class my_leagues(generic.ListView):
+@login_required
+def my_leagues(request, page=1):
     """
     View to display all leagues that a user is a part of.
     """    
-    model = League
-    template_name = 'league/my_leagues.html'
-    paginate_by = 6
+    user = request.user
 
-    def get_queryset(self):
-        return League.objects.all().order_by('name')
+    my_leagues = user.league_membership.all()
+
+    paginator = Paginator(my_leagues, 6)
+    
+    page_number = request.GET.get('page')
+
+    try:
+        page_my_leagues = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_my_leagues = paginator.page(1)
+    except EmptyPage:
+        page_my_leagues = paginator.page(paginator.num_pages)
+
+    context = {
+    "page_my_leagues": page_my_leagues
+    }
+
+    return render(request, 'league/my_leagues.html', context)
+
 
 
 @login_required        
@@ -91,6 +107,7 @@ def create_league(request):
             create_league.league_creator = request.user
             create_league.slug = slugify(create_league.name)
             create_league.save()
+            print(create_league.league_member)
             messages.add_message(request, messages.SUCCESS, 'League created!')
 
     create_league_form = CreateLeagueForm()
