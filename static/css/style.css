@@ -121,7 +121,7 @@ th{
 
 
 @media (max-width: 576px) {
-    .btn-custom {
+    .btn-custom-small {
         font-size: 1rem;
         padding: 0.375rem 0.75rem;
         margin-right: 0.25rem !important;
