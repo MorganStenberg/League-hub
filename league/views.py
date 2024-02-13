@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.http import HttpResponseRedirect, Http404
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.utils.text import slugify
 from django.db.models import F
@@ -179,7 +180,6 @@ def edit_match(request, slug, match_id):
   
     if request.user == match.home_team or request.user == match.away_team:
         if request.method == "POST":
-
             add_matches_form = AddMatchesForm(data=request.POST, instance=match)
             if add_matches_form.is_valid():
                 add_matches = add_matches_form.save(commit=False)
@@ -192,6 +192,7 @@ def edit_match(request, slug, match_id):
     context = {
     'slug': slug,
     "league_instance": league_instance,
+    "match": match,
     'match_id': match_id,
     'add_matches_form': AddMatchesForm(instance=match)
     }

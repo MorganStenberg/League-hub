@@ -11,7 +11,10 @@
               <h3>Edit match</h3>
               
               <form method="post" action="{% url 'edit_match' slug=slug match_id=match_id %}">
-                {{ add_matches_form | crispy }}
+                <h5>Home team - {{ match.home_team }}</h4>
+                {{ add_matches_form.home_team_score | as_crispy_field }}
+                <h5>Away Team - {{ match.away_team }}</h4>
+                {{ add_matches_form.away_team_score | as_crispy_field }}
                 {% csrf_token %}
                 <button id="submit-button" type="submit"
                   class="btn btn-lg">Submit</button>

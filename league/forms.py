@@ -6,7 +6,7 @@ from django import forms
 class CreateLeagueForm(forms.ModelForm):
     class Meta:
         model = League
-        fields = ["name", "description", "league_member" ]
+        fields = ["name", "description", "league_member"]
 
 
 class AddMatchesForm(forms.ModelForm):
