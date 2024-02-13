@@ -40,7 +40,9 @@ body {
 }
 
 
-.detailed-league {
+/* Custom margins - etc */ 
+
+.lg-mtch-mrg-bk {
     margin-top: 3%;
     background-color: #fcf6f5;
 }
@@ -122,6 +124,17 @@ th{
 }
 
 
+
+/* styling for cards with league title and description */ 
+
+.league-card-margin {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+
+/* Custom media breakpoints */ 
 
 @media (max-width: 576px) {
     .btn-custom-small {
