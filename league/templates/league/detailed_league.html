@@ -11,10 +11,12 @@
 </style>
 
 <div class="container">
-  <div >
     <div class="p-3 bkgr-wh mrg-top bx-shd">
       <div class="ptable">
         <h1 class="table-heading">{{ league_instance.name }} Standings</h1>
+
+        {% if standings %}
+
         <table>
           <tr class="col">
             <th>#</th>
@@ -60,22 +62,26 @@
 
 
         </table>
+        {% else %}
+        <div class="text-center pt-3">
+          <h4>No matches have been added yet!</h4>
+          <p> Click the Add Match button below to start your league now!</p>
+        </div>
+        {% endif %}
       </div>
     </div>
-  </div>
 </div>
 
 
 <div class="container">
-  <div>
     <div class="p-3 text-center bkgr-wh mrg-top bx-shd">
-
+      {% if standings %}
       <!-- Button for collapsing all matches -->
       <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
         aria-expanded="false" aria-controls="viewMatches">
         View Matches
       </button>
-
+      {% endif %}
       <!-- Button for collapsing add match form  -->
       <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
         data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
@@ -172,7 +178,6 @@
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 

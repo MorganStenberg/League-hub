@@ -78,6 +78,10 @@ body {
     font-weight: bold;
 }
 
+.card {
+    border-radius: 0;
+}
+
 /*Styling for displaying list of matches, both for My Matches and Detailed League templates.
 Inspiration for design taken from https://www.fotbollskanalen.se/premier-league/?tab=matches 
 and adapted to my content 
