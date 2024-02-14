@@ -40,10 +40,9 @@ body {
 }
 
 
-/* Custom margins - etc */ 
+/* Custom margins and background color- etc */ 
 
-.lg-mtch-mrg-bk {
-    margin-top: 3%;
+.lg-mtch-bk {
     background-color: #fcf6f5;
 }
 
@@ -67,11 +66,28 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.mrg-top {
+    margin-top: 3%;
+}
+
 
 /*Styling for displaying list of matches 
 Inspiration for design taken from https://www.fotbollskanalen.se/premier-league/?tab=matches 
 and adapted to my content 
 */ 
+
+.bold {
+    font-weight: bold;
+}
+
+.match-list-container {
+   
+}
+
+.bk-matches-heading {
+    background-color: #fff;
+    margin-bottom: 0;
+}
 
 .match-list {
     list-style-type: none;
@@ -81,7 +97,7 @@ and adapted to my content
     padding: 0;
 }
 
-.table-matches-container {
+.pd-list-matches {
     padding-left: 3%;
     padding-right: 3%;
     display: flex;
@@ -101,6 +117,7 @@ and adapted to my content
     display: flex;
     flex-direction: column;
     flex: 6;
+    padding-right: 0.25rem;
 
 }
 
@@ -112,27 +129,39 @@ and adapted to my content
 }
 
 
-.score {
+.score-list {
     display: flex;
-    border-right: #f4f4f4;
-    padding-right: 1rem;
+    flex-direction: column;
+    border-right: #f4f4f4 1px solid;
+    padding-right: 0.25rem;
     justify-content: center;
     align-items: center;
 
 }
-/* add media query for */
-.match-date-container {
+
+.match-date-list {
     width: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding-left: 0.25rem;
 
 }
 
-.date {
+.date-name-cell {
     display: flex;
     align-items: center;
+}
+
+.lg-name-list {
+    min-width: 80px;
+    max-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 0.25rem;
 }
 
 
@@ -142,7 +171,50 @@ and adapted to my content
 .match-date-container {
     width: 160px; 
 }
+
+.lg-name-list {
+    padding-left: 1rem;
+}
+
+.match-date-list {
+    padding-left: 1rem;
+}
+
+.score-list {
+    padding-right: 1.5rem;
+}
+
+.teams {
+    padding-right: 1rem;
+}
+
+.table-matches-container {
+    font-size: 1.25rem;
+}
     }
+
+
+
+
+/*Media query for list of matches display */ 
+@media (min-width: 576px) {
+
+.lg-name-list {
+    padding-left: 0.5rem;
+}
+    
+.match-date-list {
+    padding-left: 0.5rem;
+}
+    
+.score-list {
+    padding-right: 1rem;
+}
+    
+.teams {
+    padding-right: 0.5rem;
+}
+}
 
 
 

@@ -8,79 +8,46 @@
   }
 </style>
 
-<div class="container">
-  <div class=>
-    <div class=" rounded bx-shd lg-mtch-mrg-bk">
-      <div class="table-container">
-        <h3 class="text-center">All matches for {{ user }}</h3>
-        <table class="table table-borderless align-middle">
-          <tbody>
-            {% for match in page_obj %}
-            <tr class="upper-table-row">
-              <th>{{ match.home_team }} </th>
-              <td class="td-score">{{ match.home_team_score }} </td>
-              <td rowspan="2" class="text-center"> {{ match.date|date:"M d" }}</td>
-              <td rowspan="2" class="text-center"> {{ match.league.name }}</td>
-            </tr>
-            <tr class="bottom-table-row">
-              <th>{{ match.away_team }}</th>
-              <td class="td-score">{{ match.away_team_score }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div class="container mrg-top">
+  <div class="bx-shd">
+    <h3 class="text-center bk-matches-heading">All matches for {{ user }}</h3>
+    <ul class="match-list-ul">
+      {% for match in page_obj %}
+      <li class="match-list">
+        <div class="pd-list-matches">
+          <div class="team-container">
+            <div class="teams">
+              <div class="team-item">{{ match.home_team }}</div>
+              <div class="team-item">{{ match.away_team }}</div>
+            </div>
+            <div class="score-list">
+              <div class="team-item bold">{{ match.home_team_score }}</div>
+              <div class="team-item bold">{{ match.away_team_score }}</div>
+            </div>
+            <div class="match-date-list">
+              <div class="date-name-cell">{{ match.date|date:"M d" }}</div>
+            </div>
+            <div class="lg-name-list">
+              <div class="date-name-cell">{{ match.league.name }}</div>
+            </div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
   </div>
 </div>
-
-
-<ul class="match-list-ul">
-  <li class="match-list">
-    {% for match in page_obj %}
-<div class="container">
-  <div class="table-matches-container">
-
-
-    <div class="team-container">
-
-      
-
-
-      <div class="teams">
-        <div class="team-item">{{ match.home_team }}</div>
-        <div class="team-item">{{ match.away_team }}</div>
-      </div>
-      <div class="score">
-        <div class="team-item">{{ match.home_team_score }}</div>
-        <div class="team-item">{{ match.away_team_score }}</div>
-      </div>
-      <div class="match-date-container">
-        <div class="date">{{ match.date|date:"M d" }}</div>
-      </div>
-
-     
-    </div>
-
-
-  </div>
-</div>
-{% endfor %}
-
-</li>
-</ul>
-
 
 <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link pagination-ct"> PREV &laquo;</a></li>
-        {% endif %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link pagination-ct"> PREV &laquo;</a></li>
+    {% endif %}
 
-        {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link pagination-ct"> NEXT &raquo;</a></li>
-        {% endif %}
-    </ul>
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link pagination-ct"> NEXT &raquo;</a></li>
+    {% endif %}
+  </ul>
 </nav>
 
 
