@@ -6,7 +6,7 @@
 
 body {
     height: 100vh;
-    background-color: #e9ebed;
+    background-color: #f5f5f5;
     background-image: url('/static/images/background_img_stadium.jpg');
     background-repeat: no-repeat;
     background-size: cover;

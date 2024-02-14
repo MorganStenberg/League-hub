@@ -4,6 +4,12 @@
 
 {% block content %}
 
+<style>
+  body {
+      background-image:none; /* Override the background image */
+  }
+</style>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-9 p-3 rounded lg-mtch-mrg-bk">
@@ -121,11 +127,11 @@
         <nav aria-label="Page navigation">
           <ul class="pagination justify-content-center">
               {% if page_obj.has_previous %}
-              <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link"> PREV &laquo;</a></li>
+              <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link pagination-ct"> PREV &laquo;</a></li>
               {% endif %}
       
               {% if page_obj.has_next %}
-              <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+              <li><a href="?page={{ page_obj.next_page_number }}" class="page-link pagination-ct"> NEXT &raquo;</a></li>
               {% endif %}
           </ul>
       </nav>
