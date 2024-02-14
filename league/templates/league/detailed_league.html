@@ -82,11 +82,18 @@
         View Matches
       </button>
       {% endif %}
+
+      {% if user in league_instance.league_member.all %}
       <!-- Button for collapsing add match form  -->
       <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
         data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
         Add Match
       </button>
+      {% else %}
+      <button class="btn btn-primary btn-margin btn-add-match-error">
+        Add Match
+      </button>
+      {% endif %}
 
       <div class="table-container collapse {% if page_obj.number > 1 %} show {% endif %}" id="viewMatches">
 
@@ -232,6 +239,24 @@
       </div>
       <div class="modal-body">
         You can only delete matches that you are a part of.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
+<div class="modal fade" id="addMatchesErrorModal" tabindex="-1" aria-labelledby="addMatchesErrorModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addMatchesErrorModalLabel">Not part of league!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You can only add matches to leagues you are a part of!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
