@@ -11,8 +11,8 @@
 </style>
 
 <div class="container">
-  <div class="row justify-content-center ">
-    <div class="col-12 col-md-9 p-3 rounded lg-mtch-bk mrg-top bx-shd">
+  <div >
+    <div class="p-3 bkgr-wh mrg-top bx-shd">
       <div class="ptable">
         <h1 class="table-heading">{{ league_instance.name }} Standings</h1>
         <table>
@@ -27,7 +27,7 @@
           </tr>
 
           {% for user, points in standings %}
-          <tr class="wpos">
+          <tr class="wpos bold">
             <td>{{ forloop.counter }}</td>
             <td>{{ user.username }}</td>
 
@@ -67,77 +67,96 @@
 
 
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-9 p-3 text-center rounded lg-mtch-bk mrg-top bx-shd">
+  <div>
+    <div class="p-3 text-center bkgr-wh mrg-top bx-shd">
 
       <!-- Button for collapsing all matches -->
-
       <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
         aria-expanded="false" aria-controls="viewMatches">
         View Matches
       </button>
 
-            <!-- Button for collapsing add match form  -->
-            <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
-            data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
-            Add Match
-          </button>
+      <!-- Button for collapsing add match form  -->
+      <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
+        data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
+        Add Match
+      </button>
 
       <div class="table-container collapse {% if page_obj.number > 1 %} show {% endif %}" id="viewMatches">
-        <table class="table table-borderless align-middle">
-          <tbody>
-            {% for match in page_obj %}
-            <tr class="upper-table-row">
-              <th>{{ match.home_team }} </th>
-              <td class="td-score">{{ match.home_team_score }} </td>
-              <td rowspan="2" class="text-center"> {{ match.date|date:"M d" }}</td>
 
-              <!-- edit and delete matches, credit to CI-Walkthrough  -->
-              {% if user == match.home_team or user == match.away_team %}
-              <td rowspan="2" class="text-center">
-                <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
-                  class="btn btn-primary btn-sm">Edit match
-                </a>
-              </td>
-              <td rowspan="2" class="text-center">
-                <button class="btn btn-primary btn-sm btn-delete" data-match_id="{{ match.id }}">Delete match
-                </button>
-              </td>
-              <!-- edit and delete buttons for when user is not part of match, connected to modal displaying message -->
-              {% else %}
-              <td rowspan="2" class="text-center">
-                <button class="btn btn-info btn-sm btn-edit-error">
-                  Edit match
-                </button>
-              </td>
-              <td rowspan="2" class="text-center">
-                <button class="btn btn-info btn-sm btn-delete-error">
-                  Delete match
-                </button>
-              </td>
-              {% endif %}
-            </tr>
-            <tr class="bottom-table-row">
-              <th>{{ match.away_team }}</th>
-              <td class="td-score">{{ match.away_team_score }}</td>
-            </tr>
+        <div>
+          <ul class="match-list-ul">
+            {% for match in page_obj %}
+            <li class="match-list">
+              <div class="pd-list-matches">
+                <div class="team-container">
+                  <div class="teams">
+                    <div class="team-item">{{ match.home_team }}</div>
+                    <div class="team-item">{{ match.away_team }}</div>
+                  </div>
+                  <div class="score-list">
+                    <div class="team-item bold">{{ match.home_team_score }}</div>
+                    <div class="team-item bold">{{ match.away_team_score }}</div>
+                  </div>
+                  <div class="match-date-list">
+                    <div class="date-name-cell">{{ match.date|date:"M d" }}</div>
+                  </div>
+
+                    <!-- edit and delete matches, credit to CI-Walkthrough  -->
+                    {% if user == match.home_team or user == match.away_team %}
+                  <div class="lg-name-list">
+                    <div class="date-name-cell">
+                      <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
+                      class="btn btn-success btn-det-lg-custom">
+                      Edit
+                    </a>
+                    </div>
+                  </div>
+                  <div class="lg-name-list">
+                    <div class="date-name-cell">
+                      <button class="btn btn-success btn-delete btn-det-lg-custom" data-match_id="{{ match.id }}">
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                  <!-- edit and delete buttons for when user is not part of match, connected to modal displaying message -->
+                  {% else %}
+                  <div class="lg-name-list">
+                    <div class="date-name-cell">
+                      <button class="btn btn-info btn-edit-error btn-det-lg-custom">
+                        Edit
+                      </button>
+                    </div>
+                  </div>
+                  <div class="lg-name-list">
+                    <div class="date-name-cell">
+                      <button class="btn btn-info btn-delete-error btn-det-lg-custom">
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </li>
             {% endfor %}
-          </tbody>
-        </table>
+          </ul>
+        </div>
+        
+        
         <nav aria-label="Page navigation">
           <ul class="pagination justify-content-center">
-              {% if page_obj.has_previous %}
-              <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link pagination-ct"> PREV &laquo;</a></li>
-              {% endif %}
-      
-              {% if page_obj.has_next %}
-              <li><a href="?page={{ page_obj.next_page_number }}" class="page-link pagination-ct"> NEXT &raquo;</a></li>
-              {% endif %}
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link pagination-ct"> PREV &laquo;</a>
+            </li>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link pagination-ct"> NEXT &raquo;</a></li>
+            {% endif %}
           </ul>
-      </nav>
+        </nav>
       </div>
-
-
 
       <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
       <div class="container collapse" id="addMatchCollapse">
