@@ -63,6 +63,96 @@ body {
     border-radius: 3px 9px;
 }
 
+.bx-shd {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/*Styling for displaying list of matches 
+Inspiration for design taken from https://www.fotbollskanalen.se/premier-league/?tab=matches 
+and adapted to my content 
+*/ 
+
+.match-list {
+    list-style-type: none;
+}
+
+.match-list-ul {
+    padding: 0;
+}
+
+.table-matches-container {
+    padding-left: 3%;
+    padding-right: 3%;
+    display: flex;
+    background-color: #fff;
+}
+
+.team-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-top: #f4f4f4 1px solid;
+    padding: 12px 0;
+}
+
+.teams {
+    display: flex;
+    flex-direction: column;
+    flex: 6;
+
+}
+
+.team-item {
+    height: 32px;
+    align-items: center;
+    display: flex;
+
+}
+
+
+.score {
+    display: flex;
+    border-right: #f4f4f4;
+    padding-right: 1rem;
+    justify-content: center;
+    align-items: center;
+
+}
+/* add media query for */
+.match-date-container {
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.date {
+    display: flex;
+    align-items: center;
+}
+
+
+
+/*Media query for list of matches display */ 
+@media (min-width: 968px) {
+.match-date-container {
+    width: 160px; 
+}
+    }
+
+
+
+
+.table-container {
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+
 /*
 Styling for table for displaying standings in detailed league
 Credit to https://codepen.io/Shayley/pen/NWqrvqQ 
@@ -127,12 +217,12 @@ th{
 }
 
 .bottom-table-row {
-    border-bottom: solid;
+    border-bottom: solid 2px;
 
 }
 
 .upper-table-row {
-    border-top: solid;
+    border-top: solid 2px;
 }
 
 

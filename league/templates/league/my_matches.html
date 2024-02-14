@@ -9,10 +9,10 @@
 </style>
 
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-9 p-3 text-center rounded lg-mtch-mrg-bk">
+  <div class=>
+    <div class=" rounded bx-shd lg-mtch-mrg-bk">
       <div class="table-container">
-        <h3>All matches for {{ user }}</h3>
+        <h3 class="text-center">All matches for {{ user }}</h3>
         <table class="table table-borderless align-middle">
           <tbody>
             {% for match in page_obj %}
@@ -33,6 +33,42 @@
     </div>
   </div>
 </div>
+
+
+<ul class="match-list-ul">
+  <li class="match-list">
+    {% for match in page_obj %}
+<div class="container">
+  <div class="table-matches-container">
+
+
+    <div class="team-container">
+
+      
+
+
+      <div class="teams">
+        <div class="team-item">{{ match.home_team }}</div>
+        <div class="team-item">{{ match.away_team }}</div>
+      </div>
+      <div class="score">
+        <div class="team-item">{{ match.home_team_score }}</div>
+        <div class="team-item">{{ match.away_team_score }}</div>
+      </div>
+      <div class="match-date-container">
+        <div class="date">{{ match.date|date:"M d" }}</div>
+      </div>
+
+     
+    </div>
+
+
+  </div>
+</div>
+{% endfor %}
+
+</li>
+</ul>
 
 
 <nav aria-label="Page navigation">
