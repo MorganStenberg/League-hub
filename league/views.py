@@ -27,7 +27,7 @@ class all_leagues(generic.ListView):
     """
     model = League
     template_name = 'league/all_leagues.html'
-    paginate_by = 4
+    paginate_by = 6
 
     def get_queryset(self):
         return League.objects.all().order_by('name')
@@ -40,7 +40,7 @@ def my_leagues(request, page=1):
     """    
     user = request.user
 
-    my_leagues = user.league_membership.all()
+    my_leagues = user.league_membership.all().order_by('name')
 
     paginator = Paginator(my_leagues, 6)
     
