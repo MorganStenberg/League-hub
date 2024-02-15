@@ -17,15 +17,15 @@
           <div class="card-body">
             <h3>Create a league</h3>
 
-            <!-- TODO - add search bar functionality
-
+<!--
             <div class="form-group">
+              <form action=""></form>
               <label for="searchInput">Search for users:</label>
-              <input type="text" class="form-control" id="searchInput" placeholder="Enter username">
+              <input type="search" class="form-control" id="searchInput" placeholder="Enter username">
               <button id="searchButton" class="btn btn-primary">Search</button>
               <ul id="searchResults"></ul>
           </div>
-           -->
+-->
 
             <form id="CreateLeagueForm" method="post">
               {{ create_league_form | crispy }}
@@ -37,11 +37,20 @@
               <ul class="list-unstyled">
                 <li class="px-2 my-1 pb-1 rules-info">To create a league, first enter a league name. Then enter a description of what the league is for.</li>
                 <li class="px-2 my-1 pb-1 rules-info">Lastly choose your league members from the list of other registered user.</li>
-                <li class="px-2 my-1 pb-1 rules-info">Once you have submitted you can view your league and start adding matches to it! </li>
+                <li class="px-2 my-1 pb-1 rules-info">Once you created your league you can view the league and start adding matches to it! </li>
             </ul>
             </div>
           </div>
         </div>
       </div>
+
+{% endblock %}
+
+{% block extras %}
+
+<script>
+$("#id_league_member").select2();
+
+</script>
 
 {% endblock %}

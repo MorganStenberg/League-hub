@@ -36,4 +36,3 @@ for (let button of addMatchesErrorButtons) {
     addMatchesErrorModal.show();
   });
 }
-
