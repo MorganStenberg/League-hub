@@ -40,6 +40,10 @@ body {
 }
 
 
+.alert-error {
+    background-color: #ffc107
+}
+
 /* Custom margins and background color- etc */ 
 
 .lg-mtch-bk {
@@ -173,6 +177,10 @@ and adapted to my content
     --bs-btn-padding-x: 0.30rem;
     --bs-btn-font-size: 0.90rem;
     width: 53px;
+}
+
+.rules-info {
+    border-bottom:#f4f4f4 1px solid;
 }
 
 
