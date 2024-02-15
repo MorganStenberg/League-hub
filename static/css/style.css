@@ -183,6 +183,12 @@ and adapted to my content
     border-bottom:#f4f4f4 1px solid;
 }
 
+.mrg-width-desc-info-lg {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 /*Media query for list of matches and league table */
 @media (min-width: 576px) {
