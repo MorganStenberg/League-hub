@@ -157,12 +157,17 @@ and adapted to my content
 
 }
 
-.date-name-cell {
+.lg-name-list {
+    max-width: 160px;
+    min-width: 120px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 0.75rem;
 }
 
-.lg-name-list {
+.btn-edit-del-cont {
     max-width: 160px;
     display: flex;
     align-items: center;
@@ -170,6 +175,7 @@ and adapted to my content
     flex-direction: column;
     padding-left: 0.75rem;
 }
+
 
 
 .btn-det-lg-custom {
@@ -195,7 +201,7 @@ and adapted to my content
 
 .lg-name-list {
     padding-left: 1rem;
-    min-width: 80px;
+    min-width: 120px;
 }
 
 .match-date-list {

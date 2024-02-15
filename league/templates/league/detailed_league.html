@@ -120,21 +120,21 @@
                     <div class="team-item bold">{{ match.away_team_score }}</div>
                   </div>
                   <div class="match-date-list">
-                    <div class="date-name-cell">{{ match.date|date:"M d" }}</div>
+                    <div class="d-flex align-content-center">{{ match.date|date:"M d" }}</div>
                   </div>
 
                     <!-- edit and delete matches, credit to CI-Walkthrough  -->
                     {% if user == match.home_team or user == match.away_team or league_instance.league_creator %}
-                  <div class="lg-name-list">
-                    <div class="date-name-cell">
+                  <div class="btn-edit-del-cont">
+                    <div class="d-flex align-content-center">
                       <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
                       class="btn btn-success btn-det-lg-custom">
                       Edit
                     </a>
                     </div>
                   </div>
-                  <div class="lg-name-list">
-                    <div class="date-name-cell">
+                  <div class="btn-edit-del-cont">
+                    <div class="d-flex align-content-center">
                       <button class="btn btn-success btn-delete btn-det-lg-custom" data-match_id="{{ match.id }}">
                         Delete
                       </button>
@@ -142,15 +142,15 @@
                   </div>
                   <!-- edit and delete buttons for when user is not part of match, connected to modal displaying message -->
                   {% else %}
-                  <div class="lg-name-list">
-                    <div class="date-name-cell">
+                  <div class="btn-edit-del-cont">
+                    <div class="d-flex align-content-center">
                       <button class="btn btn-info btn-edit-error btn-det-lg-custom">
                         Edit
                       </button>
                     </div>
                   </div>
-                  <div class="lg-name-list">
-                    <div class="date-name-cell">
+                  <div class="btn-edit-del-cont">
+                    <div class="d-flex align-content-center">
                       <button class="btn btn-info btn-delete-error btn-det-lg-custom">
                         Delete
                       </button>
