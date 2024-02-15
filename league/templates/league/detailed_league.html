@@ -124,7 +124,7 @@
                   </div>
 
                     <!-- edit and delete matches, credit to CI-Walkthrough  -->
-                    {% if user == match.home_team or user == match.away_team %}
+                    {% if user == match.home_team or user == match.away_team or league_instance.league_creator %}
                   <div class="lg-name-list">
                     <div class="date-name-cell">
                       <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
@@ -165,7 +165,7 @@
           <div class="mt-3 text-start">
             <ul class="list-unstyled">
               <li class="px-2 m-1 pb-1 rules-info">To edit or delete a match simply click the edit or delete button for the match you want to edit or delete!</li>
-              <li class="px-2 m-1 pb-1 rules-info">You can only edit or delete matches that you have played yourself.</li>
+              <li class="px-2 m-1 pb-1 rules-info">The league creator can edit and delete all matches. Other users can only edit or delete matches that they are a part of.</li>
           </ul>
           </div>
         </div>

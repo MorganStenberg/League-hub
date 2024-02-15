@@ -74,7 +74,8 @@ def user_matches(request, page=1):
 
     all_matches = sorted(
         list(chain(home_team_match, away_team_match)),
-        key=attrgetter('date')
+        key=attrgetter('date'),
+        reverse=True
     )
     
     paginator = Paginator(all_matches, 8)
@@ -139,7 +140,12 @@ def detailed_league(request, slug):
 
     league_instance = get_object_or_404(League, slug=slug)
     standings = league_instance.calculate_standings()
-    all_league_matches = league_instance.matches.all()
+    
+    all_league_matches = sorted(
+        list(league_instance.matches.all()),
+        key=attrgetter('date'),
+        reverse=True
+        )
 
     paginator = Paginator(all_league_matches, 8)
     
@@ -167,13 +173,14 @@ def detailed_league(request, slug):
         if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
-            if request.user == add_matches.home_team or request.user == add_matches.away_team or request.user == league_instance.league_creator:
+
+            if request.user == league_instance.league_creator or request.user == add_matches.home_team or request.user == add_matches.away_team:
                 add_matches_form.save()
                 messages.add_message(request, messages.SUCCESS, 'Match added to league!')
                 standings = league_instance.calculate_standings()
                 return redirect('detailed_league', slug=slug)
             else:
-                messages.add_message(request, messages.ERROR, 'You can only add matches that you have not played yourself if you are the league creator!')
+                messages.add_message(request, messages.ERROR, 'If you are not league creator, you can only add matches that you are a part of!')
                 return redirect('detailed_league', slug=slug)
 
 
@@ -202,16 +209,16 @@ def edit_match(request, slug, match_id):
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
   
-    if request.user == match.home_team or request.user == match.away_team:
+    if request.user == match.home_team or request.user == match.away_team or request.user == league_instance.league_creator:
         if request.method == "POST":
             edit_matches_form = EditMatchesForm(data=request.POST, instance=match)
             if edit_matches_form.is_valid():
-                edit_matches = add_matches_form.save(commit=False)
+                edit_matches = edit_matches_form.save(commit=False)
                 edit_matches.league = league_instance
                 edit_matches_form.save()
                 return redirect('detailed_league', slug=slug)
     else:
-        messages.add_message(request, messages.ERROR, 'You can only edit your own matches!')
+        messages.add_message(request, messages.ERROR, 'If you are not league creator, you can only edit your own matches!')
 
     edit_matches_form = EditMatchesForm(instance=match)
 
@@ -236,12 +243,12 @@ def delete_match(request, slug, match_id):
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
             
-    if request.user == match.home_team or request.user == match.away_team:
+    if request.user == match.home_team or request.user == match.away_team or request.user == league_instance.league_creator:
         match.delete()
 
         messages.add_message(request, messages.SUCCESS, 'Match deleted!')
 
     else:
-        messages.add_message(request, messages.ERROR, 'You can only delete your own matches!')
+        messages.add_message(request, messages.ERROR, 'If you are not league creator, you can only delete your own matches!')
  
     return HttpResponseRedirect(reverse('detailed_league', args=[slug]))
