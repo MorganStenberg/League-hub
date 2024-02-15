@@ -69,6 +69,13 @@
         </div>
         {% endif %}
       </div>
+      <div class="mt-3 text-start">
+        <ul class="list-unstyled">
+          <li class="px-2 m-1 mx-2 pb-1 rules-info"><strong>League Description:</strong> {{ league_instance.description }}</li>
+          <li class="px-2 m-1 mx-2 pb-1 rules-info"><strong>League members:</strong> {% for members in league_instance.league_member.all %} {{ members.username }}{% if not forloop.last %},{% endif %}{% endfor %}.</li>
+      </ul>
+      </div>
+
     </div>
 </div>
 
