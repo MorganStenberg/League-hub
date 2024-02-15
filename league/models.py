@@ -5,6 +5,9 @@ from django.db.models import F
 # Create your models here.
 
 class League(models.Model):
+    """
+    
+    """
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField()
