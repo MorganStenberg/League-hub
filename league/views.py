@@ -47,14 +47,14 @@ def my_leagues(request, page=1):
     page_number = request.GET.get('page')
 
     try:
-        page_my_leagues = paginator.get_page(page_number)
+        page_obj = paginator.get_page(page_number)
     except PageNotAnInteger:
-        page_my_leagues = paginator.page(1)
+        page_obj = paginator.page(1)
     except EmptyPage:
-        page_my_leagues = paginator.page(paginator.num_pages)
+        page_obj = paginator.page(paginator.num_pages)
 
     context = {
-    "page_my_leagues": page_my_leagues
+    "page_obj": page_obj
     }
 
     return render(request, 'league/my_leagues.html', context)
@@ -100,6 +100,8 @@ def user_matches(request, page=1):
 @login_required
 def create_league(request):
 
+    create_league_form = CreateLeagueForm()
+
     if request.method == "POST":
         create_league_form = CreateLeagueForm(data=request.POST)
         if create_league_form.is_valid():
@@ -115,7 +117,7 @@ def create_league(request):
             messages.add_message(request, messages.SUCCESS, 'League created!')
             return redirect ('detailed_league', slug=create_league.slug)
 
-    create_league_form = CreateLeagueForm()
+    
 
     context = {
         "create_league_form": create_league_form,
