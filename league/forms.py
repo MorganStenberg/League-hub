@@ -11,7 +11,7 @@ class CreateLeagueForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(CreateLeagueForm, self).__init__(*args, **kwargs)
-        self.fields["league_member"].help_text = "You need to select at least one other league member. Hold down cmd/ctrl to select multiple. The league creator is automatically added as league member."
+        self.fields["league_member"].help_text = "Type to start searching for other users. You need to select at least one other league member. The league creator is automatically added as league member."
 
 
 class AddMatchesForm(forms.ModelForm):
