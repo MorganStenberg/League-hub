@@ -107,9 +107,13 @@ def create_league(request):
             create_league.league_creator = request.user
             create_league.slug = slugify(create_league.name)
             create_league.save()
-            selected_users = create_league_form.cleaned_data['league_member']
+
+            selected_users = list(create_league_form.cleaned_data['league_member'])
+            selected_users.append(request.user)
+
             create_league.league_member.add(*selected_users)
             messages.add_message(request, messages.SUCCESS, 'League created!')
+            return redirect ('detailed_league', slug=create_league.slug)
 
     create_league_form = CreateLeagueForm()
 
