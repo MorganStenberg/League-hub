@@ -14,7 +14,7 @@ class League(models.Model):
     league_creator = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="created_leagues"
     )
-    league_member = models.ManyToManyField(
+    league_members = models.ManyToManyField(
         User, related_name="league_membership"
     )
 
@@ -61,7 +61,7 @@ class League(models.Model):
 
         user_matches_won = {}
 
-        for user in self.league_member.all():
+        for user in self.league_members.all():
             won_matches_count = self.matches.filter(
                 home_team=user, home_team_score__gt=F('away_team_score')
             ).count() + self.matches.filter(
@@ -77,7 +77,7 @@ class League(models.Model):
 
         user_matches_lost = {}
 
-        for user in self.league_member.all():
+        for user in self.league_members.all():
             lost_matches_count = self.matches.filter(
                 home_team=user, home_team_score__lt=F('away_team_score')
             ).count() + self.matches.filter(
@@ -93,7 +93,7 @@ class League(models.Model):
 
         user_matches_draw = {}
 
-        for user in self.league_member.all():
+        for user in self.league_members.all():
             draw_matches_count = self.matches.filter(
                 home_team=user, home_team_score=F('away_team_score')
             ).count() + self.matches.filter(

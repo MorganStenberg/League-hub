@@ -6,12 +6,12 @@ from django import forms
 class CreateLeagueForm(forms.ModelForm):
     class Meta:
         model = League
-        fields = ["name", "description", "league_member"]
+        fields = ["name", "description", "league_members"]
 
 
     def __init__(self, *args, **kwargs):
         super(CreateLeagueForm, self).__init__(*args, **kwargs)
-        self.fields["league_member"].help_text = "Type to start searching for other users. You need to select at least one other league member. The league creator is automatically added as league member."
+        self.fields["league_members"].help_text = "Type to start searching for other users. You need to select at least one other league member. The league creator is automatically added as league member."
 
 
 class AddMatchesForm(forms.ModelForm):

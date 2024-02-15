@@ -111,10 +111,10 @@ def create_league(request):
             create_league.slug = slugify(create_league.name)
             create_league.save()
 
-            selected_users = list(create_league_form.cleaned_data['league_member'])
+            selected_users = list(create_league_form.cleaned_data['league_members'])
             selected_users.append(request.user)
 
-            create_league.league_member.add(*selected_users)
+            create_league.league_members.add(*selected_users)
             messages.add_message(request, messages.SUCCESS, 'League created!')
             return redirect ('detailed_league', slug=create_league.slug)
 
@@ -166,7 +166,7 @@ def detailed_league(request, slug):
     add_matches_form = AddMatchesForm(league_instance)
 
     if request.method == "POST":
-        if request.user not in league_instance.league_member.all():
+        if request.user not in league_instance.league_members.all():
             messages.add_message(request, messages.ERROR, 'You can only add matches if you are a part of the league!')
             return redirect('detailed_league', slug=slug)
         add_matches_form = AddMatchesForm(league_instance, data=request.POST)
