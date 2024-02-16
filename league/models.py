@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import F
+from collections import defaultdict
 
 # Create your models here.
 
@@ -24,7 +25,7 @@ class League(models.Model):
     # Calculates the league standing based on points in matches
     def calculate_standings(self):
 
-        user_points = {}
+        user_points = defaultdict(int)
 
         for match in self.matches.all():
 
@@ -33,8 +34,8 @@ class League(models.Model):
 
             home_points, away_points = match.calculate_points()
 
-            user_points[home_team] = user_points.get(home_team, 0) + home_points
-            user_points[away_team] = user_points.get(away_team, 0) + away_points
+            user_points[home_team] += home_points
+            user_points[away_team] += away_points
 
         league_standings = sorted(user_points.items(),
                                   key=lambda x: x[1], reverse=True)
@@ -51,8 +52,12 @@ class League(models.Model):
             home_team = match.home_team
             away_team = match.away_team
 
-            user_matches_played[home_team] = user_matches_played.get(home_team, 0) + 1
-            user_matches_played[away_team] = user_matches_played.get(away_team, 0) + 1
+            user_matches_played[home_team] = (
+                user_matches_played.get(home_team, 0) + 1
+                )
+            user_matches_played[away_team] = (
+                user_matches_played.get(away_team, 0) + 1
+                )
 
         return user_matches_played
 
