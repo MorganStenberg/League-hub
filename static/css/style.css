@@ -12,6 +12,8 @@ body {
     background-size: cover;
 }
 
+
+/* Navbar */
 .navbar-background {
     background-color: #990011
 }
@@ -21,8 +23,7 @@ body {
 }
 
 
-
-
+/* Custom margins and colors  */ 
 .page-cta {
     margin-top: 10%;
     background-color: #fcf6f5;
@@ -32,28 +33,17 @@ body {
     padding-bottom: 10px;
 }
 
-
-
-
 .all-leagues {
     background-color:green ;
 }
-
 
 .alert-error {
     background-color: #ffc107
 }
 
-/* Custom margins and background color- etc */ 
-
-.lg-mtch-bk {
-    background-color: #fcf6f5;
-}
-
 .btn-margin {
     margin: 0.25rem;
 }
-
 
 .league-card-margin {
     margin-top: 0.5rem;
@@ -86,11 +76,10 @@ body {
     border-radius: 0;
 }
 
-/*Styling for displaying list of matches, both for My Matches and Detailed League templates.
-Inspiration for design taken from https://www.fotbollskanalen.se/premier-league/?tab=matches 
-and adapted to my content 
-*/ 
 
+/*Styling for displaying list of user matches, for both templates my_matches and detailed_league.
+Inspiration for design taken from https://www.fotbollskanalen.se/premier-league/?tab=matches 
+and adapted to my content */ 
 
 .bk-matches-heading {
     background-color: #fff;
@@ -177,7 +166,6 @@ and adapted to my content
 }
 
 
-
 .btn-det-lg-custom {
     --bs-btn-padding-y: 0.60rem;
     --bs-btn-padding-x: 0.30rem;
@@ -256,16 +244,8 @@ th, td {
 }
     }
 
-
-
-
-
-
-
-/*
-Styling for table for displaying standings in detailed league
-Credit to https://codepen.io/Shayley/pen/NWqrvqQ 
-*/
+/*Styling for table for displaying standings in detailed league
+Credit to https://codepen.io/Shayley/pen/NWqrvqQ */
 
 .ptable table{
 	margin: 30px auto;
@@ -328,9 +308,7 @@ th{
 }
 
 
-
 /* Custom media breakpoints */ 
-
 @media (max-width: 540px) {
     .btn-custom-small {
         font-size: 0.8rem;
@@ -339,7 +317,6 @@ th{
         margin-left: 0.22rem !important;
     }
 }
-
 
 
 @media (min-width: 1200px) {
