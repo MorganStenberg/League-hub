@@ -6,7 +6,8 @@ from django.db.models import F
 
 class League(models.Model):
     """
-    
+    Stores a single created league. Related to :model: 'auth.User'.
+    Includes functions for handling the logic of calculating standings in league. 
     """
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -112,7 +113,9 @@ class League(models.Model):
 
 class Match(models.Model):
     """
-
+    Stores a single match. Related to :model: 'auth.User' 
+    and :model: 'League.League'.
+    Includes function for calculationg points related to winning/draw/losing a match. 
     """
     league = models.ForeignKey(
         League, on_delete=models.CASCADE, related_name="matches"
@@ -128,7 +131,7 @@ class Match(models.Model):
     away_team_score = models.PositiveIntegerField()
     updated_at = models.DateTimeField(auto_now=True)
 
-
+    # Calculates the points for winning, losing and a draw match. 
     def calculate_points(self):
         win_points = 3
         draw_points = 1

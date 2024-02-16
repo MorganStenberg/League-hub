@@ -4,6 +4,9 @@ from django import forms
 
 
 class CreateLeagueForm(forms.ModelForm):
+    """
+    Form for users to create a league.
+    """
     class Meta:
         model = League
         fields = ["name", "description", "league_members"]
@@ -15,6 +18,9 @@ class CreateLeagueForm(forms.ModelForm):
 
 
 class AddMatchesForm(forms.ModelForm):
+    """
+    Form for users to add a match.
+    """
     class Meta:
         model = Match
         fields = ["home_team", "away_team", "home_team_score", "away_team_score" ]
