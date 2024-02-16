@@ -4,10 +4,12 @@ from django.db.models import F
 
 # Create your models here.
 
+
 class League(models.Model):
     """
     Stores a single created league. Related to :model: 'auth.User'.
-    Includes functions for handling the logic of calculating standings in league. 
+    Includes functions for handling the logic
+    of calculating standings in league.
     """
     name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -19,11 +21,10 @@ class League(models.Model):
         User, related_name="league_membership"
     )
 
-
     # Calculates the league standing based on points in matches
     def calculate_standings(self):
-        user_points = {}
 
+        user_points = {}
 
         for match in self.matches.all():
 
@@ -35,15 +36,14 @@ class League(models.Model):
             user_points[home_team] = user_points.get(home_team, 0) + home_points
             user_points[away_team] = user_points.get(away_team, 0) + away_points
 
-
-
-        league_standings = sorted(user_points.items(), key=lambda x: x[1], reverse=True)
+        league_standings = sorted(user_points.items(),
+                                  key=lambda x: x[1], reverse=True)
 
         return league_standings
 
-
-    # Calculates the number of matches each user has played 
+    # Calculates the number of matches each user has played
     def calculate_user_matches(self):
+
         user_matches_played = {}
 
         for match in self.matches.all():
@@ -55,7 +55,6 @@ class League(models.Model):
             user_matches_played[away_team] = user_matches_played.get(away_team, 0) + 1
 
         return user_matches_played
-
 
     # Calculates the number of matches won by each user
     def calculate_won_matches(self):
@@ -72,7 +71,6 @@ class League(models.Model):
 
         return user_matches_won
 
-
     # Calculates the number of matches lost by each user
     def calculate_lost_matches(self):
 
@@ -87,7 +85,6 @@ class League(models.Model):
             user_matches_lost[user] = lost_matches_count
 
         return user_matches_lost
-
 
     # Calculates the number of matches that ended in a draw by each user
     def calculate_draw_matches(self):
@@ -104,18 +101,16 @@ class League(models.Model):
 
         return user_matches_draw
 
-
-
-
     def __str__(self):
         return self.name
 
 
 class Match(models.Model):
     """
-    Stores a single match. Related to :model: 'auth.User' 
+    Stores a single match. Related to :model: 'auth.User'
     and :model: 'League.League'.
-    Includes function for calculationg points related to winning/draw/losing a match. 
+    Includes function for calculationg points
+    related to winning/draw/losing a match.
     """
     league = models.ForeignKey(
         League, on_delete=models.CASCADE, related_name="matches"
@@ -131,16 +126,16 @@ class Match(models.Model):
     away_team_score = models.PositiveIntegerField()
     updated_at = models.DateTimeField(auto_now=True)
 
-    # Calculates the points for winning, losing and a draw match. 
+    # Calculates the points for winning, losing and a draw match.
     def calculate_points(self):
         win_points = 3
         draw_points = 1
         loss_points = 0
 
         if self.home_team_score > self.away_team_score:
-            home_points = win_points 
-            away_points = loss_points 
-        elif self.home_team_score < self.away_team_score: 
+            home_points = win_points
+            away_points = loss_points
+        elif self.home_team_score < self.away_team_score:
             home_points = loss_points
             away_points = win_points
         else:
@@ -148,4 +143,3 @@ class Match(models.Model):
             away_points = draw_points
 
         return home_points, away_points
-
