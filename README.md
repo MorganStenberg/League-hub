@@ -55,6 +55,17 @@ I have validated my HTML, CSS, Javascript and Python code with the websites list
 JShint and W3C did not return any errors for the Javascript and CSS code.
 
 - W3C image here
+- Jshint image here
+
+Python Linter did return errors regarding to long lines and trailing whitespaces, which were taken care of by formatting the code correctly and splitting up lines that
+were too long. 
+- python linter image here
+- python linter another image here
+
+The HTML validator had issues with the python code mixed in with the HTML, which caused warnings. But no warnings or errors were found other than 
+those related to the Python code, as seen in the pictures. 
+- insert image of wc3 html validation
+- more images of html validation
 
 ### **Problems and bugs**
 
