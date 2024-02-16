@@ -1,14 +1,8 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
-
+<!-- Override the background image -->
+{% block body_bg_class %}no-background-image{% endblock %}
 {% block content %}
-
-<style>
-  body {
-      background-image:none; /* Override the background image */
-  }
-</style>
 
 <!-- Form for editing a match  -->
 <div class="container ">

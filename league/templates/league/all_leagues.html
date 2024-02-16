@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
-
+<!-- Override the background image -->
+{% block body_bg_class %}no-background-image{% endblock %}
 {% block content %}
-
-<style>
-  body {
-      background-image:none; /* Override the background image */
-  }
-</style>
 
 <!-- Displaying paginated list of all leagues, taking in league name and description -->
 <div class="container-fluid">

@@ -15,6 +15,10 @@ body {
     background-size: cover;
 }
 
+.no-background-image {
+    background-image: none;
+}
+
 
 /* Navbar */
 .navbar-background {

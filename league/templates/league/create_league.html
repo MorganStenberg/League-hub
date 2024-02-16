@@ -1,14 +1,9 @@
 {% extends 'base.html' %}
-{% load static %}
 {% load crispy_forms_tags %}
-
+<!-- Override the background image -->
+{% block body_bg_class %}no-background-image{% endblock %}
 {% block content %}
 
-<style>
-  body {
-      background-image:none; /* Override the background image */
-  }
-</style>
 
 <!-- Form for creating a league, credit to Code Institute Walkthrough - link in readme  -->
 <div class="container ">

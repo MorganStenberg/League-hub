@@ -180,7 +180,7 @@ def detailed_league(request, slug):
     # Handling adding matches to the league
     if request.method == "POST":
         if request.user not in league_instance.league_members.all():
-            messages.add_message(request, messages.ERROR, 'You can only add'
+            messages.add_message(request, messages.ERROR, 'You can only add '
                                  'matches if you are a part of the league!')
             return redirect('detailed_league', slug=slug)
         add_matches_form = AddMatchesForm(league_instance, data=request.POST)
@@ -193,13 +193,13 @@ def detailed_league(request, slug):
                 request.user == add_matches.away_team
             ):
                 add_matches_form.save()
-                messages.add_message(request, messages.SUCCESS, 'Match added'
+                messages.add_message(request, messages.SUCCESS, 'Match added '
                                      'to league!')
                 standings = league_instance.calculate_standings()
                 return redirect('detailed_league', slug=slug)
             else:
-                messages.add_message(request, messages.ERROR, 'If you are not'
-                                     'league creator, you can only add matches'
+                messages.add_message(request, messages.ERROR, 'If you are not '
+                                     'league creator, you can only add matches '
                                      'that you are a part of!')
                 return redirect('detailed_league', slug=slug)
 
@@ -232,8 +232,8 @@ def edit_match(request, slug, match_id):
 
     if (
         request.user == league_instance.league_creator or
-        request.user == add_matches.home_team or
-        request.user == add_matches.away_team
+        request.user == match.home_team or
+        request.user == match.away_team
     ):
         if request.method == "POST":
             edit_matches_form = EditMatchesForm(data=request.POST,
@@ -244,7 +244,7 @@ def edit_match(request, slug, match_id):
                 edit_matches_form.save()
                 return redirect('detailed_league', slug=slug)
     else:
-        messages.add_message(request, messages.ERROR, 'If you are not league'
+        messages.add_message(request, messages.ERROR, 'If you are not league '
                              'creator, you can only edit your own matches!')
 
     context = {
@@ -270,14 +270,14 @@ def delete_match(request, slug, match_id):
 
     if (
         request.user == league_instance.league_creator or
-        request.user == add_matches.home_team or
-        request.user == add_matches.away_team
+        request.user == match.home_team or
+        request.user == match.away_team
     ):
         match.delete()
         messages.add_message(request, messages.SUCCESS, 'Match deleted!')
 
     else:
-        messages.add_message(request, messages.ERROR, 'If you are not league'
+        messages.add_message(request, messages.ERROR, 'If you are not league '
                              'creator, you can only delete your own matches!')
 
     return HttpResponseRedirect(reverse('detailed_league', args=[slug]))
