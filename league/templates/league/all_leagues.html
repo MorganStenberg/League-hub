@@ -8,6 +8,7 @@
   }
 </style>
 
+<!-- Displaying paginated list of all leagues, taking in league name and description -->
 <div class="container-fluid">
   <div class="row">
     {% for league in league_list %}
@@ -16,6 +17,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ league.name }}</h5>
           <p class="card-text">{{ league.description }}</p>
+          <!-- Link taking user to detailed view of league -->
           <a href="{% url 'detailed_league' league.slug %}" class="btn btn-success">View league</a>
         </div>
       </div>

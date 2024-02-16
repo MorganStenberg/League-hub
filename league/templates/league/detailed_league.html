@@ -10,206 +10,227 @@
   }
 </style>
 
+<!-- Table displaying standings in the league -->
 <div class="container">
-    <div class="p-3 bkgr-wh mrg-top bx-shd">
-      <div class="ptable">
-        <h1 class="table-heading">{{ league_instance.name }} Standings</h1>
+  <div class="p-3 bkgr-wh mrg-top bx-shd">
+    <div class="ptable">
+      <h1 class="table-heading">{{ league_instance.name }} Standings</h1>
 
-        {% if standings %}
+      <!-- Statement checking if there are any matches and points to be displayed in the league -->
+      {% if standings %}
+      <table>
+        <tr class="col">
+          <th>#</th>
+          <th>Team</th>
+          <th>GP</th>
+          <th>W</th>
+          <th>D</th>
+          <th>L</th>
+          <th>PTS</th>
+        </tr>
 
-        <table>
-          <tr class="col">
-            <th>#</th>
-            <th>Team</th>
-            <th>GP</th>
-            <th>W</th>
-            <th>D</th>
-            <th>L</th>
-            <th>PTS</th>
-          </tr>
+        <!-- Iterating through users and points -->
+        {% for user, points in standings %}
+        <tr class="wpos bold">
+          <td>{{ forloop.counter }}</td>
+          <td>{{ user.username }}</td>
 
-          {% for user, points in standings %}
-          <tr class="wpos bold">
-            <td>{{ forloop.counter }}</td>
-            <td>{{ user.username }}</td>
-
-            {% for u, matches_count in user_matches_count.items %}
-            {% if u == user %}
-            <td>{{ matches_count }}</td>
-            {% endif %}
-            {% endfor %}
-
-            {% for u, won_matches in won_matches_count.items %}
-            {% if u == user %}
-            <td>{{ won_matches }}</td>
-            {% endif %}
-            {% endfor %}
-
-            {% for u, draw_matches in draw_matches_count.items %}
-            {% if u == user %}
-            <td>{{ draw_matches }}</td>
-            {% endif %}
-            {% endfor %}
-
-            {% for u, lost_matches in lost_matches_count.items %}
-            {% if u == user %}
-            <td>{{ lost_matches }}</td>
-            {% endif %}
-            {% endfor %}
-            <td>{{ points }}</td>
-          </tr>
+          <!-- Iterating through matches connected to a user and displaying number of matches -->
+          {% for u, matches_count in user_matches_count.items %}
+          {% if u == user %}
+          <td>{{ matches_count }}</td>
+          {% endif %}
           {% endfor %}
 
+          <!-- Iterating through won matches and displaying number of won matches for a user -->
+          {% for u, won_matches in won_matches_count.items %}
+          {% if u == user %}
+          <td>{{ won_matches }}</td>
+          {% endif %}
+          {% endfor %}
 
-        </table>
-        {% else %}
-        <div class="text-center pt-3">
-          <h4>No matches have been added yet!</h4>
-          <p> Click the Add Match button below to start your league now!</p>
-        </div>
-        {% endif %}
-      </div>
-      <div class="mt-3 text-start mrg-width-desc-info-lg">
-        <ul class="list-unstyled">
-          <li class="pb-1 rules-info"><strong>League Description:</strong> {{ league_instance.description }}.</li>
-          <li class="pb-1 rules-info"><strong>League members:</strong> {% for members in league_instance.league_members.all %} {{ members.username }}{% if not forloop.last %},{% endif %}{% endfor %}.</li>
-          <li class="pb-1 rules-info"><strong>Ruleset:</strong> Win = 3 points, Draw = 1 points, Loss = 0 points.</li>
-      </ul>
-      </div>
+          <!-- Iterating through draw matches and displaying number of matches ending in a draw for a user -->
+          {% for u, draw_matches in draw_matches_count.items %}
+          {% if u == user %}
+          <td>{{ draw_matches }}</td>
+          {% endif %}
+          {% endfor %}
 
+          <!-- Iterating through lost matches and displaying number of lost matches for a user -->
+          {% for u, lost_matches in lost_matches_count.items %}
+          {% if u == user %}
+          <td>{{ lost_matches }}</td>
+          {% endif %}
+          {% endfor %}
+          <td>{{ points }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <!-- Content displayed if there are not any matches in the league -->
+      {% else %}
+      <div class="text-center pt-3">
+        <h4>No matches have been added yet!</h4>
+        <p> Click the Add Match button below to start your league now!</p>
+      </div>
+      {% endif %}
     </div>
+
+    <!-- Information describing the league, displaying users that are league members and league ruleset -->
+    <div class="mt-3 text-start mrg-width-desc-info-lg">
+      <ul class="list-unstyled">
+        <li class="pb-1 rules-info"><strong>League Description:</strong> {{ league_instance.description }}.</li>
+        <li class="pb-1 rules-info"><strong>League members:</strong>
+          {% for members in league_instance.league_members.all %}
+          {{ members.username }}{% if not forloop.last %},{% endif %}{% endfor %}.</li>
+        <li class="pb-1 rules-info"><strong>Ruleset:</strong> Win = 3 points, Draw = 1 points, Loss = 0 points.</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 
 <div class="container">
-    <div class="p-3 text-center bkgr-wh mrg-top bx-shd">
-      {% if standings %}
-      <!-- Button for collapsing all matches -->
-      <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
-        aria-expanded="false" aria-controls="viewMatches">
-        View Matches
-      </button>
-      {% endif %}
+  <div class="p-3 text-center bkgr-wh mrg-top bx-shd">
+    <!-- Statement checking if their are matches connected to the league instance, 
+        if there are not, the button to display matches is not visible -->
+    {% if standings %}
+    <!-- Button for collapsing list of matches in the league instance -->
+    <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse" data-bs-target="#viewMatches"
+      aria-expanded="false" aria-controls="viewMatches">
+      View Matches
+    </button>
+    {% endif %}
 
-      {% if user in league_instance.league_members.all %}
-      <!-- Button for collapsing add match form  -->
-      <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
-        data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
-        Add Match
-      </button>
-      {% else %}
-      <button class="btn btn-primary btn-margin btn-add-match-error">
-        Add Match
-      </button>
-      {% endif %}
+    <!-- Statment checking it the user is a league member in this league instance -->
+    {% if user in league_instance.league_members.all %}
+    <!-- Button for collapsing add match form  -->
+    <button class="btn btn-primary btn-margin" type="button" data-bs-toggle="collapse"
+      data-bs-target="#addMatchCollapse" aria-expanded="false" aria-controls="addMatchCollapse">
+      Add Match
+    </button>
+    {% else %}
+    <!-- Button connected to modal displaying error message if user tries to add match while not part of league instance -->
+    <button class="btn btn-primary btn-margin btn-add-match-error">
+      Add Match
+    </button>
+    {% endif %}
 
-      <div class="table-container collapse {% if page_obj.number > 1 %} show {% endif %}" id="viewMatches">
+    <!-- Container for displaying list of matches connected to the league instance
+      when there are enough matches for pagination to occurr, the containter will not be collapsed
+      when the user navigations beyond the first page  -->
+    <div class="table-container collapse {% if page_obj.number > 1 %} show {% endif %}" id="viewMatches">
+      <div>
+        <ul class="match-list-ul">
+          <!-- Iterating through the matches -->
+          {% for match in page_obj %}
+          <li class="match-list">
+            <div class="pd-list-matches">
+              <div class="team-container">
+                <div class="teams">
+                  <div class="team-item">{{ match.home_team }}</div>
+                  <div class="team-item">{{ match.away_team }}</div>
+                </div>
+                <div class="score-list">
+                  <div class="team-item bold">{{ match.home_team_score }}</div>
+                  <div class="team-item bold">{{ match.away_team_score }}</div>
+                </div>
+                <div class="match-date-list">
+                  <div class="d-flex align-content-center">{{ match.date|date:"M d" }}</div>
+                </div>
 
-        <div>
-          <ul class="match-list-ul">
-            {% for match in page_obj %}
-            <li class="match-list">
-              <div class="pd-list-matches">
-                <div class="team-container">
-                  <div class="teams">
-                    <div class="team-item">{{ match.home_team }}</div>
-                    <div class="team-item">{{ match.away_team }}</div>
-                  </div>
-                  <div class="score-list">
-                    <div class="team-item bold">{{ match.home_team_score }}</div>
-                    <div class="team-item bold">{{ match.away_team_score }}</div>
-                  </div>
-                  <div class="match-date-list">
-                    <div class="d-flex align-content-center">{{ match.date|date:"M d" }}</div>
-                  </div>
-
-                    <!-- edit and delete matches, credit to CI-Walkthrough  -->
-                    {% if user == match.home_team or user == match.away_team or league_instance.league_creator %}
-                  <div class="btn-edit-del-cont">
-                    <div class="d-flex align-content-center">
-                      <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
+                <!-- Statement checking if the user is part of the match, or the league creator. Then displaying edit 
+                  and delete buttons, credit to Code Institute-Walkthrough link in readme -->
+                {% if user == match.home_team or user == match.away_team or league_instance.league_creator %}
+                <div class="btn-edit-del-cont">
+                  <div class="d-flex align-content-center">
+                    <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
                       class="btn btn-success btn-det-lg-custom">
                       Edit
                     </a>
-                    </div>
                   </div>
-                  <div class="btn-edit-del-cont">
-                    <div class="d-flex align-content-center">
-                      <button class="btn btn-success btn-delete btn-det-lg-custom" data-match_id="{{ match.id }}">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                  <!-- edit and delete buttons for when user is not part of match, connected to modal displaying message -->
-                  {% else %}
-                  <div class="btn-edit-del-cont">
-                    <div class="d-flex align-content-center">
-                      <button class="btn btn-info btn-edit-error btn-det-lg-custom">
-                        Edit
-                      </button>
-                    </div>
-                  </div>
-                  <div class="btn-edit-del-cont">
-                    <div class="d-flex align-content-center">
-                      <button class="btn btn-info btn-delete-error btn-det-lg-custom">
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                  {% endif %}
                 </div>
+                <div class="btn-edit-del-cont">
+                  <div class="d-flex align-content-center">
+                    <button class="btn btn-success btn-delete btn-det-lg-custom" data-match_id="{{ match.id }}">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                <!-- Edit and delete buttons for when user is not part of match, displayed for symmetry in design. 
+                  Connected to modal displaying error message -->
+                {% else %}
+                <div class="btn-edit-del-cont">
+                  <div class="d-flex align-content-center">
+                    <button class="btn btn-info btn-edit-error btn-det-lg-custom">
+                      Edit
+                    </button>
+                  </div>
+                </div>
+                <div class="btn-edit-del-cont">
+                  <div class="d-flex align-content-center">
+                    <button class="btn btn-info btn-delete-error btn-det-lg-custom">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+                {% endif %}
               </div>
-            </li>
-            {% endfor %}
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="mt-3 text-start">
+          <ul class="list-unstyled">
+            <li class="px-2 m-1 pb-1 rules-info">To edit or delete a match simply click the edit or delete button for
+              the match you want to edit or delete!</li>
+            <li class="px-2 m-1 pb-1 rules-info">The league creator can edit and delete all matches. Other users can
+              only edit or delete matches that they are a part of.</li>
           </ul>
-          <div class="mt-3 text-start">
-            <ul class="list-unstyled">
-              <li class="px-2 m-1 pb-1 rules-info">To edit or delete a match simply click the edit or delete button for the match you want to edit or delete!</li>
-              <li class="px-2 m-1 pb-1 rules-info">The league creator can edit and delete all matches. Other users can only edit or delete matches that they are a part of.</li>
-          </ul>
-          </div>
         </div>
-        
-        
-        <nav aria-label="Page navigation">
-          <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link pagination-ct"> PREV &laquo;</a>
-            </li>
-            {% endif %}
-
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link pagination-ct"> NEXT &raquo;</a></li>
-            {% endif %}
-          </ul>
-        </nav>
       </div>
 
-      <!-- Form for adding a match to a league credit to CI- Walkthrough  -->
-      <div class="container collapse" id="addMatchCollapse">
-        <div class="col card justify-content-center">
-          <div class="card-body">
-            <h3>Add match</h3>
-            <form id="AddMatchesForm" method="post">
-              {{ add_matches_form | crispy }}
-              {% csrf_token %}
-              <button id="submit-button" type="submit" class="btn btn-success btn-lg">Submit</button>
-            </form>
-            <div class="mt-3 text-start">
-              <ul class="list-unstyled">
-                <li class="px-2 my-1 pb-1 rules-info">To add a match simply select the home team and away team and enter the score for both.</li>
-                <li class="px-2 my-1 pb-1 rules-info">You can only add matches that you have played yourself.</li>
-                <li class="px-2 my-1 pb-1 rules-info">The league creator can add matches for everybody in the league.</li>
+
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+          <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link pagination-ct"> PREV &laquo;</a>
+          </li>
+          {% endif %}
+
+          {% if page_obj.has_next %}
+          <li><a href="?page={{ page_obj.next_page_number }}" class="page-link pagination-ct"> NEXT &raquo;</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Form for adding a match to a league credit to Code Institute- Walkthrough link in readme -->
+    <div class="container collapse" id="addMatchCollapse">
+      <div class="col card justify-content-center">
+        <div class="card-body">
+          <h3>Add match</h3>
+          <form id="AddMatchesForm" method="post">
+            {{ add_matches_form | crispy }}
+            {% csrf_token %}
+            <button id="submit-button" type="submit" class="btn btn-success btn-lg">Submit</button>
+          </form>
+          <div class="mt-3 text-start">
+            <ul class="list-unstyled">
+              <li class="px-2 my-1 pb-1 rules-info">To add a match simply select the home team and away team and enter
+                the score for both.</li>
+              <li class="px-2 my-1 pb-1 rules-info">You can only add matches that you have played yourself.</li>
+              <li class="px-2 my-1 pb-1 rules-info">The league creator can add matches for everybody in the league.</li>
             </ul>
-            </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
 
 
-<!-- Delete confirmation modal - credit to CI-Walkthrough -->
+<!-- Delete confirmation modal - credit to Code Institute- Walkthrough link in readme -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -231,7 +252,7 @@
 </div>
 
 
-<!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
+<!-- Edit match error message when user is not part of match - credit to Code Institute- Walkthrough link in readme -->
 <div class="modal fade" id="editErrorModal" tabindex="-1" aria-labelledby="editErrorModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -250,7 +271,7 @@
 </div>
 
 
-<!-- Delete match error message when user is not part of match - credit to CI-Walkthrough -->
+<!-- Delete match error message when user is not part of match - credit to Code Institute- Walkthrough link in readme -->
 <div class="modal fade" id="deleteErrorModal" tabindex="-1" aria-labelledby="deleteErrorModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -268,7 +289,7 @@
   </div>
 </div>
 
-<!-- Edit match error message when user is not part of match - credit to CI-Walkthrough -->
+<!-- Add match error message when user is not member of league - credit to Code Institute- Walkthrough link in readme -->
 <div class="modal fade" id="addMatchesErrorModal" tabindex="-1" aria-labelledby="addMatchesErrorModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -277,7 +298,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        You can only add matches to leagues you are a part of!
+        You can only add matches to leagues you are a member of!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

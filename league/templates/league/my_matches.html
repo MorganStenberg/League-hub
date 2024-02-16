@@ -7,11 +7,11 @@
       background-image:none; /* Override the background image */
   }
 </style>
-
 <div class="container mrg-top">
   <div class="bx-shd">
     <h3 class="text-center bk-matches-heading">All matches for {{ user }}</h3>
     <ul class="match-list-ul">
+      <!-- Iterating through all matches connected to a user -->
       {% for match in page_obj %}
       <li class="match-list">
         <div class="pd-list-matches">

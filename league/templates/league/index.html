@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<!-- Landing page CTA if user has logged in -->
 {% if user.is_authenticated %}
 <div class="d-flex align-items-center justify-content-center">
     <div class="container">
@@ -19,6 +20,7 @@
         </div>
     </div>
 </div>
+<!-- Landing page CTA if user has not logged in -->
 {% else %}
 <div class="d-flex align-items-center justify-content-center">
     <div class="container">

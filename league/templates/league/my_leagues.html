@@ -11,6 +11,7 @@
 <div class="container-fluid">
   {% if page_obj %}
   <div class="row">
+    <!-- Iterating through all the leagues a user is a member of -->
     {% for league in page_obj %}
     <div class="col-sm-6 league-card-margin">
       <div class="card bx-shd">
@@ -23,6 +24,7 @@
     </div>
     {% endfor %}
   </div>
+  <!-- Content displayed if user not a member in any league -->
   {% else %}
   <div class="container">
     <div class="p-3 bkgr-wh mrg-top bx-shd text-center">

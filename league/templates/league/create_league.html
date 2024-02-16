@@ -10,43 +10,33 @@
   }
 </style>
 
-
-    <!-- Form for creating your league, credit to CI- walktrhough  -->
-    <div class="container ">
-      <div class="col card justify-content-center mrg-top bx-shd">
-          <div class="card-body">
-            <h3>Create a league</h3>
-
-<!--
-            <div class="form-group">
-              <form action=""></form>
-              <label for="searchInput">Search for users:</label>
-              <input type="search" class="form-control" id="searchInput" placeholder="Enter username">
-              <button id="searchButton" class="btn btn-primary">Search</button>
-              <ul id="searchResults"></ul>
-          </div>
--->
-
-            <form id="CreateLeagueForm" method="post">
-              {{ create_league_form | crispy }}
-              {% csrf_token %}
-              <button id="submitButton" type="submit"
-                class="btn btn-lg btn-success">Submit</button>
-            </form>
-            <div class="mt-3 text-start">
-              <ul class="list-unstyled">
-                <li class="px-2 my-1 pb-1 rules-info">To create a league, enter a league name, a description of what the league is for and choose your league members.</li>
-                <li class="px-2 my-1 pb-1 rules-info">Once you created your league you can view the league and start adding matches to it! </li>
-            </ul>
-            </div>
-          </div>
-        </div>
+<!-- Form for creating a league, credit to Code Institute Walkthrough - link in readme  -->
+<div class="container ">
+  <div class="col card justify-content-center mrg-top bx-shd">
+    <div class="card-body">
+      <h3>Create a league</h3>
+      <form id="CreateLeagueForm" method="post">
+        {{ create_league_form | crispy }}
+        {% csrf_token %}
+        <button id="submitButton" type="submit" class="btn btn-lg btn-success">Submit</button>
+      </form>
+      <div class="mt-3 text-start">
+        <ul class="list-unstyled">
+          <li class="px-2 my-1 pb-1 rules-info">To create a league, enter a league name, a description of what the
+            league is for and choose your league members.</li>
+          <li class="px-2 my-1 pb-1 rules-info">Once you created your league you can view the league and start adding
+            matches to it! </li>
+        </ul>
       </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 
 {% block extras %}
 
+<!-- Script for targeting the select element within the form for creating a league, adding a Select2 box -->
 <script>
 $("#id_league_members").select2({
   width: '100%'
