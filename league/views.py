@@ -15,15 +15,17 @@ from .forms import CreateLeagueForm, AddMatchesForm, EditMatchesForm
 # Create your views here.
 
 def home_page(request):
+    """
+    Landing page.
+    """
     return render(request, "league/index.html")
     
 
 class all_leagues(generic.ListView):
     """
-    Displays a list of all leagues created. 
+    Returns all leagues in :model:`league.League`,
+    ordered by name of league, displays them 6 per page. 
 
-    todo: add queryset to filter for active leagues 
-        if feature of season based leagues is added 
     """
     model = League
     template_name = 'league/all_leagues.html'
@@ -36,14 +38,13 @@ class all_leagues(generic.ListView):
 @login_required
 def my_leagues(request, page=1):
     """
-    View to display all leagues that a user is a part of.
+    Displays all the leagues a user is a part of, 
+    in :model:`league.League`, ordered by name
+    and paginated by 6 per page.
     """    
     user = request.user
-
     my_leagues = user.league_membership.all().order_by('name')
-
     paginator = Paginator(my_leagues, 6)
-    
     page_number = request.GET.get('page')
 
     try:
@@ -64,11 +65,12 @@ def my_leagues(request, page=1):
 @login_required        
 def user_matches(request, page=1):
     """
-    View to display all matches, paginated and sorted by date, connected to a user.
+    Displays all matches that a user is a part of, in the 
+    :model:`league.Match`. Paginated and sorted by 
+    date with the latest added displayed first. 
     """
     
     user = request.user
-
     home_team_match = user.home_team_matches.all()
     away_team_match = user.away_team_matches.all()
 
@@ -79,7 +81,6 @@ def user_matches(request, page=1):
     )
     
     paginator = Paginator(all_matches, 8)
-    
     page_number = request.GET.get('page')
 
     try:
@@ -91,7 +92,6 @@ def user_matches(request, page=1):
 
 
     context = {
-    'all_matches': all_matches,
     'page_obj': page_obj,
     }
 
@@ -100,6 +100,15 @@ def user_matches(request, page=1):
 
 @login_required
 def create_league(request):
+    """
+    Handles a user creating an instance of a league, from 
+    :model:`league.League`. 
+    The user is automaticlly added as a league creator 
+    and league member.
+    The user can choose other users to add as league members, 
+    those are added as league members after the instance of 
+    the league has been created. 
+    """
 
     create_league_form = CreateLeagueForm()
 
@@ -118,7 +127,6 @@ def create_league(request):
             messages.add_message(request, messages.SUCCESS, 'League created!')
             return redirect ('detailed_league', slug=create_league.slug)
 
-    
 
     context = {
         "create_league_form": create_league_form,
@@ -131,11 +139,16 @@ def create_league(request):
 
 @login_required
 def detailed_league(request, slug):
-
     """
-    Displays detailed view of one league,
-    including a form to add played matches to that league
-    and all matches connected to that league
+    Handles displaying a detailed view of one instance of a league 
+    from :model:`league.League`, including a form to add 
+    a match to that league, from :model:`league.Match`.  
+    Renders all matches connected to that league instance,
+    sorted by date and displaying the latest first. The matches
+    are paginated by 8 per page. 
+    Calls the functions for calculating standings in the league, 
+    rendering the points, won, lost, draw matches for each user.
+
     """
 
     league_instance = get_object_or_404(League, slug=slug)
@@ -158,13 +171,16 @@ def detailed_league(request, slug):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
+    #Functions for calculating number of matches, won, lost and draw for each user
     user_matches_count = league_instance.calculate_user_matches()
     won_matches_count = league_instance.calculate_won_matches()
     lost_matches_count = league_instance.calculate_lost_matches()
     draw_matches_count = league_instance.calculate_draw_matches()
 
+    #initializing Form for adding matches to the league
     add_matches_form = AddMatchesForm(league_instance)
 
+    #Handling adding matches to the league
     if request.method == "POST":
         if request.user not in league_instance.league_members.all():
             messages.add_message(request, messages.ERROR, 'You can only add matches if you are a part of the league!')
@@ -173,7 +189,6 @@ def detailed_league(request, slug):
         if add_matches_form.is_valid():
             add_matches = add_matches_form.save(commit=False)
             add_matches.league = league_instance
-
             if request.user == league_instance.league_creator or request.user == add_matches.home_team or request.user == add_matches.away_team:
                 add_matches_form.save()
                 messages.add_message(request, messages.SUCCESS, 'Match added to league!')
@@ -182,7 +197,6 @@ def detailed_league(request, slug):
             else:
                 messages.add_message(request, messages.ERROR, 'If you are not league creator, you can only add matches that you are a part of!')
                 return redirect('detailed_league', slug=slug)
-
 
 
     context = {
@@ -204,11 +218,14 @@ def detailed_league(request, slug):
 @login_required
 def edit_match(request, slug, match_id):
     """
-    View to edit matches
+    Handles editing matches by the user.
+    Renders form for editing matches.
     """
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
   
+    edit_matches_form = EditMatchesForm(instance=match)
+
     if request.user == match.home_team or request.user == match.away_team or request.user == league_instance.league_creator:
         if request.method == "POST":
             edit_matches_form = EditMatchesForm(data=request.POST, instance=match)
@@ -219,8 +236,6 @@ def edit_match(request, slug, match_id):
                 return redirect('detailed_league', slug=slug)
     else:
         messages.add_message(request, messages.ERROR, 'If you are not league creator, you can only edit your own matches!')
-
-    edit_matches_form = EditMatchesForm(instance=match)
 
     context = {
     'slug': slug,
@@ -238,14 +253,13 @@ def edit_match(request, slug, match_id):
 @login_required
 def delete_match(request, slug, match_id):
     """
-    View to delete a match
+    Handles deleting matches by the user.
     """
     league_instance = get_object_or_404(League, slug=slug)
     match = get_object_or_404(Match, pk=match_id)
             
     if request.user == match.home_team or request.user == match.away_team or request.user == league_instance.league_creator:
         match.delete()
-
         messages.add_message(request, messages.SUCCESS, 'Match deleted!')
 
     else:
