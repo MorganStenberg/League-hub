@@ -175,7 +175,7 @@ Basic wireframes was produced to have a basic guideline for the design of the si
 
 <details>
 
-<summary>Landing Page<summary>
+<summary>Landing Page</summary>
 
 ![Wireframe image landing page](documentation/wireframes/Wireframe_landing_page.PNG)
 </details>
@@ -183,21 +183,21 @@ Basic wireframes was produced to have a basic guideline for the design of the si
 
 <details>
 
-<summary>Create League<summary>
+<summary>Create League</summary>
 
 ![Wireame image create league](documentation/wireframes/wireframe_create_league.PNG)
 </details>
 
 <details>
 
-<summary>All Leagues<summary>
+<summary>All Leagues</summary>
 
 ![Wireframe all leagues](documentation/wireframes/wireframe_all_leagues.PNG)
 </details>
 
 <details>
 
-<summary>Detailed League<summary>
+<summary>Detailed League</summary>
 
 ![Wireframe detailed league](documentation/wireframes/wireframe_det_league.PNG)
 </details>
@@ -240,34 +240,31 @@ I have validated my HTML, CSS, Javascript and Python code with the websites list
 
 JShint and W3C did not return any errors for the Javascript and CSS code.
 
+Python Linter did return errors regarding to long lines and trailing whitespaces, which were taken care of by formatting the code correctly and splitting up lines that
+were too long.
+
+The HTML validator had issues with the python code mixed in with the HTML, which caused warnings. But no warnings or errors were found other than 
+those related to the Python code. These warnings are filtered out in the pictures below.
+
 <details>
 
-<summary>CSS Validation<summary>
+<summary>CSS Validation</summary>
 
- ![W3C CSS Validation](documentation/validation/CSS_validation.PNG)
-
+![W3C CSS Validation](documentation/validation/CSS_validation.PNG)
 </details>
 
-
-Python Linter did return errors regarding to long lines and trailing whitespaces, which were taken care of by formatting the code correctly and splitting up lines that
-were too long. 
-
 <details>
 
-<summary>Python Linter<summary>
+<summary>Python Linter</summary>
 
 ![Python Linter for admin.py file](documentation/validation/python_admin_py.PNG)
 ![Python Linter for forms.py file](documentation/validation/python_forms_py.PNG)
 ![Python Linter for views.py file](documentation/validation/python_views_py.PNG)
-
 </details>
-
 
 <details>
 
-The HTML validator had issues with the python code mixed in with the HTML, which caused warnings. But no warnings or errors were found other than 
-those related to the Python code. These warnings are filtered out in the pictures below.
-<summary>HTML Validation<summary>
+<summary>HTML Validation</summary>
 
 ![WC3 HTML validation](documentation/validation/detailed_league_template_html.PNG)
 ![WC3 HTML validation](documentation/validation/base_html_template.PNG)
