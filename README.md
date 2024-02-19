@@ -32,7 +32,7 @@ Here is a link to the live site - [League Hub](https://league-hub-888548acadce.h
 
 ## **UX**
 
-#### Strategy
+### Strategy
 The strategy for League Hub app is about meeting the user need of providing an user-friendly way of organizing your own league. Where the focus is on making it easy for the user to create and be a part of a league. 
 
 ### **Target Audience**
@@ -43,7 +43,9 @@ This project is made for those that:
 
 ### **User Stories**
 
-#### *Account registration*
+The following User Stories were followed to develop the application.
+
+#### - *Account registration*
 
 As a Site User I can register an account so that I can set up my league and be a participant in other leagues
 
@@ -52,7 +54,7 @@ As a Site User I can register an account so that I can set up my league and be a
 - The user can log in with chosen username and password
 - Visual confirmation is shown when successful registration of account
 
-#### *Create League*
+#### - *Create League*
 
 As a Site user I can create a league so that I can keep track of scores and league standing with other users
 
@@ -62,7 +64,7 @@ As a Site user I can create a league so that I can keep track of scores and leag
 - When logged in, a user can select one or multiple users to add to their league
 
 
-#### *Search for other users while creating league*
+#### - *Search for other users while creating league*
 
 As a site user I can search for other users while creating a league so that I don't have to scroll through a list of all users while creating league
 
@@ -73,7 +75,7 @@ As a site user I can search for other users while creating a league so that I do
 - Being able to select multiple users directly in the search bar
 
 
-#### *View all leagues*
+#### - *View all leagues*
 
 As a Site user I can view a list of all leagues so that I can see my own leagues as well as what other leagues that have been created and choose any league to view in a detailed view
 
@@ -83,7 +85,7 @@ As a Site user I can view a list of all leagues so that I can see my own leagues
 - A user can click on the league to enter a detailed view of the league
 
 
-#### *View my leagues*
+#### - *View my leagues*
 
 As a Site user I can view all the leagues that I am a member of so that I can see what leagues I am a member of and choose what league to view in a detailed view
 
@@ -93,7 +95,7 @@ As a Site user I can view all the leagues that I am a member of so that I can se
 - A user can click on the league to enter a detailed view of the league
 
 
-#### *Detailed view of league*
+#### - *Detailed view of league*
 
 As a Site user I can choose a league to view so that I can see a detailed view of that league and what the score and standings are in that league
 
@@ -107,7 +109,7 @@ As a Site user I can choose a league to view so that I can see a detailed view o
 - When logged in, a user that is a league member can edit or delete their own matches
 
 
-#### *View all my matches*
+#### - *View all my matches*
 
 As a Site user I can view all my matches so that see all the matches that I am a part of and the league that they belong to
 
@@ -117,7 +119,7 @@ As a Site user I can view all my matches so that see all the matches that I am a
 - When logged in, a user can view all their own matches and see what date they were added as well as what the score was
 
 
-#### *Add matches to league*
+#### - *Add matches to league*
 
 As a Site user I can add matches to a league so that the league standings can be updated
 
@@ -127,7 +129,7 @@ As a Site user I can add matches to a league so that the league standings can be
 - When logged in, and if the user is a league creator they can add matches for other users that are members of the league they have created
 
 
-#### *Modify or delete matches*
+#### - *Modify or delete matches*
 
 As a site user I can modify or delete matches that have been added to a league so that the league standings can be updated
 
@@ -139,7 +141,7 @@ As a site user I can modify or delete matches that have been added to a league s
 - When logged in, a user that is a league creator can delete matches for other user that are members of the league they have created
 
 
-#### *Admin login*
+#### - *Admin login*
 
 As a Site admin I can login and access the admin dashboard so that I can access the functionalities of a superuser
 
@@ -148,7 +150,7 @@ As a Site admin I can login and access the admin dashboard so that I can access 
 - Implement a secure login for superuser using Django authentication
 
 
-#### *Admin modify or delete leagues*
+#### - *Admin modify or delete leagues*
 
 As a Site admin I can edit and delete created leagues so that I can manage the leagues created on the site
 
@@ -163,11 +165,34 @@ As a Site admin I can edit and delete created leagues so that I can manage the l
 
 ### **Design**
 
+The site was designed with simplicity in mind, as to not clutter the view for the user and distract from the core functionality. With the use of a consistent color scheme throughout the site. 
+The buttons and league standings are presented in a green color, as this is a color usually connected to sports league. The colors were also chosen with a good contrast ratio in mind, to make the site as accessible as possible. 
+The font of 'Roboto' was also chosen for its clean and easy to read style. 
+
 #### **Wireframes**
+
+Basic wireframes was produced to have a basic guideline for the design of the site while building it. 
+
+- ![Wireframe image landing page](documentation/wireframes/Wireframe_landing_page.PNG)
+- ![Wireame image create league](documentation/wireframes/wireframe_create_league.PNG)
+- ![Wireframe all leagues](documentation/wireframes/wireframe_all_leagues.PNG)
+- ![Wireframe detaialed league](documentation/wireframes/wireframe_det_league.PNG)
 
 ## **Agile Development**
 
+The application was built using an agile approach, using a Github Project Board and Issues. The Github project board can be found [here](https://github.com/users/MorganStenberg/projects/4). All user stories listed above were created with Github Issues. The user stories were used to keep track of progress throughout the project, via different columns specifying the status of the issue. With columns for 'Todo', 'In progress', 'Done' and 'DoD'. DoD, or Definition of Done was used for user stories that had been implemented and gone through testing. I also added a column for 'Backlog' for future features to be implemented, as a way to keep control of the scope of the project and be sure to deliver a MVP in time.  
+
 ## **Data models and database**
+
+Below is and ERD for the custom models produced for the application. Which shows the structure of the PostgreSQL database used in this project. 
+
+![An image of the ERD for the project](documentation/ERD.PNG)
+
+Django AllAuth was used for the user model and user authentication system. 
+
+The League model contains all the information on a league. Is connected to the user model both via the fields 'League Creator' and 'League Members'. For League Creator there is a many-to-one relationship to the user model, and for League Members there is a many-to-many relationship. 
+
+The match model contains all the information on matches. The Match model is connected via ForeignKey to the League model, and via ForeignKey to the user model through the fields Home Team and Away Team.  
 
 ## **Features**
 
