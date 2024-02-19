@@ -1,5 +1,14 @@
 # **League Hub**
 
+League Hub is an user-friendly application where you can create your own league with friends and keep track of scores and standings. Wether it is in football, table-tennis or other games League hub is the place where you can finally solve that long standing issue of who is really the best? 
+
+Create your own league, add matches to it, see all historically added matches for a specific league or in total. This is the place for friendly competition! 
+
+The app is targeted at friends who want a help in keeping track of matches and points for a league, where the application does the counting for you!
+
+Here is a link to the live site - [League Hub](https://league-hub-888548acadce.herokuapp.com/)
+
+
 ## Table of contents
 
 - [League Hub](#league-hub)
@@ -23,7 +32,134 @@
 
 ## **UX**
 
+#### Strategy
+The strategy for League Hub app is about meeting the user need of providing an user-friendly way of organizing your own league. Where the focus is on making it easy for the user to create and be a part of a league. 
+
+### **Target Audience**
+This project is made for those that: 
+
+- Want to have a place to organize a friendly and competetive league in the sport or game of their choosing.
+- Want to keep track of score, matches and standings in a league with other users. 
+
 ### **User Stories**
+
+#### *Account registration*
+
+As a Site User I can register an account so that I can set up my league and be a participant in other leagues
+
+*Acceptance Criteria* 
+- User can register an account with an email and a chosen username and password
+- The user can log in with chosen username and password
+- Visual confirmation is shown when successful registration of account
+
+#### *Create League*
+
+As a Site user I can create a league so that I can keep track of scores and league standing with other users
+
+*Acceptance Criteria*
+- When logged in a user can create their own league
+- When logged in a user can customize the league name
+- When logged in, a user can select one or multiple users to add to their league
+
+
+#### *Search for other users while creating league*
+
+As a site user I can search for other users while creating a league so that I don't have to scroll through a list of all users while creating league
+
+*Acceptance Criteria*
+
+- While logged in and creating a league a user can use a search bar, with autocomplete, to search for other users
+- Being able to select users to add as league members from result of search
+- Being able to select multiple users directly in the search bar
+
+
+#### *View all leagues*
+
+As a Site user I can view a list of all leagues so that I can see my own leagues as well as what other leagues that have been created and choose any league to view in a detailed view
+
+*Acceptance Criteria*
+
+- A user can view a paginated list of all leagues with name and description of league visible
+- A user can click on the league to enter a detailed view of the league
+
+
+#### *View my leagues*
+
+As a Site user I can view all the leagues that I am a member of so that I can see what leagues I am a member of and choose what league to view in a detailed view
+
+*Acceptance Criteria*
+
+- When logged in a user can view a paginated list of all the leagues that they are a member of
+- A user can click on the league to enter a detailed view of the league
+
+
+#### *Detailed view of league*
+
+As a Site user I can choose a league to view so that I can see a detailed view of that league and what the score and standings are in that league
+
+*Acceptance Criteria*
+
+- A user can see the standings in the league, with points, games played, won, lost and draw matches visible.
+- League members are displayed
+- All matches connected to that league are displayed in a paginated list
+- When logged in, a user that is a league creator or league member can add matches to the league
+- When logged in, a user that is a league creator can edit or delete any match
+- When logged in, a user that is a league member can edit or delete their own matches
+
+
+#### *View all my matches*
+
+As a Site user I can view all my matches so that see all the matches that I am a part of and the league that they belong to
+
+*Acceptance Criteria*
+
+- When logged in, a user can view all their own matches that they have played and see what league they belong too
+- When logged in, a user can view all their own matches and see what date they were added as well as what the score was
+
+
+#### *Add matches to league*
+
+As a Site user I can add matches to a league so that the league standings can be updated
+
+*Acceptance Criteria*
+
+- When logged in, a user can add matches with other users to a league that they are a member of
+- When logged in, and if the user is a league creator they can add matches for other users that are members of the league they have created
+
+
+#### *Modify or delete matches*
+
+As a site user I can modify or delete matches that have been added to a league so that the league standings can be updated
+
+*Acceptance Criteria*
+
+- When logged in, a user can edit the results of already added matches that they a part of.
+- When logged in, a user can delete already added matches that they a part of
+- When logged in, a user that is a league creator can edit the results of matches for other users that are members of the league they have created
+- When logged in, a user that is a league creator can delete matches for other user that are members of the league they have created
+
+
+#### *Admin login*
+
+As a Site admin I can login and access the admin dashboard so that I can access the functionalities of a superuser
+
+*Acceptance Criteria*
+
+- Implement a secure login for superuser using Django authentication
+
+
+#### *Admin modify or delete leagues*
+
+As a Site admin I can edit and delete created leagues so that I can manage the leagues created on the site
+
+*Acceptance Criteria*
+
+- As a site admin I can edit the description of a league
+- As a site admin I can delete a league
+- As a site admin I can add matches to a league
+- As a site admin I can edit matches
+- As a site admin I can delete matches
+
 
 ### **Design**
 
@@ -63,7 +199,7 @@ were too long.
 - python linter another image here
 
 The HTML validator had issues with the python code mixed in with the HTML, which caused warnings. But no warnings or errors were found other than 
-those related to the Python code, as seen in the pictures. 
+those related to the Python code.
 - insert image of wc3 html validation
 - more images of html validation
 
