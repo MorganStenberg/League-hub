@@ -326,11 +326,25 @@ Provides the user with a paginated view of all the matches they are a part of, o
 
 ### **Future features**
 
+A list of future features can also be viewed in the Github Projects 'backlog'. A few of these features are ones that I choose to not implement now as to keep the scope of the project viable. 
+
+- Inviting other user to a league & accepting or declining invitations to join a league
+- As league creator accepting and declining request from other users to join a league 
+- Inviting other users to register an account and join a league
+- Email verification
+- Time based seasons for a league
+- Deleting and archiving a league
+- Comment on a league or match
 
 
 ## **Testing**
 
+The site has been tested manually, through validators and through Lighthouse via Google Devtools. As well as being tested in different browsers, Chrome, Edge and Firefox and on Chrome via an mobile android device. 
+
 ### **Manual testing**
+
+
+### Lighthouse 
 
 ### **Validator testing**
 
