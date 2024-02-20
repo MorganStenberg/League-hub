@@ -32,8 +32,8 @@ Here is a link to the live site - [League Hub](https://league-hub-888548acadce.h
 
 ## **UX**
 
-### Strategy
-The strategy for League Hub app is about meeting the user need of providing an user-friendly way of organizing your own league. Where the focus is on making it easy for the user to create and be a part of a league. 
+### Strategy & Project goal
+The strategy and goal for League Hub app is about meeting the user need of providing an user-friendly way of organizing your own league. Where the focus is on making it easy for the user to create and be a part of a league. 
 
 ### **Target Audience**
 This project is made for those that: 
@@ -324,6 +324,16 @@ Provides the user with a paginated view of all the matches they are a part of, o
 
 ![My matches](documentation/features/my_matches.PNG)
 
+### CRUD 
+
+The user has full CRUD functionality through being able to: 
+- Create a league
+- Create a match 
+- Edit a match
+- Delete a match
+
+While the Admin can also delete and update leagues through the admin interface. 
+
 ### **Future features**
 
 A list of future features can also be viewed in the Github Projects 'backlog'. A few of these features are ones that I choose to not implement now as to keep the scope of the project viable. 
@@ -343,6 +353,131 @@ The site has been tested manually, through validators and through Lighthouse via
 
 ### **Manual testing**
 
+#### Navbar
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+| logo | hover | change color to black | pass |
+| navbar items | hover | change color to black | pass |
+| logo | click | redirect to home | pass |
+
+When logged in:
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+| navbar  item | click | open My Bookings page | pass |
+| navbar Logout item | click | open Log out page | pass |
+
+
+When logged out:
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+| navbar Sign Up item | click | open Sign Up page | pass |
+| navbar Login item | click | open Log in page | pass |
+
+#### Footer
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+| social media icons | click | open social media page in separate tab | pass |
+
+
+#### Landing page
+
+When logged in:
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+
+When logged out:
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+
+
+#### Create league
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+
+#### All leagues
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+
+#### My matches
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+
+#### My Leagues
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+#### Detailed league
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+
+#### Sign up/register
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+
+#### Log in 
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+
+#### Log out
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
+|  | click |  | pass |
 
 ### Lighthouse 
 
@@ -402,7 +537,9 @@ those related to the Python code. These warnings are filtered out in the picture
 
 ## **Deployment**
 
-## **Technologies, Languages, Frameworks, Libraries, Servers, Programs and Sites used**
+## **Technologies and Languages used
+
+### Frameworks, Libraries, Servers, Programs and Sites used**
 
 ## **Credits**
 
