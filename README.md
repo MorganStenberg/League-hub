@@ -454,18 +454,24 @@ When logged out:
 | delete match button | click | opens modal for user to confirm deletion of match | pass |
 | delete match modal - close button | click | closes the modal without deleting match | pass |
 | delete match modal - delete button | click | deletes match from league, refreshes the detailed view page of the league and updates the standings | pass |
+| delete match modal - error message for user that is not league creator or part of match - close button | click | closes the modal without deleting match | pass |
+| edit match modal - error message for user that is not league creator or part of match - close button| click | closes the modal without taking the user to the page for editing the match | pass |
 | add match button | hover | changes background color to a darker shade of blue | pass |
 | add match button | click | displays a collapsed form for adding a match to the league | pass |
 | Submit button - add match form | hover | Changes background color to a darker shade of green | pass |
-| Submit button - add match form | click |  | pass |
-| Submit button - add match form | click |  | pass |
+| Submit button - add match form | click | if the user input is valid and not empty, add match to league and refreshes page to update standings in league. Form for adding matches collapses again. Displays success message saying that the match was added to the league | pass |
+| Submit button - add match form | click | if fields are empty, error message is shown to indicate to user that the fields need to be filled in | pass |
+| Submit button - add match form | click | if the user selects the same home team and away team a validation error is raised and an error message is displayed to the user explaining they can't choose the same user for both teams | pass |
 
 
 #### Edit match
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | hover |  | pass |
-|  | click |  | pass |
+| Submit button - edit match form | hover | Changes background color to a darker shade of green | pass |
+| Submit button - edit match form | click | if the user input is valid and not empty, the score of the match is updated and the user is redirected back to detailed view of the league. Where the league standings are updated to reflect the change from the edited match| pass |
+| Submit button - edit match form | click | if fields are empty, error message is shown to indicate to user that the fields need to be filled in | pass |
+| cancel button - edit match form | hover | Changes background color to a darker shade of red | pass |
+| cancel button - edit match form | click | redirects user back to page for detailed view of the league that the match belongs to | pass |
 
 
 #### Sign up
@@ -551,11 +557,22 @@ The HTML validator did not return any errors, except for the sign up page. Where
 
 ### **Problems and bugs**
 
+There have not been any major site breaking bugs or problems during the development of this application. But there have been a lot of trial and error, especially when trying to make sure that the views and templates are handling correctly. I had a lot of use of the detailed error messages, from having debug=True. 
+
+When implementing the 'search bar' for adding users as league members when creating a league, there was quite a lot of issues of getting it working the right way and I tried several different solutions before finally finding Select2, which had what I wanted and was fairly simple to implement. 
+
+During the final testing of the site a few bugs/problems were found: 
+
+- I realised I had no validation for the field of 'Name' for the League model, which causes problems if a user selects a name including special characters as " ! % " etc, as the slug was not produced properly and therefore the view for detailed league and my leagues was not working and causing an error. This was fixed, after a few attempts, by making use of RegexValidator and stating what characters are allowed in the name, this was then tested and found to be working. 
+
+- I also realised that I was not checking for if a user selects the same user for both the home team and away team when adding a match to the league. This was fixed by using a 'cleaning method' and raising a validation error if the user in the fields for home and away team are the same. 
+
+
 ## **Deployment**
 
 ## **Technologies and Languages used
 
-### Frameworks, Libraries, Servers, Programs and Sites used**
+### Frameworks, Libraries, Servers, Programs and Sites used
 
 ## **Credits**
 
