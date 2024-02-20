@@ -505,8 +505,9 @@ JShint and W3C did not return any errors for the Javascript and CSS code.
 Python Linter did return errors regarding to long lines and trailing whitespaces, which were taken care of by formatting the code correctly and splitting up lines that
 were too long.
 
-The HTML validator had issues with the python code mixed in with the HTML, which caused warnings. But no warnings or errors were found other than 
-those related to the Python code. These warnings are filtered out in the pictures below.
+The HTML validator did not return any errors, except for the sign up page. Where it seems to have returned false positive for the errors, since when going through the code I can't find the unclosed elements or stray tags that the validator is referring to. See pictures below. 
+
+
 
 <details>
 
@@ -528,8 +529,9 @@ those related to the Python code. These warnings are filtered out in the picture
 
 <summary>HTML Validation</summary>
 
-![WC3 HTML validation](documentation/validation/detailed_league_template_html.PNG)
-![WC3 HTML validation](documentation/validation/base_html_template.PNG)
+![WC3 HTML validation](documentation/validation/html_validation_detailed_league.PNG)
+![WC3 HTML validation](documentation/validation/html_validation_signup_erros.PNG)
+![WC3 HTML validation](documentation/validation/html_validation_signup_close_errors.PNG)
 
 </details>
 
