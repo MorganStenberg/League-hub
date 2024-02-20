@@ -358,20 +358,21 @@ The site has been tested manually, through validators and through Lighthouse via
 | --- | --- | --- | --- |
 | logo | hover | change color to black | pass |
 | navbar items | hover | change color to black | pass |
-| logo | click | redirect to home | pass |
+| logo | click | redirect to landing page | pass |
 
 When logged in:
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-| navbar  item | click | open My Bookings page | pass |
+| navbar - Dashboard | click | Redirect to landing page | pass |
+| navbar - My Leagues | click | Open My leagues page | pass |
 | navbar Logout item | click | open Log out page | pass |
 
 
 When logged out:
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-| navbar Sign Up item | click | open Sign Up page | pass |
-| navbar Login item | click | open Log in page | pass |
+| navbar - Register | click | open Sign Up page | pass |
+| navbar - Login | click | open Log in page | pass |
 
 #### Footer
 | Feature | Action | Expected outcome | Pass/Fail |
@@ -384,30 +385,27 @@ When logged out:
 When logged in:
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| CTA - View my leagues button | click | open my leagues page | pass |
+| CTA - Create league button | click | open create league page | pass |
+| CTA - All leagues button | click | open all leagues page | pass |
+| CTA - My matches button | click | open my matches page | pass |
 
 
 When logged out:
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| CTA - Register button | click | open the sign up page | pass |
+| CTA - Log in button | click | open the sign in page | pass |
+
 
 
 
 #### Create league
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| Submit button | hover | Changes background color to a darker shade of green  | pass |
+| Submit button | click | If user input is correct, create a league and open detailead view page of the created league, display a success message of "League created" | pass |
+| Submit button | click | If user input is empty or invalid, display error message specifing what field is missing/invalid | pass |
 |  | click |  | pass |
 |  | click |  | pass |
 
@@ -451,33 +449,32 @@ When logged out:
 |  | click |  | pass |
 
 
-#### Sign up/register
+#### Sign up
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| Sign in link | click | Opens sign in page | pass |
+| Sign up button | hover | Changes background color to a darker shade of green | pass |
+| Sign up button | click | If user input is correct for all fields, open home page as signed in user. Replacing navbar items for signed in user, and displaying success message saying 'User' Signed in. | pass |
+| Sign up button | click | If user input is invalid in any field, display Django Allauth error message until all fields have the correct input | pass |
+| Sign in message | click | Success message saying user signed in to disappear once user clicks the X symbol in the corner | pass |
 
 
 #### Log in 
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| Sign in link | click | Open sign up page | pass |
+| Sign in button | hover | Changes background color to a darker shade of green | pass |
+| Sign in button | click | If user input for username and password is correct, open home page as signed in user. Replacing navbar items, displaying success message saying 'User' signed in. | pass |
+| Sign in button | click | If user input is empty or invalid in any field, display Django Allauth error message until all fields have the correct input | pass |
+| Sign in button | click | If user input is invalid by entering the wrong username or password, display django Allauth error message | pass |
+| Sign in message | click | Success message saying user signed in to disappear once user clicks the X symbol in the corner | pass |
 
 #### Log out
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| Sign out button | hover | Change background color to lighter shade of yellow | pass |
+| Sign out button | click | logging out the user, display message saying 'You have signed out', return the user to the landing page and replace navbar items to display 'Register' and 'Login' | pass |
+| Signed out message | click | Success message saying user signed out to disappear once user clicks the X symbol in the corner | pass |
 
 ### Lighthouse 
 
@@ -505,9 +502,7 @@ JShint and W3C did not return any errors for the Javascript and CSS code.
 Python Linter did return errors regarding to long lines and trailing whitespaces, which were taken care of by formatting the code correctly and splitting up lines that
 were too long.
 
-The HTML validator did not return any errors, except for the sign up page. Where it seems to have returned false positive for the errors, since when going through the code I can't find the unclosed elements or stray tags that the validator is referring to. See pictures below. 
-
-
+The HTML validator did not return any errors, except for the sign up page. Where it seems to have returned false positive for the errors, since when going through the code I can't find the unclosed elements or stray tags that the validator is referring to. Images of the errors and the code is included below. 
 
 <details>
 
