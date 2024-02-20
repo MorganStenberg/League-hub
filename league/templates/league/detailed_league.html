@@ -113,7 +113,7 @@
 
     <!-- Container for displaying list of matches connected to the league instance
       when there are enough matches for pagination to occurr, the containter will not be collapsed
-      when the user navigations beyond the first page  -->
+      when the user navigates beyond the first page  -->
     <div class="table-container collapse {% if page_obj.number > 1 %} show {% endif %}" id="viewMatches">
       <div>
         <ul class="match-list-ul">
@@ -136,7 +136,7 @@
 
                 <!-- Statement checking if the user is part of the match, or the league creator. Then displaying edit 
                   and delete buttons, credit to Code Institute-Walkthrough link in readme -->
-                {% if user == match.home_team or user == match.away_team or league_instance.league_creator %}
+                {% if user == match.home_team or user == match.away_team %}
                 <div class="btn-edit-del-cont">
                   <div class="d-flex align-content-center">
                     <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
@@ -152,7 +152,27 @@
                     </button>
                   </div>
                 </div>
-                <!-- Edit and delete buttons for when user is not part of match, displayed for symmetry in design. 
+                <!-- Statement checking if the user is the league creator. Then displaying edit 
+                  and delete buttons, credit to Code Institute-Walkthrough link in readme -->
+                  {% elif user == league_instance.league_creator %}
+                  <div class="btn-edit-del-cont">
+                    <div class="d-flex align-content-center">
+                      <a href="{% url 'edit_match' slug=league_instance.slug match_id=match.id %}"
+                        class="btn btn-success btn-det-lg-custom">
+                        Edit
+                      </a>
+                    </div>
+                  </div>
+                  <div class="btn-edit-del-cont">
+                    <div class="d-flex align-content-center">
+                      <button class="btn btn-success btn-delete btn-det-lg-custom" data-match_id="{{ match.id }}">
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+
+
+                <!-- Edit and delete buttons for when user is not part of match or league creator, displayed for symmetry in design. 
                   Connected to modal displaying error message -->
                 {% else %}
                 <div class="btn-edit-del-cont">
