@@ -405,47 +405,66 @@ When logged out:
 | --- | --- | --- | --- |
 | Submit button | hover | Changes background color to a darker shade of green  | pass |
 | Submit button | click | If user input is correct, create a league and open detailead view page of the created league, display a success message of "League created" | pass |
-| Submit button | click | If user input is empty or invalid, display error message specifing what field is missing/invalid | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| Submit button | click | If user input is empty or invalid, display error message specifing what field is missing or invalid. For league name validation is used in the model and message appears if characters are used that are not valid | pass |
+
 
 
 #### All leagues
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| view league button | hover | Changes background color to a darker shade of green | pass |
+| view league button | click | open page for detailed view of the chosen league | pass |
+| pagination button - next | hover | changes background color to a darker shade of red | pass |
+| Pagination button - next | click | open the next page of the paginated list of leagues | pass |
+| Pagination button - next | click | open the next page of the paginated list of leagues, when there are no more leagues that are paginated to display it disappears | pass |
+| Pagination button - previous | click | open the previous page of the paginated list of leagues | pass |
 
 
 #### My matches
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| pagination button - next | hover | changes background color to a darker shade of red | pass |
+| Pagination button - next | click | open the next page of the paginated list of matches | pass |
+| Pagination button - next | click | open the next page of the paginated list of matches, when there are no more matches that are paginated to display it disappears | pass |
+| Pagination button - previous | click | open the previous page of the paginated list of matches | pass |
+
 
 
 #### My Leagues
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| view league button | hover | Changes background color to a darker shade of green | pass |
+| view league button | click | open page for detailed view of the chosen league | pass |
+| pagination button - next | hover | changes background color to a darker shade of red | pass |
+| Pagination button - next | click | open the next page of the paginated list of leagues | pass |
+| Pagination button - next | click | open the next page of the paginated list of leagues, when there are no more leagues that are paginated to display it disappears | pass |
+| Pagination button - previous | click | open the previous page of the paginated list of leagues | pass |
 
 #### Detailed league
 | Feature | Action | Expected outcome | Pass/Fail |
 | --- | --- | --- | --- |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
-|  | click |  | pass |
+| view matches button | hover | changes background color to a darker shade of blue | pass |
+| view matches button | click | display collapsed list of matches that belong to that league, list is paginated in case of more than 8 matches | pass |
+| Pagination button - next | hover | changes background color to a darker shade of red | pass |
+| Pagination button - next | click | open the next page of the paginated list of matches | pass |
+| Pagination button - previous | click | open the previous page of the paginated list of matches | pass |
+| edit match button | hover | Changes background color to a darker shade of green | pass |
+| edit match button | click | open page to edit the chosen match | pass |
+| delete match button | hover | Changes background color to a darker shade of green | pass |
+| delete match button | click | opens modal for user to confirm deletion of match | pass |
+| delete match modal - close button | click | closes the modal without deleting match | pass |
+| delete match modal - delete button | click | deletes match from league, refreshes the detailed view page of the league and updates the standings | pass |
+| add match button | hover | changes background color to a darker shade of blue | pass |
+| add match button | click | displays a collapsed form for adding a match to the league | pass |
+| Submit button - add match form | hover | Changes background color to a darker shade of green | pass |
+| Submit button - add match form | click |  | pass |
+| Submit button - add match form | click |  | pass |
+
+
+#### Edit match
+| Feature | Action | Expected outcome | Pass/Fail |
+| --- | --- | --- | --- |
+|  | hover |  | pass |
 |  | click |  | pass |
 
 

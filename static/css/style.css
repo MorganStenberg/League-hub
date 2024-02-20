@@ -61,6 +61,8 @@ body {
     background-color: #990011;
     color: #fcf6f5;
     border-radius: 3px 9px;
+    --bs-pagination-hover-bg: #75010e;
+    --bs-pagination-hover-color: #fcf6f5; 
 }
 
 .bx-shd {
