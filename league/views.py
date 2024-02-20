@@ -242,6 +242,8 @@ def edit_match(request, slug, match_id):
                 edit_matches = edit_matches_form.save(commit=False)
                 edit_matches.league = league_instance
                 edit_matches_form.save()
+                messages.add_message(request, messages.SUCCESS, 'Match '
+                                     'successfully updated!')
                 return redirect('detailed_league', slug=slug)
     else:
         messages.add_message(request, messages.ERROR, 'If you are not league '

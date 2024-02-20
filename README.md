@@ -223,7 +223,31 @@ The match model contains all the information on matches. The Match model is conn
 
 ### **Existing features**
 
+#### Navbar
+
+#### Footer 
+
+#### Landing page
+
+#### My leagues 
+
+#### Detailed League view
+
+#### Add Match 
+
+#### Edit Match
+
+#### Delete Match
+
+#### Create League
+
+#### All Leagues
+
+#### My Matches 
+
 ### **Future features**
+
+
 
 ## **Testing**
 
