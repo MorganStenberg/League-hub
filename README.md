@@ -223,27 +223,106 @@ The match model contains all the information on matches. The Match model is conn
 
 ### **Existing features**
 
-#### Navbar
+The navbar and footer is the same on all pages, differing only if the user is logged in or out. 
 
+#### Navbar
+The navigation bar is located at the top of every page, and contains the logo and links for the user to register or sign in if they are not logged in. The logo is clickable and contains link to the landing page. 
+
+![Navbar not logged in](documentation/features/navbar_logged_out.PNG)
+
+Once logged in the navbar will change to contain links to Dashboard, which leads to the landing page, My leagues and Log out. When on mobile it will collapse to a hamburger icon, below is the navbar when logged in on mobile device. 
+
+![Navbar on mobile device](documentation/features/navbar_collapsed_logged_in.PNG)
 #### Footer 
+
+The footer is located at the bottom of every page and contains links to social media, as well as information on who created the site. 
+
+![Footer image](documentation/features/footer.PNG)
 
 #### Landing page
 
+The landing page welcomes the user and has a call to action for the user to sign up or log in. It also explains the purpose and functionality of the site. 
+
+![Landing page, not logged in](documentation/features/landing_page_logged_out.PNG)
+
+Once the user is signed up and logged in it changes into a dashboard for the user, with links to all relevant parts of the application. Where the user can easily navigate to view their leagues, create a new league, view all leagues or view all matches.
+There is also a message displayed once the user has successfully logged in. 
+
+![landing page, logged in](documentation/features/landing_page_signed_in.PNG)
+
 #### My leagues 
+
+My leagues contains all the leagues the user is a member of. It is paginated by 6 leagues per page. And the leagues are presented with Name and Description for the league. With a link to view the specific league as well. 
+
+![My leagues](documentation/features/my_leagues.PNG)
+
+Here it is displayed on mobile device/smaller screen. 
+
+![My leagues on smaller screen](documentation/features/my_leagues_mobile.PNG)
 
 #### Detailed League view
 
+This is where the user will interact with their league, or view the standings of a league. Here the user is presented with information as league name, description, league members and ruleset and the standing in the league itself. 
+
+![Detailed view of league](documentation/features/detailed_league_view.PNG)
+
+The user can also choose to view all matches connected to that league, by pressing the button for View Matches, which when pressed presents a paginated list of all the matches connected to that league. The matches are sorted by date, with the latest added matches displaying first. Next to the matches are buttons for editing or deleting a match, these will have different colors depending on the role of the user, if the user is the league creator they can edit and delete all matches. If they are a league member they can only edit or delete their own matches. This information is also presented in text to the user. 
+
+![Detailed view of league, view matches](documentation/features/detailed_league_matches_buttons.PNG)
+
+If the user is not the league creator and or part of the match and clicks the buttons for editing or deleting a match, a modal will present a message to the user with information that they can only edit or delete their own matches if they are not the league creator. 
+
+![Delete match error modal message](documentation/features/match_delete_modal_error.PNG)
+
+There are also messages presented to the user confirming their actions. Messages are presented for successfull adding of match, deleting of match, editing of match. 
+
+![Message when adding match](documentation/features/match_added_message.PNG)
+
 #### Add Match 
+
+If the user wants to add a match they press the button for adding a match while in the detailed league view. They are presented with a form for adding a match, where they can choose home team, away team and score for each. The availble choices for home team and away team are filtered for league members, so that only members of the league are available to choose. There is also a role-based permissions here, where they league creator can add matches for all other league members. And league members can only add matches they themselfs are a part of. 
+
+![Adding a match](documentation/features/detailed_league_add_match.PNG)
 
 #### Edit Match
 
+If the user have chosen to edit a match they are taken to another page where a form is presented, where only the fields for the scores are available to edit. The same role-based permission is used here where the league creator can edit all other league members matches, but the league member can only edit matches they themself are a part of. Once they are done and have pressed submit they are taken back to the detailed view of the league, where the standings are updated to reflect the changes made. There is also a button to cancel their edit, which takes them back to the detailed view of the league. 
+
+![Editing a match](documentation/features/edit_match.PNG)
+
 #### Delete Match
+
+If the user chooses to delete a match they are presented with a modal where they have to confirm their choice. Once they confirm the page refreshes and the standings are updated to reflect the changes made. The same role-based permissions are used here, where the league creator can delete matches for all league members and the league members can only delete matches they themself are a part of. 
+
+![Deleting a match](documentation/features/delete_match_modal.PNG)
 
 #### Create League
 
+When the user clicks the button for creating a league, they are taken to a page with a form for creating a league. 
+
+![Creating a league](documentation/features/create_league.PNG)
+
+They fields for Name, Description and League members are all required and the form will not be submitted before they are filled in.  
+
+When adding league members the user can search for other users via a search bar with autocomplete, where they can select multiple users and the users they have chosen are visible. 
+
+![Search bar adding league members](documentation/features/create_league_search_bar.PNG)
+
+After submitting the form and creating the league the user is taken to the detailed view of the newly created league, where they are presented with the information regarding the league. As well as information on that they have yet to add any matches to the league. There is also a message confirming the successfully created league. 
+
+![Detailed view of empty league](documentation/features/league_created_empty.PNG)
+
 #### All Leagues
 
+Provides the user a view of all the leagues created on the site, paginated and in alphabetical order. Presented in the same way as for My Leagues, with buttons for accessing the detailed view of the league. 
+
+![All leagues](documentation/features/all_leagues.PNG)
+
 #### My Matches 
+
+Provides the user with a paginated view of all the matches they are a part of, of any league. With information on date, teams, score and in what league. Sorted by date, with the latest added match displaying first.
+
+![My matches](documentation/features/my_matches.PNG)
 
 ### **Future features**
 
