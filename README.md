@@ -346,6 +346,16 @@ The site has been tested manually, through validators and through Lighthouse via
 
 ### Lighthouse 
 
+The site was tested for performance and accessibility through Google Devtools Lighthouse. 
+
+All pages returned good results for performance and accessibility throughout the site, with performance slightly dipping while testing on mobile device size and on the page for detailed view of the league, but still within acceptable ranges. 
+
+![Lighthouse landing page](documentation/lighthouse_landing_page.PNG)
+
+![Lighthouse all leagues](documentation/lighthouse_all_leagues.PNG)
+
+![Lighthouse detailed league](documentation/lighthouse_detailed_league_.PNG)
+
 ### **Validator testing**
 
 I have validated my HTML, CSS, Javascript and Python code with the websites listed below:
