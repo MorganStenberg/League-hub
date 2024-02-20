@@ -37,6 +37,16 @@ class AddMatchesForm(forms.ModelForm):
                 User.objects.filter(league_membership=league_instance)
                 )
 
+    def clean(self):
+        cleaned_data = super().clean()
+        home_team = cleaned_data.get("home_team")
+        away_team = cleaned_data.get("away_team")
+
+        if home_team == away_team:
+            raise forms.ValidationError("Home team and away team cannot be the same.")
+
+        return cleaned_data
+
 
 class EditMatchesForm(forms.ModelForm):
     class Meta:
