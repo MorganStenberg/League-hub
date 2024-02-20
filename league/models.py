@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import F
 from collections import defaultdict
+from django.core.validators import RegexValidator
 
 # Create your models here.
 
@@ -12,7 +13,17 @@ class League(models.Model):
     Includes functions for handling the logic
     of calculating standings in league.
     """
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(
+        max_length=200, unique=True,
+        validators=[
+            RegexValidator(
+                regex=r'^[\w\s-]*$', 
+                message='Enter a valid name, it may only contain '
+                'letters, numbers, spaces and - _ characters',
+                ),
+            ],
+        )
+
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField()
     league_creator = models.ForeignKey(
