@@ -1,10 +1,10 @@
-# **League Hub**
+# League Hub
 
-League Hub is an user-friendly application where you can create your own league with friends and keep track of scores and standings. Wether it is in football, table-tennis or other games League hub is the place where you can finally solve that long standing issue of who is really the best? 
+League Hub is an user-friendly application where you can create your own league with friends and keep track of scores and standings. Whether it is in football, table-tennis or other games League hub is the place where you can finally solve that long-standing issue of who is really the best? 
 
 Create your own league, add matches to it, see all historically added matches for a specific league or in total. This is the place for friendly competition! 
 
-The app is targeted at friends who want a help in keeping track of matches and points for a league, where the application does the counting for you!
+The app is targeted at friends who want help in keeping track of matches and points for a league, where the application does the counting for you!
 
 Here is a link to the live site - [League Hub](https://league-hub-888548acadce.herokuapp.com/)
 
@@ -28,20 +28,20 @@ Here is a link to the live site - [League Hub](https://league-hub-888548acadce.h
 - [Deployment](#deployment)
 - [Technologies, Languages, Frameworks, Libraries, Servers, Programs and Sites used](#technologies-languages-frameworks-libraries-servers-programs-and-sites-used)
 - [Credits](#credits)
-- [Acknowledgements](#acknowledgements)
+- [Acknowledgments](#acknowledgments)
 
-## **UX**
+## UX
 
 ### Strategy & Project goal
 The strategy and goal for League Hub app is about meeting the user need of providing an user-friendly way of organizing your own league. Where the focus is on making it easy for the user to create and be a part of a league. 
 
-### **Target Audience**
+### Target Audience
 This project is made for those that: 
 
-- Want to have a place to organize a friendly and competetive league in the sport or game of their choosing.
+- Want to have a place to organize a friendly and competitive league in the sport or game of their choosing.
 - Want to keep track of score, matches and standings in a league with other users. 
 
-### **User Stories**
+### User Stories
 
 The following User Stories were followed to develop the application.
 
@@ -135,7 +135,7 @@ As a site user I can modify or delete matches that have been added to a league s
 
 *Acceptance Criteria*
 
-- When logged in, a user can edit the results of already added matches that they a part of.
+- When logged in, a user can edit the results of already added matches that they are a part of.
 - When logged in, a user can delete already added matches that they a part of
 - When logged in, a user that is a league creator can edit the results of matches for other users that are members of the league they have created
 - When logged in, a user that is a league creator can delete matches for other user that are members of the league they have created
@@ -163,15 +163,15 @@ As a Site admin I can edit and delete created leagues so that I can manage the l
 - As a site admin I can delete matches
 
 
-### **Design**
+### Design
 
 The site was designed with simplicity in mind, as to not clutter the view for the user and distract from the core functionality. With the use of a consistent color scheme throughout the site. 
-The buttons and league standings are presented in a green color, as this is a color usually connected to sports league. The colors were also chosen with a good contrast ratio in mind, to make the site as accessible as possible. 
+The buttons and league standings are presented in a green color, as this is a color usually connected to sport leagues. The colors were also chosen with a good contrast ratio in mind, to make the site as accessible as possible. 
 The font of 'Roboto' was also chosen for its clean and easy to read style. 
 
-#### **Wireframes**
+#### Wireframes
 
-Basic wireframes was produced to have a basic guideline for the design of the site while building it. 
+Basic wireframes were produced to have a basic guideline for the design of the site while building it. 
 
 <details>
 
@@ -185,7 +185,7 @@ Basic wireframes was produced to have a basic guideline for the design of the si
 
 <summary>Create League</summary>
 
-![Wireame image create league](documentation/wireframes/wireframe_create_league.PNG)
+![Wireframe image create league](documentation/wireframes/wireframe_create_league.PNG)
 </details>
 
 <details>
@@ -203,13 +203,13 @@ Basic wireframes was produced to have a basic guideline for the design of the si
 </details>
 
 
-## **Agile Development**
+## Agile Development
 
 The application was built using an agile approach, using a Github Project Board and Issues. The Github project board can be found [here](https://github.com/users/MorganStenberg/projects/4). All user stories listed above were created with Github Issues. The user stories were used to keep track of progress throughout the project, via different columns specifying the status of the issue. With columns for 'Todo', 'In progress', 'Done' and 'DoD'. DoD, or Definition of Done was used for user stories that had been implemented and gone through testing. I also added a column for 'Backlog' for future features to be implemented, as a way to keep control of the scope of the project and be sure to deliver a MVP in time.  
 
-## **Data models and database**
+## Data models and database
 
-Below is and ERD for the custom models produced for the application. Which shows the structure of the PostgreSQL database used in this project. 
+Below is an ERD for the custom models produced for the application. Which shows the structure of the PostgreSQL database used in this project. 
 
 ![An image of the ERD for the project](documentation/ERD.PNG)
 
@@ -219,6 +219,8 @@ The League model contains all the information on a league. Is connected to the u
 
 The match model contains all the information on matches. The Match model is connected via ForeignKey to the League model, and via ForeignKey to the user model through the fields Home Team and Away Team.  
 
+Note that the field for updated at for the match model is not used through the front end at the moment, but I choose to keep it in the modal as it could be implemented as a future feature or be used through the admin interface. 
+
 ## **Features**
 
 ### **Existing features**
@@ -226,7 +228,7 @@ The match model contains all the information on matches. The Match model is conn
 The navbar and footer is the same on all pages, differing only if the user is logged in or out. 
 
 #### Navbar
-The navigation bar is located at the top of every page, and contains the logo and links for the user to register or sign in if they are not logged in. The logo is clickable and contains link to the landing page. 
+The navigation bar is located at the top of every page, and contains the logo and links for the user to register or sign in if they are not logged in. The logo is clickable and contains a link to the landing page. 
 
 ![Navbar not logged in](documentation/features/navbar_logged_out.PNG)
 
@@ -252,17 +254,17 @@ There is also a message displayed once the user has successfully logged in.
 
 #### My leagues 
 
-My leagues contains all the leagues the user is a member of. It is paginated by 6 leagues per page. And the leagues are presented with Name and Description for the league. With a link to view the specific league as well. 
+My leagues contain all the leagues the user is a member of. It is paginated by 6 leagues per page. And the leagues are presented with Name and Description for the league. With a link to view the specific league as well. 
 
 ![My leagues](documentation/features/my_leagues.PNG)
 
-Here it is displayed on mobile device/smaller screen. 
+Here it is displayed on a mobile device/smaller screen. 
 
 ![My leagues on smaller screen](documentation/features/my_leagues_mobile.PNG)
 
 #### Detailed League view
 
-This is where the user will interact with their league, or view the standings of a league. Here the user is presented with information as league name, description, league members and ruleset and the standing in the league itself. 
+This is where the user will interact with their league, or view the standings of a league. Here the user is presented with information as league name, description, league members and rule set and the standing in the league itself. 
 
 ![Detailed view of league](documentation/features/detailed_league_view.PNG)
 
@@ -274,19 +276,19 @@ If the user is not the league creator and or part of the match and clicks the bu
 
 ![Delete match error modal message](documentation/features/match_delete_modal_error.PNG)
 
-There are also messages presented to the user confirming their actions. Messages are presented for successfull adding of match, deleting of match, editing of match. 
+There are also messages presented to the user confirming their actions. Messages are presented for successful adding of match, deleting of match, editing of match. 
 
 ![Message when adding match](documentation/features/match_added_message.PNG)
 
 #### Add Match 
 
-If the user wants to add a match they press the button for adding a match while in the detailed league view. They are presented with a form for adding a match, where they can choose home team, away team and score for each. The availble choices for home team and away team are filtered for league members, so that only members of the league are available to choose. There is also a role-based permissions here, where they league creator can add matches for all other league members. And league members can only add matches they themselfs are a part of. 
+If the user wants to add a match they press the button for adding a match while in the detailed league view. They are presented with a form for adding a match, where they can choose home team, away team and score for each. The available choices for home team and away team are filtered for league members, so that only members of the league are available to choose. There is also a role-based permissions here, where the league creator can add matches for all other league members. And league members can only add matches they themselves are a part of. 
 
 ![Adding a match](documentation/features/detailed_league_add_match.PNG)
 
 #### Edit Match
 
-If the user have chosen to edit a match they are taken to another page where a form is presented, where only the fields for the scores are available to edit. The same role-based permission is used here where the league creator can edit all other league members matches, but the league member can only edit matches they themself are a part of. Once they are done and have pressed submit they are taken back to the detailed view of the league, where the standings are updated to reflect the changes made. There is also a button to cancel their edit, which takes them back to the detailed view of the league. 
+If the user has chosen to edit a match they are taken to another page where a form is presented, where only the fields for the scores are available to edit. The same role-based permission is used here where the league creator can edit all other league members matches, but the league member can only edit matches they themself are a part of. Once they are done and have pressed submit they are taken back to the detailed view of the league, where the standings are updated to reflect the changes made. There is also a button to cancel their edit, which takes them back to the detailed view of the league. 
 
 ![Editing a match](documentation/features/edit_match.PNG)
 
@@ -302,7 +304,7 @@ When the user clicks the button for creating a league, they are taken to a page 
 
 ![Creating a league](documentation/features/create_league.PNG)
 
-They fields for Name, Description and League members are all required and the form will not be submitted before they are filled in.  
+These fields for Name, Description and League members are all required and the form will not be submitted before they are filled in.  
 
 When adding league members the user can search for other users via a search bar with autocomplete, where they can select multiple users and the users they have chosen are visible. 
 
@@ -334,7 +336,8 @@ The user has full CRUD functionality through being able to:
 
 While the Admin can also delete and update leagues through the admin interface. 
 
-### **Future features**
+
+### Future features
 
 A list of future features can also be viewed in the Github Projects 'backlog'. A few of these features are ones that I choose to not implement now as to keep the scope of the project viable. 
 
@@ -345,14 +348,14 @@ A list of future features can also be viewed in the Github Projects 'backlog'. A
 - Time based seasons for a league
 - Deleting and archiving a league
 - Comment on a league or match
-- League managment - when creating a league, being able to choose what ruleset should apply. With differing points for win, draw etc. 
+- League management - when creating a league, being able to choose what rule set should apply. With differing points for win, draw etc. 
 
 
-## **Testing**
+## Testing
 
 The site has been tested manually, through validators and through Lighthouse via Google Devtools. As well as being tested in different browsers, Chrome, Edge and Firefox and on Chrome via an mobile android device. 
 
-### **Manual testing**
+### Manual testing
 
 #### Navbar
 | Feature | Action | Expected outcome | Pass/Fail |
@@ -406,7 +409,7 @@ When logged out:
 | --- | --- | --- | --- |
 | Submit button | hover | Changes background color to a darker shade of green  | pass |
 | Submit button | click | If user input is correct, create a league and open detailead view page of the created league, display a success message of "League created" | pass |
-| Submit button | click | If user input is empty or invalid, display error message specifing what field is missing or invalid. For league name validation is used in the model and message appears if characters are used that are not valid | pass |
+| Submit button | click | If user input is empty or invalid, display an error message specifing what field is missing or invalid. For league name validation is used in the model and message appears if characters are used that are not valid | pass |
 
 
 
@@ -530,7 +533,7 @@ JShint and W3C did not return any errors for the Javascript and CSS code.
 Python Linter did return errors regarding to long lines and trailing whitespaces, which were taken care of by formatting the code correctly and splitting up lines that
 were too long.
 
-The HTML validator did not return any errors, except for the sign up page. Where it seems to have returned false positive for the errors, since when going through the code I can't find the unclosed elements or stray tags that the validator is referring to. Images of the errors and the code is included below. 
+The HTML validator did not return any errors, except for the sign up page. Where it seems to have returned false positives for the errors, since when going through the code I can't find the unclosed elements or stray tags that the validator is referring to. Images of the errors and the code is included below. 
 
 <details>
 
@@ -558,28 +561,28 @@ The HTML validator did not return any errors, except for the sign up page. Where
 
 </details>
 
-### **Problems and bugs**
+### Problems and bugs
 
-There have not been any major site breaking bugs or problems during the development of this application. But there have been a lot of trial and error, especially when trying to make sure that the views and templates are handling correctly. I have had a lot of use of the detailed error messages, from having debug=True. 
+There have not been any major site breaking bugs or problems during the development of this application. But there has been a lot of trial and error, especially when trying to make sure that the views and templates are handled correctly. I have had a lot of use of the detailed error messages, from having debug=True. 
 
-When implementing the 'search bar' for adding users as league members when creating a league, there was quite a lot of issues of getting it working the right way and I tried several different solutions before finally finding Select2, which had what I wanted and was fairly simple to implement. 
+When implementing the 'search bar' for adding users as league members when creating a league, there were quite a lot of issues of getting it working the right way and I tried several different solutions before finally finding Select2, which had what I wanted and was fairly simple to implement. 
 
 During the final testing of the site a few bugs/problems were found: 
 
 - I realised I had no validation for the field of 'Name' for the League model, which caused problems if a user selected a name including special characters as " ! % " etc, causing an error. This was fixed, after a few attempts, by making use of RegexValidator and stating what characters are allowed in the name, this was then tested properly. 
 
-- I also realised that I was not checking for if a user selects the same user for both the home team and away team when adding a match to the league. This was fixed by using a 'cleaning method' and raising a validation error if the user in the fields for home and away team are the same. 
+- I also realised that I was not checking for if a user selects the same user for both the home team and away team when adding a match to the league. This was fixed by using a 'cleaning method' and raising a validation error if the user in the fields for home and away teams are the same. 
 
 
-## **Deployment**
+## Deployment
 
 The project was deployed to Heroku from Github with following steps: 
 
 **Create the Heroku app** 
 1. Log in to Heroku
 2. Click on New and select Create new app from the drop-down menu.
-3. Enter a unique and appropiate app name.
-4. Select you region.
+3. Enter a unique and appropriate app name.
+4. Select your region.
 5. Click on "Create App"
 
 
@@ -589,13 +592,13 @@ The project was deployed to Heroku from Github with following steps:
 3. Provide a project name and choose "Tiny Turtle", the free plan.
 4. Click on "Select Region" and choose Data center.
 5. Review all the details and click on "Create Instance".
-6. Return to the Dashboard and click on the newly created instance and coyp the database URL.
+6. Return to the Dashboard and click on the newly created instance and copy the database URL.
 
 **Create and prepare files** 
 - Create a requirements.txt file
-- Create a "Procfile" in the main directiory and add: web: gunicorn 'project-name'.wsgi
+- Create a "Procfile" in the main directory and add: web: gunicorn 'project-name'.wsgi
 
-- Create and env.py file in the main directory in of your workspace, Gitpod in this case.
+- Create an env.py file in the main directory of your workspace, Gitpod in this case.
 - Add the DATABASE_URL and SECRET_KEY to the env.py file
 
 - Update the settings.py file to import the env.py file 
@@ -635,7 +638,7 @@ The project was deployed to Heroku from Github with following steps:
 - Type 'Enter' to create the local clone.
 
 
-## **Technologies and Languages used
+## Technologies and Languages used
 
 **Languages**
 - HTML
@@ -667,7 +670,7 @@ The project was deployed to Heroku from Github with following steps:
 - [PostgreSQL](https://www.postgresql.org/)
 
 
-## **Credits**
+## Credits
 
 - [The walkthrough from Coding Institute](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSD101_WTS+2023_Q3/courseware/56a2da0940b4411d8a38c2b093a22c60/4565659a34d648b8b8edd063c3182180/), I Think therefore I blog was used for inspiration throughout the project and especially in the early stages in getting everyhing set up. There are also comments in the code where specific code snippets are taken and credited to the walkthrough. 
 - The navbar, among other things, were taken directly from [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
@@ -692,12 +695,12 @@ The project was deployed to Heroku from Github with following steps:
 - Validation in Django forms [Django docs](https://docs.djangoproject.com/en/5.0/ref/forms/validation/) and [MDN web docs Django Forms](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms)
 
 - [The design for the table for a league](https://codepen.io/Shayley/pen/NWqrvqQ)
-- [Inspiration on color use](https://www.fotbollskanalen.se/) was taken from a sports site in sweden.
+- [Inspiration on color use](https://www.fotbollskanalen.se/) was taken from a sports site in Sweden.
 
 - Background image for landing page is from [Istock](https://www.istockphoto.com/se/foto/textured-soccer-game-field-with-neon-fog-center-midfield-gm1502846052-522852910?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fsports-league&utm_medium=affiliate&utm_source=unsplash&utm_term=sports+league%3A%3A%3A)
 
 
-## **Acknowledgements**
+## Acknowledgments
 
 I would like to thank my mentor Sandeep Aggarwal for great feedback and support throughout the project. 
 
