@@ -659,6 +659,7 @@ The project was deployed to Heroku from Github with following steps:
 - [Google Fonts](https://fonts.google.com/) - Was used to import fonts to the page.
 - [Balsamiq](https://balsamiq.com/) - Used to create wireframes 
 - [TinyPNG](https://tinypng.com/) - Was used to compress the background image on the landing page.
+- [Favicon](https://www.favicon.cc/) - Was used to generate the favicon.
 - [ElephantSQL](https://www.elephantsql.com/) - free database service that hosts the PostgreSQL database for this project
 
 **Servers**
@@ -668,8 +669,36 @@ The project was deployed to Heroku from Github with following steps:
 
 ## **Credits**
 
+- [The walkthrough from Coding Institute](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSD101_WTS+2023_Q3/courseware/56a2da0940b4411d8a38c2b093a22c60/4565659a34d648b8b8edd063c3182180/), I Think therefore I blog was used for inspiration throughout the project and especially in the early stages in getting everyhing set up. There are also comments in the code where specific code snippets are taken and credited to the walkthrough. 
+- The navbar, among other things, were taken directly from [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
+- The use of [ModelForms](https://docs.djangoproject.com/en/5.0/topics/forms/modelforms)
+- How to use slugify [Stackoverflow](https://stackoverflow.com/questions/50436658/how-to-auto-generate-slug-from-my-album-model-in-django-2-0-4) and [prepopulate a slugfield - Stackoverflow](https://stackoverflow.com/questions/55314246/pre-populate-slug-field-into-a-form-field-of-a-django-site)
+- Use of bootstrap modal to confirm deletion - [Stackoverflow](https://stackoverflow.com/questions/59566549/how-to-do-delete-confirmation-for-a-table-data-with-bootstrap-modal-in-django)
+- [Use of queryset filters](https://www.w3schools.com/django/django_queryset_filter.php) and [filter with Q](https://docs.djangoproject.com/en/5.0/topics/db/queries/)
+- Sorting of the list of matches - [Stackoverflow](https://stackoverflow.com/questions/431628/how-to-combine-multiple-querysets-in-django)
+- To learn how to calculate won games etc [Django filtering querysets - django docs](https://docs.djangoproject.com/en/5.0/topics/db/queries/) and [Django querysets 15 examples](https://ctrlzblog.com/django-queryset-filter-15-examples/)
+- Paginator with function based view [Stackoverflow](https://stackoverflow.com/questions/74646099/django3-paginator-with-function-based-view) 
+- Pagination [Django docs](https://docs.djangoproject.com/en/5.0/topics/pagination/)
+- Django redirects [geeksforgeeks](https://www.geeksforgeeks.org/django-redirects/)
+- Editing posts in django [Stackoverflow](https://stackoverflow.com/questions/60042351/editing-posts-in-a-django-blog)
+- Filtering the form for users [Stackoverflow](https://stackoverflow.com/questions/71031344/django-form-queryset-filter-using-request-user)
+- Admin autocomplete field [Django docs](https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.autocomplete_fields)
+- The use of Modelforms in django [Django docs](https://docs.djangoproject.com/en/5.0/topics/forms/modelforms/)
+- ManyToMany Fields in django [Django docs](https://docs.djangoproject.com/en/5.0/ref/models/fields/#django.db.models.ManyToManyField)
+- How to add help text to crispy forms [Stackoverflow](https://stackoverflow.com/questions/50833531/django-crispy-forms-add-field-help-text)
+- [Tutorial on how to use select2](https://www.youtube.com/watch?v=Zzd4sL7drKQ)
+- The use of Regex validator [how to disallow specific characters - Stackoverflow](https://stackoverflow.com/questions/71321648/how-to-disallow-specific-character-input-to-a-charfield) and [allowing spaces in django - Stackoverflow](https://stackoverflow.com/questions/39817348/how-can-i-allow-spaces-in-a-django-username-regex) and [How to use regex validator in django](https://www.geeksforgeeks.org/how-to-use-regex-validator-in-django/)
+- Validating that fields are not the same [Stackoverflow](https://stackoverflow.com/questions/62417639/ensure-2-choice-fields-on-a-record-are-not-equal-in-django)
+- Validation in Django forms [Django docs](https://docs.djangoproject.com/en/5.0/ref/forms/validation/) and [MDN web docs Django Forms](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms)
+
+- [The design for the table for a league](https://codepen.io/Shayley/pen/NWqrvqQ)
+- [Inspiration on color use](https://www.fotbollskanalen.se/) was taken from a sports site in sweden.
+
+- Background image for landing page is from [Istock](https://www.istockphoto.com/se/foto/textured-soccer-game-field-with-neon-fog-center-midfield-gm1502846052-522852910?utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fsports-league&utm_medium=affiliate&utm_source=unsplash&utm_term=sports+league%3A%3A%3A)
 
 
 ## **Acknowledgements**
 
 I would like to thank my mentor Sandeep Aggarwal for great feedback and support throughout the project. 
+
+And to our Code Institute coordinator Kay for helping to keep my spirits up every week!
