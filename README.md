@@ -637,7 +637,34 @@ The project was deployed to Heroku from Github with following steps:
 
 ## **Technologies and Languages used
 
-### Frameworks, Libraries, Servers, Programs and Sites used
+**Languages**
+- HTML
+- CSS
+- Javascript
+- Python
+
+**Frameworks, libraries and programs**
+- [Django](https://www.djangoproject.com/) - Main python framework for development of this project
+- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) -  Was used to style the application and to make it responsive.
+- [Psycopg2](https://pypi.org/project/psycopg2/) - Python-PostgreSQL database adapter, in order to use Python code (instead of SQL) to do Postgres commands 
+- [Django-allauth](https://docs.allauth.org/en/latest/) - Authentication library used to create the user accounts.
+- [Django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/) - Used to render the forms.
+- [whitenoise](https://whitenoise.readthedocs.io/en/latest/django.html) - Used to serve static files
+- [Select2](https://select2.org/getting-started/basic-usage) - Used for 'search bar' in Create a league form
+- [Jquery](https://jquery.com/) - Used with Select2
+- [Font Awesome](https://fontawesome.com/) - Was used for icons.
+- [Gitpod](https://gitpod.io/) - Was the IDE used for this project.
+- [Git](https://git-scm.com/) - Git was used for version control by using the Gitpod terminal to commit and then push to Github.
+- [GitHub](https://github.com/)- Version control and as agile tool
+- [Google Fonts](https://fonts.google.com/) - Was used to import fonts to the page.
+- [Balsamiq](https://balsamiq.com/) - Used to create wireframes 
+- [TinyPNG](https://tinypng.com/) - Was used to compress the background image on the landing page.
+- [ElephantSQL](https://www.elephantsql.com/) - free database service that hosts the PostgreSQL database for this project
+
+**Servers**
+- [Gunicorn](https://gunicorn.org/) - Python WSGI HTTP Server acting as the web server for the project
+- [PostgreSQL](https://www.postgresql.org/)
+
 
 ## **Credits**
 
