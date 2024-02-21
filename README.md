@@ -24,8 +24,8 @@ Here is a link to the live site - [League Hub](https://league-hub-888548acadce.h
     - [Existing Features](#existing-features)
     - [Future Features](#future-features)
 - [Testing](#testing)
-- [Manual Testing](#manual-testing)
-- [Validator Testing](#validator-testing)
+    - [Manual Testing](#manual-testing)
+    - [Validator Testing](#validator-testing)
 - [Problems and Bugs](#problems-and-bugs)
 - [Deployment](#deployment)
 - [Technologies, Languages, Frameworks, Libraries, Servers, Programs and Sites used](#technologies-languages-frameworks-libraries-servers-programs-and-sites-used)
@@ -338,6 +338,16 @@ The user has full CRUD functionality through being able to:
 
 While the Admin can also delete and update leagues through the admin interface. 
 
+### Security features
+
+- **User Autentication**
+Django Allauth is a popular authentication and authorization library for Django, and is used for this application. It provides a set of features for managing user authentication, registration, and account management.
+
+- **CSRF** 
+CSRF tokens are used on all forms throughout the application. That is the built in protection from Django for Cross-Site Request Forgery attacks. CSRF tokens are generated for each user session, and they are required to submit forms or perform state-changing actions. When a user logs out, the session and associated CSRF token are invalidated, making it difficult for an attacker to forge a valid request using a copied URL.
+
+- **Defensive design** 
+Input validation and error messages provide feedback to the user to guide them towards the desired outcome. Access is also limited for users who are not logged in. As well as for user who are logged in and not a member of a league, they can view a league but they will then have no access to add, edit or delete matches in that league. 
 
 ### Future features
 
