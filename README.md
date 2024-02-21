@@ -8,6 +8,8 @@ The app is targeted at friends who want help in keeping track of matches and poi
 
 Here is a link to the live site - [League Hub](https://league-hub-888548acadce.herokuapp.com/)
 
+![League Hub responsive image](documentation/responsive_leagehub.PNG)
+
 
 ## Table of contents
 
