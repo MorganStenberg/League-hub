@@ -412,6 +412,8 @@ When logged out:
 | Submit button | hover | Changes background color to a darker shade of green  | pass |
 | Submit button | click | If user input is correct, create a league and open detailead view page of the created league, display a success message of "League created" | pass |
 | Submit button | click | If user input is empty or invalid, display an error message specifing what field is missing or invalid. For league name validation is used in the model and message appears if characters are used that are not valid | pass |
+| League members field - search bar | typing | display any users that match to the letters that are typed | pass |
+| League members field - search bar | typing | does not display the current logged in user when searching | pass |
 
 
 

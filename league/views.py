@@ -199,8 +199,8 @@ def detailed_league(request, slug):
                 return redirect('detailed_league', slug=slug)
             else:
                 messages.add_message(request, messages.ERROR, 'If you are not '
-                                     'league creator, you can only add matches '
-                                     'that you are a part of!')
+                                     'league creator, you can only add matches'
+                                     ' that you are a part of!')
                 return redirect('detailed_league', slug=slug)
 
     context = {
