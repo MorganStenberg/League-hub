@@ -17,7 +17,7 @@ class League(models.Model):
         max_length=200, unique=True,
         validators=[
             RegexValidator(
-                regex=r'^[\w\s-]*$', 
+                regex=r'^[\w\s-]*$',
                 message='Enter a valid name, it may only contain '
                 'letters, numbers, spaces and - _ characters',
                 ),

@@ -345,6 +345,7 @@ A list of future features can also be viewed in the Github Projects 'backlog'. A
 - Time based seasons for a league
 - Deleting and archiving a league
 - Comment on a league or match
+- League managment - when creating a league, being able to choose what ruleset should apply. With differing points for win, draw etc. 
 
 
 ## **Testing**
@@ -458,6 +459,8 @@ When logged out:
 | edit match modal - error message for user that is not league creator or part of match - close button| click | closes the modal without taking the user to the page for editing the match | pass |
 | add match button | hover | changes background color to a darker shade of blue | pass |
 | add match button | click | displays a collapsed form for adding a match to the league | pass |
+| add match button - for user who is not part of league | click | displays a modal with message saying user may not add matches if not part of league | pass |
+| add match modal close button - for user who is not part of league | click | closes the modal without opening add match form | pass |
 | Submit button - add match form | hover | Changes background color to a darker shade of green | pass |
 | Submit button - add match form | click | if the user input is valid and not empty, add match to league and refreshes page to update standings in league. Form for adding matches collapses again. Displays success message saying that the match was added to the league | pass |
 | Submit button - add match form | click | if fields are empty, error message is shown to indicate to user that the fields need to be filled in | pass |
@@ -479,7 +482,7 @@ When logged out:
 | --- | --- | --- | --- |
 | Sign in link | click | Opens sign in page | pass |
 | Sign up button | hover | Changes background color to a darker shade of green | pass |
-| Sign up button | click | If user input is correct for all fields, open home page as signed in user. Replacing navbar items for signed in user, and displaying success message saying 'User' Signed in. | pass |
+| Sign up button | click | If user input is correct for all fields, create a user and open home page as signed in user. Replacing navbar items for signed in user, and displaying success message saying 'User' Signed in. | pass |
 | Sign up button | click | If user input is invalid in any field, display Django Allauth error message until all fields have the correct input | pass |
 | Sign in message | click | Success message saying user signed in to disappear once user clicks the X symbol in the corner | pass |
 
@@ -557,18 +560,80 @@ The HTML validator did not return any errors, except for the sign up page. Where
 
 ### **Problems and bugs**
 
-There have not been any major site breaking bugs or problems during the development of this application. But there have been a lot of trial and error, especially when trying to make sure that the views and templates are handling correctly. I had a lot of use of the detailed error messages, from having debug=True. 
+There have not been any major site breaking bugs or problems during the development of this application. But there have been a lot of trial and error, especially when trying to make sure that the views and templates are handling correctly. I have had a lot of use of the detailed error messages, from having debug=True. 
 
 When implementing the 'search bar' for adding users as league members when creating a league, there was quite a lot of issues of getting it working the right way and I tried several different solutions before finally finding Select2, which had what I wanted and was fairly simple to implement. 
 
 During the final testing of the site a few bugs/problems were found: 
 
-- I realised I had no validation for the field of 'Name' for the League model, which causes problems if a user selects a name including special characters as " ! % " etc, as the slug was not produced properly and therefore the view for detailed league and my leagues was not working and causing an error. This was fixed, after a few attempts, by making use of RegexValidator and stating what characters are allowed in the name, this was then tested and found to be working. 
+- I realised I had no validation for the field of 'Name' for the League model, which caused problems if a user selected a name including special characters as " ! % " etc, causing an error. This was fixed, after a few attempts, by making use of RegexValidator and stating what characters are allowed in the name, this was then tested properly. 
 
 - I also realised that I was not checking for if a user selects the same user for both the home team and away team when adding a match to the league. This was fixed by using a 'cleaning method' and raising a validation error if the user in the fields for home and away team are the same. 
 
 
 ## **Deployment**
+
+The project was deployed to Heroku from Github with following steps: 
+
+**Create the Heroku app** 
+1. Log in to Heroku
+2. Click on New and select Create new app from the drop-down menu.
+3. Enter a unique and appropiate app name.
+4. Select you region.
+5. Click on "Create App"
+
+
+**Create the PostgreSQL database using ElephantSQL**
+1. Log in to ElephantSQL and navigate to Dashboard.
+2. Click on "Create New Instance".
+3. Provide a project name and choose "Tiny Turtle", the free plan.
+4. Click on "Select Region" and choose Data center.
+5. Review all the details and click on "Create Instance".
+6. Return to the Dashboard and click on the newly created instance and coyp the database URL.
+
+**Create and prepare files** 
+- Create a requirements.txt file
+- Create a "Procfile" in the main directiory and add: web: gunicorn 'project-name'.wsgi
+
+- Create and env.py file in the main directory in of your workspace, Gitpod in this case.
+- Add the DATABASE_URL and SECRET_KEY to the env.py file
+
+- Update the settings.py file to import the env.py file 
+- Add the DATABASE_URL and SECRET_KEY file paths
+- Comment out or remove the default database configuration
+- Add settings for static files
+    - The URL
+    - Directory path
+    - Rooth path
+    - Storage path
+    - Default file storage path
+- Link the file to the templates directory in Heroku
+- Change the templates directory to TEMPLATES_DIR
+- Add Heroku to the ALLOWED_HOSTS list  
+
+**Heruko config vars** 
+- Add SECRET_KEY value
+- Add Database URL 
+
+**Deployment** 
+- Before deployment DEBUG in settings.py needs to be set to False
+- Connect Heroku to your Github repository
+- Either enable automatic deployment or deploy from branch for manual deployment
+- View deployed site
+
+**Fork** 
+- Navigate to the repository [LeageHub](https://github.com/MorganStenberg/League-hub).
+- On the right side of the page, at the top of the repository, select "Fork".
+- A copy of the repository is now created.
+
+
+**Clone** 
+- Navigate to the repository [LeageHub](https://github.com/MorganStenberg/League-hub).
+- Click on the 'Code' dropdown menu above the list of files and choose a method to copy the URL, via HTTPS, SSH or GitHub CLI.
+- Open Terminal, change the current working directory to the desired location of the cloned directory.
+- Type 'git clone' and paste the URL copied form GitHub.
+- Type 'Enter' to create the local clone.
+
 
 ## **Technologies and Languages used
 

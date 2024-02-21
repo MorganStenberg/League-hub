@@ -43,7 +43,8 @@ class AddMatchesForm(forms.ModelForm):
         away_team = cleaned_data.get("away_team")
 
         if home_team == away_team:
-            raise forms.ValidationError("Home team and away team cannot be the same.")
+            raise forms.ValidationError('Home team and away team cannot '
+                                        'be the same.')
 
         return cleaned_data
 
