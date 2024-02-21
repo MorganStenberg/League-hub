@@ -6,21 +6,31 @@ from django import forms
 class CreateLeagueForm(forms.ModelForm):
     """
     Form for users to create a league.
+    Excluding the league creator, current user, from available
+    choices as league member, as they are added automatically
     """
     class Meta:
         model = League
         fields = ["name", "description", "league_members"]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, current_user=None, *args, **kwargs):
         super(CreateLeagueForm, self).__init__(*args, **kwargs)
-        self.fields["league_members"].help_text = "Type to start searching for"
-        "other users. You need to select at least one other league member."
-        "The league creator is automatically added as league member."
+        if current_user:
+            self.fields["league_members"].queryset = (
+                User.objects.exclude(pk=current_user.pk)
+            )
+        self.fields["league_members"].help_text = ("Type to start searching for "
+        "other users. You need to select at least one other league member. "
+        "The league creator is automatically added as league member.")
 
 
 class AddMatchesForm(forms.ModelForm):
     """
     Form for users to add a match.
+    Filtering the fields for home and away team, 
+    for users that are part of the league instance
+    the match is being added to. 
+    Validating so that home and away team can not be the same.
     """
     class Meta:
         model = Match

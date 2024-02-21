@@ -575,6 +575,8 @@ During the final testing of the site a few bugs/problems were found:
 
 - I also realised that I was not checking for if a user selects the same user for both the home team and away team when adding a match to the league. This was fixed by using a 'cleaning method' and raising a validation error if the user in the fields for home and away teams are the same. 
 
+- I noticed that a user could create a league with only themselves as league member, which in turn would not cause any problems but they would be stuck with a league that they cannot add matches to. To fix this I added a filter to exclude the current user/league creator from available choices as league members. So that a user has to choose at least one other user to add as league member, and then they are added automatically as league member. 
+
 
 ## Deployment
 
@@ -695,6 +697,7 @@ The project was deployed to Heroku from Github with following steps:
 - The use of Regex validator [how to disallow specific characters - Stackoverflow](https://stackoverflow.com/questions/71321648/how-to-disallow-specific-character-input-to-a-charfield) and [allowing spaces in django - Stackoverflow](https://stackoverflow.com/questions/39817348/how-can-i-allow-spaces-in-a-django-username-regex) and [How to use regex validator in django](https://www.geeksforgeeks.org/how-to-use-regex-validator-in-django/)
 - Validating that fields are not the same [Stackoverflow](https://stackoverflow.com/questions/62417639/ensure-2-choice-fields-on-a-record-are-not-equal-in-django)
 - Validation in Django forms [Django docs](https://docs.djangoproject.com/en/5.0/ref/forms/validation/) and [MDN web docs Django Forms](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Forms)
+- Excluding options in field [Stackoverflow](https://stackoverflow.com/questions/27910922/django-form-exclude-options-in-select-field)
 
 - [The design for the table for a league](https://codepen.io/Shayley/pen/NWqrvqQ)
 - [Inspiration on color use](https://www.fotbollskanalen.se/) was taken from a sports site in Sweden.

@@ -108,7 +108,7 @@ def create_league(request):
     the league has been created.
     """
 
-    create_league_form = CreateLeagueForm()
+    create_league_form = CreateLeagueForm(current_user=request.user)
 
     if request.method == "POST":
         create_league_form = CreateLeagueForm(data=request.POST)
